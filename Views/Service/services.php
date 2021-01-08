@@ -28,15 +28,17 @@ require("../Nav/menu.php");
                             <table class="table">
                                 <thead class=" text-primary">
                                     <th>
-                                        IdService
-                                    </th>
-                                    <th>
                                         Libelle
                                     </th>
                                     <th>
                                         Description
                                     </th>
-
+                                    <th>
+                                        Categorie
+                                    </th>
+                                    <th>
+                                        Service Media
+                                    </th>
                                    
                                     <th>
                                         Actions
