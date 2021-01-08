@@ -10,7 +10,7 @@
         $('#canal').val(data.CanalAcquisition),
         $('#email').val(data.Email),
         $('#type').val(data.Type),
-        $('#comment').val(data.Commentaire)
+        $('#comment').val(data.Comment)
     });
 </script>
 <div class="content">
