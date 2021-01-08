@@ -18,7 +18,7 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./user.html">
+            <a class="nav-link" href="../Client/clients.php">
               <i class="material-icons">person</i>
               <p>Clients</p>
             </a>
