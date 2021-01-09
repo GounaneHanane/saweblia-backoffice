@@ -4,6 +4,7 @@
     ?>
 <script src="../../js/utilisateur.js"></script>
 <div class="content">
+<div class="clearfix">
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12">

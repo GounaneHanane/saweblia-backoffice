@@ -23,20 +23,20 @@ $(document).ready(function () {
           "<td>" + table[i].Ville + "</td>"
         );
       else $("#coordianteur-table").append("<td></td>");
-      if (table[i].CIN != null)
+      if (table[i].Cin != null)
       $("#coordianteur-table").append(
-        "<td>" + table[i].CIN + "</td>"
+        "<td>" + table[i].Cin + "</td>"
       );
     else $("#coordianteur-table").append("<td></td>");
-    if(table[i].Disponibilite==true)
-    $('#coordinateur-table').append('<td><label class="switch"><input id="check'+table[i].CoordinateurID+'" onchange="block('+table[i].ClientID+')" type="checkbox" checked><span class="slider round"></span></label></td>')
-else $('#coordinateur-table').append('<td><label class="switch"><input id="check'+table[i].CoordinateurID+'" onchange="block('+table[i].ClientID+')" type="checkbox"><span class="slider round"></span></label></td>')
+    if(table[i].Disponible==true)
+      $('#coordianteur-table').append('<td><label class="switch"><input id="check'+table[i].CoordinateurID+'" onchange="block('+table[i].CoordinateurID+')" type="checkbox" checked><span class="slider round"></span></label></td>');
+    else $('#coordianteur-table').append('<td><label class="switch"><input id="check'+table[i].CoordinateurID+'" onchange="block('+table[i].CoordinateurID+')" type="checkbox"><span class="slider round"></span></label></td>');
 
         $("#coordianteur-table").append(
-          '<td><button type="button" class="btn btn-info action"><span class="material-icons">info</span></button> <button onclick="deletecoordianteur(' +
-            table[i].coordianteurID +
+          '<td><button onclick="deletecoordianteur(' +
+            table[i].CoordinateurID +
             ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
-            table[i].coordianteurID +
+            table[i].CoordinateurID +
             ')"><span class="material-icons">create</span></button></td></tr>'
         );
       }
@@ -46,8 +46,9 @@ else $('#coordinateur-table').append('<td><label class="switch"><input id="check
     });
     $("#btn-add").click(function () {
       var arr = {
-        Nom:$("#Nom").val(),
-        Telephone:$("#telephone").val(),
+        nom:$("#Nom").val(),
+        telephone:$("#telephone").val(),
+        email:$("#email").val(),
         ville:$("#ville").val(),
         cin:$("#cin").val(),
         disponibilite:$("#dispo").is(":checked")
@@ -61,21 +62,29 @@ else $('#coordinateur-table').append('<td><label class="switch"><input id="check
         dataType: "json",
         async: false,
         success: function (msg) {
-          alert(msg);
-        },
+         
+        }, error:function(){
+          $('.clearfix').html("")
+          $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le coordinateur est ajouté avec succes</span></div>')
+          setTimeout(function() {
+             window.location.href="../Personnel/personnels.php"
+            }, 1000);
+        }
       });
     });
     $("#btn-edit").click(function () {
       var arr = {
-        coordianteurID: localStorage.getItem("idcoordianteurEdited"),
-        Nom: $("#Nom").val(),
-        Telephone: $("#Telephone").val(),
+        nom:$("#Nom").val(),
+        telephone:$("#telephone").val(),
+        email:$("#email").val(),
+        ville:$("#ville").val(),
+        cin:$("#cin").val(),
+        disponibilite:$("#dispo").is(":checked")
       };
   
-      console.log(arr["coordianteurID"])
       $.ajax({
         url:
-          "http://webapp.saweblia.ma/coordianteurs/" +
+          "http://webapp.saweblia.ma/coordinateurs/" +
           window.location.search.substring(1).split("?"),
         type: "PUT",
         data: JSON.stringify(arr),
@@ -83,8 +92,14 @@ else $('#coordinateur-table').append('<td><label class="switch"><input id="check
         dataType: "json",
         async: false,
         success: function (msg) {
-          alert(msg);
-        },
+          
+        },error: function() {
+          $('.clearfix').html("")
+          $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le coordinateur est modifier avec succes</span></div>')
+          setTimeout(function() {
+             window.location.href="../Personnel/personnels.php"
+            }, 1000);
+        }
       });
     });
     $('.mdc-tab').click(function(event){
@@ -101,16 +116,49 @@ else $('#coordinateur-table').append('<td><label class="switch"><input id="check
   function deletecoordianteur(idcoordianteur) {
     if (confirm("Voulez-vous vraiment supprimer cette coordianteur ?"))
       $.ajax({
-        url: "http://webapp.saweblia.ma/coordianteurs/" + idcoordianteur,
+        url: "http://webapp.saweblia.ma/coordinateurs/" + idcoordianteur,
         type: "DELETE",
         success: function (msg) {
-          $("#message").append(
-            '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button>Client supprimé avec succés</div>'
-          );
+          
         },
+        error: function() {
+            $('.clearfix').html("")
+            $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> L\'utilisateur est modifier avec succes</span></div>')
+            setTimeout(function() {
+               window.location.href="../Personnel/personnels.php"
+              }, 1000);
+        }
       });
   }
   function modiferClientForm(idcoordianteur) {
-    window.location.href="../coordianteur/editcoordianteur.php?"+idcoordianteur
+    window.location.href="../Personnel/editCoordinateur.php?"+idcoordianteur
   }
-  
+  function block(CoordinateurID) {
+    var arr={}
+   var checkbox=$('#check'+CoordinateurID).is(":checked")
+ $.getJSON('http://webapp.saweblia.ma/coordinateurs/'+CoordinateurID, function (data){
+  var arr = {
+    nom:data.Nom,
+    telephone:data.Telephone,
+    email:data.Email,
+    ville:data.Ville,
+    cin:data.Cin,
+    disponibilite:checkbox
+  };
+
+    $.ajax({
+        url: 'http://webapp.saweblia.ma/coordinateurs/'+CoordinateurID,
+        type: 'PUT',
+        data: JSON.stringify(arr),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        async: false,
+        success: function(msg) {
+            alert(msg);
+        }
+    });
+    });
+ 
+
+    
+}

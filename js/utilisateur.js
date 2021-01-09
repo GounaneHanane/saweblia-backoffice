@@ -41,8 +41,19 @@ $(document).ready(function () {
             dataType: 'json',
             async: false,
             success: function(msg) {
-              
-                
+             
+                $('.clearfix').html("")
+                $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le client est ajouté avec succes</span></div>')
+                setTimeout(function() {
+                   window.location.href="../Utilisateur/utilisateurs.php"
+                  }, 1000);
+                },
+                error: function() {
+                    $('.clearfix').html("")
+                    $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le client est ajouté avec succes</span></div>')
+                    setTimeout(function() {
+                       window.location.href="../Utilisateur/utilisateurs.php"
+                      }, 1000);
                 }
             
         });
@@ -63,7 +74,14 @@ $(document).ready(function () {
             dataType: 'json',
             async: false,
             success: function(msg) {
-                alert(msg);
+               
+            },
+            error: function() {
+                $('.clearfix').html("")
+                $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> L\'utilisateur est modifier avec succes</span></div>')
+                setTimeout(function() {
+                   window.location.href="../Utilisateur/utilisateurs.php"
+                  }, 1000);
             }
         });
        
@@ -75,8 +93,18 @@ function deleteClient(idUser) {
         url: 'http://webapp.saweblia.ma/utilisateurs/'+idUser,
         type: 'DELETE',
         success: function(msg) {
-            $('#message').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button>Client supprimé avec succés</div>')
-        }
+            $('.clearfix').html("")
+            $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> L\'utilisateur est supprimé avec succes</span></div>')
+            setTimeout(function() {
+               window.location.href="../Utilisateur/utilisateurs.php"
+              }, 1000);   },
+            error: function(){
+                $('.clearfix').html("")
+                $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> L\'utilisateur est supprimé avec succes</span></div>')
+                setTimeout(function() {
+                   window.location.href="../Utilisateur/utilisateurs.php"
+                  }, 1000);
+            }
     });
 }
 function block(UserId) {

@@ -12,6 +12,7 @@ $.getJSON('http://webapp.saweblia.ma/utilisateurs/'+localStorage.getItem('idUser
     });
     </script>
 <div class="content">
+<div class="clearfix"></div>
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12">
@@ -47,8 +48,7 @@ $.getJSON('http://webapp.saweblia.ma/utilisateurs/'+localStorage.getItem('idUser
                       
                   
                     <button id="btn-edit" type="button" class="btn btn-primary pull-right">Modifier</button>
-                    <div class="clearfix"></div>
-                  </form>
+                                     </form>
                 </div>
               </div>
             </div>
