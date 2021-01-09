@@ -64,11 +64,10 @@ $(document).ready(function () {
         description: $("#description").val(),
       };
   
-      console.log(arr["serviceID"])
       $.ajax({
         url:
           "http://webapp.saweblia.ma/services/" +
-          localStorage.getItem("idserviceEdited"),
+          window.location.search.substring(1).split("?"),
         type: "PUT",
         data: JSON.stringify(arr),
         contentType: "application/json; charset=utf-8",
@@ -84,7 +83,7 @@ $(document).ready(function () {
       $(this).addClass('mdc-tab--active')
       $("span.mdc-tab-indicator--active").removeClass('mdc-tab-indicator--active')
       $(this).find("span.mdc-tab-indicator").addClass('mdc-tab-indicator--active')
-      console.log($(this).attr('name'))
+      console.log( $('.tab'))
       $('.tab').attr('hidden',true)
       $('#'+$(this).attr('name')).attr('hidden',false)
     })
@@ -103,7 +102,6 @@ $(document).ready(function () {
       });
   }
   function modiferClientForm(idservice) {
-    localStorage.setItem("idserviceEdited", idservice);
-    window.location.replace("../service/editService.php");
+    window.location.href="../Service/editService.php?"+idservice
   }
   

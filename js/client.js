@@ -26,7 +26,7 @@ $(document).ready(function(){
         }
     });
     $('#add-client').click(function(){
-        window.location.replace("../Client/addClient.php")
+        window.location.href="../Client/addClient.php?"+idClient
     });
     $('#btn-add').click(function(){
         var arr={nom:$('#nom').val(),
@@ -51,9 +51,13 @@ $(document).ready(function(){
             dataType: 'json',
             async: false,
             success: function(msg) {
-              
-                
-                }
+                },
+            error: function(){
+                $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le client est ajouté avec succes</span></div>')
+                setTimeout(function() {
+                   window.location.href="../Client/clients.php"
+                  }, 1000);
+            }
             
         });
        
@@ -76,7 +80,13 @@ $(document).ready(function(){
             dataType: 'json',
             async: false,
             success: function(msg) {
-                alert(msg);
+             
+            },
+            error: function (msg) {
+                $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le client est modifié avec succes</span></div>')
+                setTimeout(function() {
+                   window.location.href="../Client/clients.php"
+                  }, 1000);
             }
         });
        
@@ -89,17 +99,21 @@ function deleteClient(idClient) {
         url: 'http://webapp.saweblia.ma/clients/'+idClient,
         type: 'DELETE',
         success: function(msg) {
-            $('#message').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button>Client supprimé avec succés</div>')
+            $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le client est supprimé avec succes</span></div>')
+            setTimeout(function() {
+               window.location.href="../Client/clients.php"
+              }, 1000);
+           },
+        error: function(){
+           
         }
     });
 }
 function modiferClientForm(idClient) {
-    localStorage.setItem('idClientEdited', idClient)
-    window.location.replace("../Client/editClient.php")
+    window.location.href="../Client/editClient.php?"+idClient
 }
 function detail(idClient) {
-    localStorage.setItem('idClient', idClient)
-    window.location.replace("../Adresse/adresses.php")
+    window.location.href="../Adresse/adresses.php?"+idClient
 }
 function block(ClientId) {
     var arr={}

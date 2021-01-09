@@ -1,6 +1,6 @@
 $(document).ready(function(){
    
-    $.getJSON('http://webapp.saweblia.ma/clients/'+localStorage.getItem('idClient'), function (data){
+    $.getJSON('http://webapp.saweblia.ma/clients/'+window.location.search.substring(1).split("?"), function (data){
         $('#nom').append(data.Nom)
         $('#tel').append(data.Telephone),
         $('#canal').append(data.CanalAcquisition),
@@ -8,7 +8,7 @@ $(document).ready(function(){
         $('#type').append(data.Type),
         $('#comment').append(data.Comment)
     });
-    $.getJSON('http://webapp.saweblia.ma/adresse_client/'+localStorage.getItem('idClient'), function (data){
+    $.getJSON('http://webapp.saweblia.ma/adresse_client/'+window.location.search.substring(1).split("?"), function (data){
         var i;
         var table=data.Adresses;
         for (i = 0; i < table.length; i++)
@@ -37,12 +37,11 @@ $(document).ready(function(){
         }
     });
     $('#edit-client').click(function(){
-        localStorage.setItem('idClientEdited', localStorage.getItem('idClient'))
-        window.location.replace("../Client/editClient.php")
-    });
+        window.location.href="../Client/editClient.php?"+window.location.search.substring(1).split("?")
+    })
     $('#add-adresse').click(function(){
-        window.location.replace("../Adresse/addAdresse.php")
-    });idAdresse
+        window.location.href="../Adresse/addAdresse.php?"+window.location.search.substring(1).split("?")
+    });
     $('#btn-add').click(function(){
         var arr={libelle:$('#Libelle').val(),
                 quartier:$('#Quartier').val(),
@@ -51,7 +50,7 @@ $(document).ready(function(){
                 localisation:$('#Localisation').val(),
                 numero_bureau:$('#NBureau').val(),
                 surface_bureau:$('#NSurface').val(),
-                clientId:localStorage.getItem('idClient')
+                clientId:window.location.search.substring(1).split("?")
             }
         
         $.ajax({
@@ -62,13 +61,50 @@ $(document).ready(function(){
             dataType: 'json',
             async: false,
             success: function(msg) {
-                alert(msg);
+               
+            },
+            error: function() {
+                $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> L\'adresse est modifiée avec succes</span></div>')
+                setTimeout(function() {
+                   window.location.href="../Adresse/adresses.php?"+localStorage.getItem('idClient')
+                  }, 1000);
+            }
+        });
+       
+    })
+    $('#btn-edit').click(function(){
+
+        var arr={libelle:$('#Libelle').val(),
+                quartier:$('#Quartier').val(),
+                rue:$('#Rue').val(),
+                ville:$('#Ville').val(),
+                localisation:$('#Localisation').val(),
+                numero_bureau:$('#NBureau').val(),
+                surface_bureau:$('#NSurface').val(),
+                clientId:window.location.search.substring(1).split("?")[0]
+            }
+        
+        $.ajax({
+            url: 'http://webapp.saweblia.ma/adresses/'+window.location.search.substring(1).split("?")[1],
+            type: 'PUT',
+            data: JSON.stringify(arr),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            async: false,
+            success: function(msg) {
+               
+            },
+            error: function() {
+                $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> L\'adresse est modifiée avec succes</span></div>')
+                setTimeout(function() {
+                   window.location.href="../Adresse/adresses.php?"+localStorage.getItem('idClient')
+                  }, 1000);
             }
         });
        
     })
 })
-function modiferAdresseForm(idClient) {
-    localStorage.setItem('idAdresse', idClient)
-    window.location.replace("../adresse/editAdresse.php")
+function modiferAdresseForm(idAdresse) {
+    window.location.href="../Adresse/editAdresse.php?"+window.location.search.substring(1).split("?")+"?"+idAdresse
+    
 }

@@ -4,6 +4,7 @@ require("../Nav/menu.php");
 ?>
 <script src="../../js/service.js"></script>
 <script src="../../js/categorie.js"></script>
+<script src="../../js/prestation.js"></script>
 <div class="content">
     <div class="mdc-tab-bar" role="tablist">
       <div class="mdc-tab-scroller">
@@ -62,7 +63,8 @@ require("../Nav/menu.php");
                     </div>
                     <div class="card-body">
                     <div class="card-header">
-                        <form class="navbar-form">
+                        <div class="row">
+                        <div class="col-md-8">
                             <div class="input-group no-border">
                                 <input type="text" value="" class="form-control" placeholder="Chercher avec le libelle">
                                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
@@ -70,8 +72,11 @@ require("../Nav/menu.php");
                                     <div class="ripple-container"></div>
                                 </button>
                             </div>
+                        </div>
+                        <div class="col-md-4">
                         <button type="button" id="add-service" class="btn btn-primary float-right">Ajouter un service </button>
-                        </form>
+                        </div>
+                        </div>
                     </div>
                         <div class="table-responsive">
                             <table class="table">
@@ -115,7 +120,8 @@ require("../Nav/menu.php");
                     </div>
                     <div class="card-body">
                     <div class="card-header">
-                        <form class="navbar-form">
+                        <div class="row">
+                        <div class="col-md-8">
                             <div class="input-group no-border">
                                 <input type="text" value="" class="form-control" placeholder="Chercher avec le libelle">
                                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
@@ -123,8 +129,11 @@ require("../Nav/menu.php");
                                     <div class="ripple-container"></div>
                                 </button>
                             </div>
-                        <button type="button" id="add-categorie" class="btn btn-primary float-right">Ajouter une categorie </button>
-                        </form>
+                            </div>
+                            <div class="col-md-4">
+                            <button type="button" id="add-categorie" class="btn btn-primary float-right">Ajouter une categorie </button>
+                            </div>
+                        </div>
                     </div>
                         <div class="table-responsive">
                             <table class="table">
@@ -145,6 +154,77 @@ require("../Nav/menu.php");
 
                                 </thead>
                                 <tbody id="categorie-table">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+           
+<div class="content">
+    <div id="prestation_button"  class="container-fluid tab" hidden>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title ">Prestations</h4>
+                    </div>
+                    <div class="card-body">
+                    <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="input-group no-border">
+                                <input type="text" value="" class="form-control" placeholder="Chercher avec le libelle">
+                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                    <i class="material-icons">search</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+                            </div>
+                            </div>
+                          
+                        <div class="col-md-4">
+                        <button type="button" id="add-prestation" class="btn btn-primary float-right">Ajouter une prestation </button>
+                        </div>
+                        </div>
+                    </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Libelle
+                                    </th>
+                                    <th>
+                                        Description
+                                    </th>
+                                    <th>
+                                        Prix Achat
+                                    </th>
+                                    <th>
+                                        Prix Vente
+                                    </th>
+                                    <th>
+                                    Coefficient Remise
+                                    </th>
+                                    <th>
+                                    Services
+                                    </th>
+                                    
+                                    <th>
+                                    Media prestation
+                                    </th>
+
+                                   
+                                    <th>
+                                        Actions
+                                    </th>
+
+                                </thead>
+                                <tbody id="prestation-table">
 
                                 </tbody>
                             </table>

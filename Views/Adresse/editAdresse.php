@@ -4,14 +4,14 @@
     ?>
 <script src="../../js/adresse.js"></script>
 <script>
-$.getJSON('http://webapp.saweblia.ma/adresses/'+localStorage.getItem('idAdresse'), function (data){
-    $('#Libelle').val(),
-     $('#Quartier').val(),
-    $('#Rue').val(),
-    $('#Ville').val(),
-    $('#Localisation').val(),
-    $('#NBureau').val(),
-    $('#NSurface').val(),
+$.getJSON('http://webapp.saweblia.ma/adresses/'+window.location.search.substring(1).split("?")[1], function (data){
+    $('#Libelle').val(data.Libelle),
+     $('#Quartier').val(data.Quartier),
+    $('#Rue').val(data.Rue),
+    $('#Ville').val(data.Ville),
+    $('#Localisation').val(data.Localisation),
+    $('#NBureau').val(data.NBureau),
+    $('#NSurface').val(data.NSurface)
     });
     </script>
 <div class="content">
@@ -54,7 +54,7 @@ $.getJSON('http://webapp.saweblia.ma/adresses/'+localStorage.getItem('idAdresse'
                       <div class="col-md-6">
                         <div class="form-group">
                         <label class="bmd-label-floating">N°Bureau</label>
-                          <input id="NBureau" type="email" class="form-control">
+                          <input id="NBureau" type="text" class="form-control">
                         </div>
 
                       </div>
@@ -63,19 +63,19 @@ $.getJSON('http://webapp.saweblia.ma/adresses/'+localStorage.getItem('idAdresse'
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">N°Surface</label>
-                          <input id="NSurface" type="email" class="form-control">
+                          <input id="NSurface" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Localisation</label>
-                          <input id="Localisation" type="email" class="form-control">
+                          <input id="Localisation" type="text" class="form-control">
                         </div>
                       </div>
                     </div>
                    
                     
-                    <button id="btn-add" type="button" class="btn btn-primary pull-right">Ajouter</button>
+                    <button id="btn-edit" type="button" class="btn btn-primary pull-right">Modifier</button>
                     <div class="clearfix"></div>
                   </form>
                 </div>
