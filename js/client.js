@@ -34,8 +34,15 @@ $(document).ready(function(){
                 canal_acquisition:$('#canal').val(),
                 email:$('#email').val(),
                 type:$('#type').val(),
-                comment:$('#comment').val()}
-        
+                comment:$('#comment').val(),
+                libelle:$('#Libelle').val(),
+                quartier:$('#Quartier').val(),
+                rue:$('#Rue').val(),
+                ville:$('#Ville').val(),
+                localisation:$('#Localisation').val(),
+                numero_bureau:$('#NBureau').val(),
+                surface_bureau:$('#NSurface').val()}
+                alert($('#Ville').val()!="")
         $.ajax({
             url: 'http://webapp.saweblia.ma/clients',
             type: 'POST',
@@ -44,8 +51,10 @@ $(document).ready(function(){
             dataType: 'json',
             async: false,
             success: function(msg) {
-                alert(msg);
-            }
+              
+                
+                }
+            
         });
        
     })

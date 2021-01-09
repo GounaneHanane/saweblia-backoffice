@@ -30,7 +30,7 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./typography.html">
+            <a  href="../Utilisateur/utilisateurs.php" class="nav-link" href="./typography.html">
               <i class="material-icons">library_books</i>
               <p>Utilisateurs</p>
             </a>
@@ -42,7 +42,7 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./map.html">
+            <a class="nav-link" href="../Service/services.php">
               <i class="material-icons">location_ons</i>
               <p>Services</p>
             </a>

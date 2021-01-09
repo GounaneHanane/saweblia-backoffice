@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     $.getJSON("http://webapp.saweblia.ma/services", function (data) {
       var i;
@@ -78,6 +79,15 @@ $(document).ready(function () {
         },
       });
     });
+    $('.mdc-tab').click(function(event){
+      $(".mdc-tab ").removeClass('mdc-tab--active')
+      $(this).addClass('mdc-tab--active')
+      $("span.mdc-tab-indicator--active").removeClass('mdc-tab-indicator--active')
+      $(this).find("span.mdc-tab-indicator").addClass('mdc-tab-indicator--active')
+      console.log($(this).attr('name'))
+      $('.tab').attr('hidden',true)
+      $('#'+$(this).attr('name')).attr('hidden',false)
+    })
   });
   
   function deleteService(idservice) {

@@ -43,7 +43,7 @@
                       <div class="col-md-6">
                         <div class="form-group">
                         <label class="bmd-label-floating">N°Bureau</label>
-                          <input id="NBureau" type="email" class="form-control">
+                          <input id="NBureau" type="text" class="form-control">
                         </div>
 
                       </div>
@@ -52,13 +52,13 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">N°Surface</label>
-                          <input id="NSurface" type="email" class="form-control">
+                          <input id="NSurface" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Localisation</label>
-                          <input id="Localisation" type="email" class="form-control">
+                          <input id="Localisation" type="text" class="form-control">
                         </div>
                       </div>
                     </div>
