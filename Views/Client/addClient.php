@@ -5,6 +5,7 @@
 <script src="../../js/client.js"></script>
 <div class="content">
         <div class="container-fluid">
+        <div class="clearfix"></div>
           <div class="row">
             <div class="col-md-12">
               <div class="card">
@@ -73,7 +74,7 @@
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Quartier</label>
-                          <input id="Quartier" type="text" class="form-control" required>
+                          <input id="Quartier" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-4">
@@ -115,7 +116,7 @@
                    
                     
                     <button id="btn-add" type="button" class="btn btn-primary pull-right">Ajouter</button>
-                    <div class="clearfix"></div>
+                   
                   </form>
                 </div>
               </div>

@@ -32,8 +32,9 @@ $(document).ready(function(){
             if(table[i].OfficeSurface!="")
                 $('#adresse-table').append("<td>"+table[i].OfficeSurface+"</td>")
             else $('#adresse-table').append("<td></td>")
-            $('#adresse-table').append('<td><button onclick="deleteadresse('+table[i].AdressID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferAdresseForm('+table[i].AdressID+')"><span class="material-icons">create</span></button><a href="'+table[i].Localisation+'" class="btn btn-success action"><span class="material-icons">room</span></a></td></tr>')
-          
+            if(table[i].localisation!=null)
+                $('#adresse-table').append('<td><button onclick="deleteadresse('+table[i].AdressID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferAdresseForm('+table[i].AdressID+')"><span class="material-icons">create</span></button><a href="'+table[i].Localisation+'" class="btn btn-success action"><span class="material-icons">room</span></a></td></tr>')
+            else  $('#adresse-table').append('<td><button onclick="deleteadresse('+table[i].AdressID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferAdresseForm('+table[i].AdressID+')"><span class="material-icons">create</span></button>')
         }
     });
     $('#edit-client').click(function(){
@@ -50,7 +51,7 @@ $(document).ready(function(){
                 localisation:$('#Localisation').val(),
                 numero_bureau:$('#NBureau').val(),
                 surface_bureau:$('#NSurface').val(),
-                clientId:window.location.search.substring(1).split("?")
+                clientId:window.location.search.substring(1).split("?")[0]
             }
         
         $.ajax({
@@ -64,9 +65,9 @@ $(document).ready(function(){
                
             },
             error: function() {
-                $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> L\'adresse est modifiée avec succes</span></div>')
+                $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> L\'adresse est ajoutée avec succes</span></div>')
                 setTimeout(function() {
-                   window.location.href="../Adresse/adresses.php?"+localStorage.getItem('idClient')
+                   window.location.href="../Adresse/adresses.php?"+window.location.search.substring(1).split("?")[0]
                   }, 1000);
             }
         });
@@ -97,7 +98,7 @@ $(document).ready(function(){
             error: function() {
                 $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> L\'adresse est modifiée avec succes</span></div>')
                 setTimeout(function() {
-                   window.location.href="../Adresse/adresses.php?"+localStorage.getItem('idClient')
+                   window.location.href="../Adresse/adresses.php?"+window.location.search.substring(1).split("?")[0]
                   }, 1000);
             }
         });
@@ -107,4 +108,20 @@ $(document).ready(function(){
 function modiferAdresseForm(idAdresse) {
     window.location.href="../Adresse/editAdresse.php?"+window.location.search.substring(1).split("?")+"?"+idAdresse
     
+}
+function deleteadresse (idAdresse) {
+    if (confirm('Voulez-vous vraiment supprimer cette adresse ?'))
+    $.ajax({
+        url: 'http://webapp.saweblia.ma/adresses/'+idAdresse,
+        type: 'DELETE',
+        success: function(msg) {
+            $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le client est supprimé avec succes</span></div>')
+            setTimeout(function() {
+               window.location.reload();
+              }, 1000);
+           },
+        error: function(){
+           
+        }
+    });
 }

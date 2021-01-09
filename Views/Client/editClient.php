@@ -4,12 +4,15 @@
     ?>
 <script src="../../js/client.js"></script>
 <script>
-    $.getJSON('http://webapp.saweblia.ma/clients/'+localStorage.getItem('idClientEdited'), function (data){
-        $('#nom').val(data.Nom)
+    $.getJSON('http://webapp.saweblia.ma/clients/'+window.location.search.substring(1).split("?"), function (data){
+      $('#nom').val(data.Nom)
         $('#tel').val(data.Telephone),
         $('#canal').val(data.CanalAcquisition),
         $('#email').val(data.Email),
-        $('#type').val(data.Type),
+        $('#type option').filter(function() {
+  //may want to use $.trim in here
+            return $(this).val() == data.Type;
+          }).prop('selected', true);
         $('#comment').val(data.Comment)
     });
 </script>
@@ -19,7 +22,7 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Nouveau client</h4>
+                  <h4 class="card-title">Modifier client</h4>
                 </div>
                 <div class="card-body">
                   <form id="add-client-form">
