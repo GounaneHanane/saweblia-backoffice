@@ -1,5 +1,13 @@
 $(document).ready(function(){
-    $.getJSON('http://webapp.saweblia.ma/clients', function (data){
+    $.getJSON('http://webapp.saweblia.ma/clients?p='+window.location.search.substring(1).split("?")[0], function (data){
+        $(".pagination").append('<li class="page-item"><a class="page-link btn btn-primary" href="../Client/clients.php?'+data.previouspage+'">Précédent</a></li>')
+        var j
+        for(j=1;j<=data.lastpage;j++) {
+            $(".pagination").append('<li class="page-item"><a class="page-link btn btn-primary" href="../Client/clients.php?'+j+'">'+j+'</a></li>')
+       
+        }
+        $(".pagination").append('<li class="page-item"><a class="page-link btn btn-primary" href="../Client/clients.php?'+data.nextpage+'">Suivant</a></li>')
+        
         var i;
         var table=data.Client.Clients;
         for (i = 0; i < table.length; i++)
@@ -115,10 +123,11 @@ $(document).ready(function(){
     $('#searchbyname').click(function(){
         $.getJSON('http://webapp.saweblia.ma/clientsbyname/'+$('#name-search').val(), function (data){
             var i;
+            $('#client-table').html("")
             var table=data.Client.Clients;
             for (i = 0; i < table.length; i++)
             {
-                $('#client-table').html("")
+               
                 $('#client-table').append('<tr>')
                 if(table[i].Nom!=null)
                     $('#client-table').append("<td>"+table[i].Nom+"</td>")
@@ -142,12 +151,13 @@ $(document).ready(function(){
         });
     })
     $('#searchbyphone').click(function(){
+        $('#client-table').html("")
         $.getJSON('http://webapp.saweblia.ma/clientsbyphone/'+$('#phone-search').val(), function (data){
             var i;
             var table=data.Client.Clients;
             for (i = 0; i < table.length; i++)
             {
-                $('#client-table').html("")
+               
                 $('#client-table').append('<tr>')
                 if(table[i].Nom!=null)
                     $('#client-table').append("<td>"+table[i].Nom+"</td>")
@@ -170,6 +180,7 @@ $(document).ready(function(){
             }
         });
     })
+
 });
 
 function deleteClient(idClient) {

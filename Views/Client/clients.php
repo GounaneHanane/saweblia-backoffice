@@ -70,6 +70,13 @@
                         
                       </tbody>
                     </table>
+                    <div class="row d-flex justify-content-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                          
+                          </ul>
+                        </nav>
+                        </div>
                   </div>
                 </div>
               </div>
