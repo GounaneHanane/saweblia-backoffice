@@ -8,16 +8,20 @@ require("../Nav/menu.php");
         console.log(data.Categories)
         var i;
         for (i = 0; i < data.Categories.length; i++) {
-            $('#typeCategorie').append("<option>" + data.Categories[i].Libelle + "</option>")
+            $('#typeCategorie').append("<option value='"+data.Categories[i].CategorieID+"'>" + data.Categories[i].Libelle + "</option>")
         }
     
 
     })
-    $.getJSON('http://webapp.saweblia.ma/services/'+localStorage.getItem('idserviceEdited'), function (data){
-        console.log("http://webapp.saweblia.ma/services/"+localStorage.getItem('idserviceEdited'))
+    $.getJSON('http://webapp.saweblia.ma/services/'+window.location.search.substring(1).split("?"), function (data){
         $('#libelle').val(data.Libelle)
         $('#description').val(data.Description)
-      
+        $('#typeCategorie option').filter(function() {
+  //may want to use $.trim in here
+            return $(this).val() == data.CategorieID;
+          }).prop('selected', true);
+        $('#image').attr("src","http://localhost/sawebliabackoffice/"+data.ServiceMedia)
+        $("#fournitureImage").attr("alt",data.ServiceMedia)
     });;
 </script>
 <div class="content">
@@ -53,6 +57,21 @@ require("../Nav/menu.php");
                                     </div>
                                 </div>
                             </div>
+                            <div class="">
+                            <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Media</label>
+                                                <input type="file" class="form-control" id="fournitureImage" name="filename">
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                               
+                                               <img width="100" height="100" id="image"/>
+                                            </div>
+                                        </div>
+                                     
 
 
 

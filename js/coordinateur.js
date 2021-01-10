@@ -72,6 +72,96 @@ $(document).ready(function () {
         }
       });
     });
+    $('#searchbyname').click(function(){
+      $.getJSON('http://webapp.saweblia.ma/coordinateursbyname/'+$('#name-search').val(), function (data){
+        $('#coordianteur-table').html("")
+        var i;
+        var table = data.Coordinateurs;
+        for (i = 0; i < table.length; i++) {
+          $("#coordianteur-table").append('<tr>');
+          if (table[i].Nom != null)
+            $("#coordianteur-table").append("<td>" + table[i].Nom + "</td>");
+          else $("#coordianteur-table").append("<td></td>");
+          if (table[i].Telephone != null)
+            $("#coordianteur-table").append("<td>" + table[i].Telephone + "</td>");
+          else $("#coordianteur-table").append("<td></td>");
+  
+      
+          if (table[i].Email != null)
+            $("#coordianteur-table").append(
+              "<td>" + table[i].Email + "</td>"
+            );
+          else $("#coordianteur-table").append("<td></td>");
+          if (table[i].Ville != null)
+          $("#coordianteur-table").append(
+            "<td>" + table[i].Ville + "</td>"
+          );
+        else $("#coordianteur-table").append("<td></td>");
+        if (table[i].Cin != null)
+        $("#coordianteur-table").append(
+          "<td>" + table[i].Cin + "</td>"
+        );
+      else $("#coordianteur-table").append("<td></td>");
+      if(table[i].Disponible==true)
+        $('#coordianteur-table').append('<td><label class="switch"><input id="check'+table[i].CoordinateurID+'" onchange="block('+table[i].CoordinateurID+')" type="checkbox" checked><span class="slider round"></span></label></td>');
+      else $('#coordianteur-table').append('<td><label class="switch"><input id="check'+table[i].CoordinateurID+'" onchange="block('+table[i].CoordinateurID+')" type="checkbox"><span class="slider round"></span></label></td>');
+  
+          $("#coordianteur-table").append(
+            '<td><button onclick="deletecoordianteur(' +
+              table[i].CoordinateurID +
+              ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
+              table[i].CoordinateurID +
+              ')"><span class="material-icons">create</span></button></td></tr>'
+          );
+        }
+      });
+  })
+  $('#searchbyphone').click(function(){
+   
+      $('#coordianteur-table').html("")
+      $.getJSON('http://webapp.saweblia.ma/coordinateursbyphone/'+$('#phone-search').val(), function (data){
+        $('#coordianteur-table').html()
+        var i;
+        var table = data.Coordinateurs;
+        for (i = 0; i < table.length; i++) {
+          $("#coordianteur-table").append('<tr>');
+
+          if (table[i].Nom != null)
+            $("#coordianteur-table").append("<td>" + table[i].Nom + "</td>");
+          else $("#coordianteur-table").append("<td></td>");
+
+          if (table[i].Telephone != null)
+            $("#coordianteur-table").append("<td>" + table[i].Telephone + "</td>");
+          else $("#coordianteur-table").append("<td></td>");
+      
+          if (table[i].Email != null)
+            $("#coordianteur-table").append(
+              "<td>" + table[i].Email + "</td>"
+            );
+          else $("#coordianteur-table").append("<td></td>");
+
+          if (table[i].Ville != null)
+          $("#coordianteur-table").append("<td>" + table[i].Ville + "</td>");
+          else $("#coordianteur-table").append("<td></td>");
+
+          if (table[i].Cin != null) $("#coordianteur-table").append( "<td>" + table[i].Cin + "</td>" );
+         else $("#coordianteur-table").append("<td></td>");
+
+        if(table[i].Disponible==true)
+          $('#coordianteur-table').append('<td><label class="switch"><input id="check'+table[i].CoordinateurID+'" onchange="block('+table[i].CoordinateurID+')" type="checkbox" checked><span class="slider round"></span></label></td>');
+        else $('#coordianteur-table').append('<td><label class="switch"><input id="check'+table[i].CoordinateurID+'" onchange="block('+table[i].CoordinateurID+')" type="checkbox"><span class="slider round"></span></label></td>');
+  
+        $("#coordianteur-table").append(
+            '<td><button onclick="deletecoordianteur(' +
+              table[i].CoordinateurID +
+              ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
+              table[i].CoordinateurID +
+              ')"><span class="material-icons">create</span></button></td></tr>'
+          );
+        
+      }
+    })
+  })
     $("#btn-edit").click(function () {
       var arr = {
         nom:$("#Nom").val(),
@@ -119,11 +209,15 @@ $(document).ready(function () {
         url: "http://webapp.saweblia.ma/coordinateurs/" + idcoordianteur,
         type: "DELETE",
         success: function (msg) {
-          
+          $('.clearfix').html("")
+          $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le coordinateur est supprimé avec succes</span></div>')
+          setTimeout(function() {
+             window.location.href="../Personnel/personnels.php"
+            }, 1000);
         },
         error: function() {
             $('.clearfix').html("")
-            $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> L\'utilisateur est modifier avec succes</span></div>')
+            $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le coordinateur est supprimé avec succes</span></div>')
             setTimeout(function() {
                window.location.href="../Personnel/personnels.php"
               }, 1000);

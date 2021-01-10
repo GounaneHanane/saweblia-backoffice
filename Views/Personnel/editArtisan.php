@@ -5,6 +5,7 @@ require("../Nav/menu.php");
 <script src="../../js/artisan.js"></script>
 <script>
 $.getJSON('http://webapp.saweblia.ma/artisans/'+window.location.search.substring(1).split("?"), function (data){
+    
         $('#Nom').val(data.Nom)
         $('#telephone').val(data.Telephone)
         $('#ville').val(data.Ville)
@@ -13,6 +14,10 @@ $.getJSON('http://webapp.saweblia.ma/artisans/'+window.location.search.substring
         $('#langue').val(data.Langue)
         $('#cin').val(data.Cin)
         $('#email').val(data.Email)
+         $('#type option').filter(function() {
+            
+            return $(this).val() == data.Type;
+          }).prop('selected', true);
         $('#dispo').attr('checked',data.Disponible)
 
     });
@@ -25,7 +30,7 @@ $.getJSON('http://webapp.saweblia.ma/artisans/'+window.location.search.substring
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title">Nouveau Artisan</h4>
+                        <h4 class="card-title">Modifier Artisan</h4>
                     </div>
                     <div class="card-body">
                         <form id="add-client-form">
@@ -79,7 +84,11 @@ $.getJSON('http://webapp.saweblia.ma/artisans/'+window.location.search.substring
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Type</label>
-                                        <input id="cin" type="text" class="form-control">
+                                        <select id="type" class="form-control">
+                                            <option value="AutoEntrepreneur">AutoEntrepreneur</option>
+                                            <option value="Independant">Independant</option>
+                                            <option value="Entreprise">Entreprise</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -106,7 +115,7 @@ $.getJSON('http://webapp.saweblia.ma/artisans/'+window.location.search.substring
 
 
                             <button id="btn-edit" type="button" class="btn btn-primary pull-right">Modifier</button>
-                            <div class="clearfix"></div>
+                            
                         </form>
                     </div>
                 </div>

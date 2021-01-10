@@ -8,7 +8,7 @@ require("../Nav/menu.php");
         console.log(data.service)
          var i;
         for (i = 0; i < data.service.Services.length; i++) {
-            $('#services').append("<option>" + data.service.Services[i].Libelle + "</option>")
+            $('#services').append("<option value='"+data.service.Services[i].ServiceID+"'>" + data.service.Services[i].Libelle + "</option>")
         } 
     });
     $.getJSON('http://webapp.saweblia.ma/prestations/'+window.location.search.substring(1).split("?"), function(data) {
@@ -20,7 +20,8 @@ require("../Nav/menu.php");
             $('#prixAchat').val(data.PrixAchat)
             $('#prixVente').val(data.PrixVente)
             $('#coefficientRemise').val(data.CoefficientRemise)
-        
+            $('#image').attr("src","http://localhost/sawebliabackoffice/"+data.PrestationMedia)
+            $("#fournitureImage").attr("alt",data.PrestationMedia)
     });
     
 </script>
@@ -78,6 +79,21 @@ require("../Nav/menu.php");
                                     </div>
 
                                 </div>
+                                <div class="">
+                            <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Media</label>
+                                                <input type="file" class="form-control" id="fournitureImage" name="filename">
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                               
+                                               <img id="image"/>
+                                            </div>
+                                        </div>
+                                        </div>
                             
 
 

@@ -3,30 +3,7 @@ require("../Nav/header.php");
 require("../Nav/menu.php");
 ?>
 <script src="../../js/fourniture.js"></script>
-< <script>
-    /* $.getJSON('http://webapp.saweblia.ma/fournisseurs', function(data) {
-    console.log(data.fournisseurs.Fournisseurs[1])
-    var i;
-    for (i = 0; i < data.fournisseurs.Fournisseurs.length; i++) { $('#fournisseurs').append("<option value="++">" + data.fournisseurs.Fournisseurs[i].NomFournisseur + "</option>")
-        }
 
-        }); */
-        /* $.getJSON('http://webapp.saweblia.ma/fournitures/'+window.location.search.substring(1).split("?"), function (data){
-        $.getJSON('http://webapp.saweblia.ma/fournisseurs/'+data.FournisseurID, function(datat) {
-        $('#fournisseurs').val(datat.Telephone)
-
-        });
-
-        console.log(data)
-        $('#libelle').val(data.Libelle)
-        $('#description').val(data.Description)
-        $('#prixAchat').val(data.PrixAchat)
-        $('#prixVente').val(data.Vente)
-
-
-
-        });; */
-        </script>
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -72,8 +49,13 @@ require("../Nav/menu.php");
                                                 <input id="prixVente" type="text" class="form-control" required>
                                             </div>
                                         </div>
-
-
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Media</label>
+                                                <input type="file" class="form-control" id="fournitureImage" name="filename">
+                                            </div>
+                                        </div>
+                                       
                                     </div>
 
 

@@ -4,11 +4,12 @@
     ?>
 <script src="../../js/categorie.js"></script>
 <script>
-    $.getJSON('http://webapp.saweblia.ma/categories/'+localStorage.getItem('idCategorieEdited'), function (data){
-        console.log("http://webapp.saweblia.ma/categorie/"+localStorage.getItem('idCategorieEdited'))
+    $.getJSON('http://webapp.saweblia.ma/categories/'+window.location.search.substring(1).split("?"), function (data){
+        
         $('#libelle').val(data.Libelle)
         $('#description').val(data.Description)
-      
+        $('#image').attr("src","http://localhost/sawebliabackoffice/"+data.CategorieMedia)
+        $("#fournitureImage").attr("alt",data.CategorieMedia)
     });
 </script>
 <div class="content">
@@ -34,6 +35,25 @@
                           <input id="description" type="text" class="form-control" required>
                         </div>
                       </div>
+                      </div>
+                      <div class="">
+                            <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Media</label>
+                                                <input type="file" class="form-control" id="fournitureImage" name="filename">
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                               
+                                               <img id="image"/>
+                                            </div>
+                                        </div>
+                                        </div>
+
+
+
                  
                    
                     

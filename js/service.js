@@ -13,38 +13,51 @@ $(document).ready(function () {
           $("#service-table").append("<td>" + table[i].Description + "</td>");
         else $("#service-table").append("<td></td>");
 
-        $.getJSON("http://webapp.saweblia.ma/categories/"+table[i].CategorieID, function (libelleCategorie){
-            console.log(libelleCategorie)
-            localStorage.setItem("categorie",libelleCategorie.Libelle)
-        })
-        $("#service-table").append(
-            "<td>" + localStorage.getItem("categorie") + "</td>"
-          );
-        if (table[i].ServiceMedia != null)
-          $("#service-table").append(
-            "<td>" + table[i].ServiceMedia + "</td>"
-          );
-        else $("#service-table").append("<td></td>");
         
+        var jsonIssues
+        $.ajax({
+          url: "http://webapp.saweblia.ma/categories/"+table[i].CategorieID,
+          async: false,
+          dataType: 'json',
+          success: function(libellefournisseur) {
+              jsonIssues = libellefournisseur.Libelle;
+          }
+      });
+       
         $("#service-table").append(
-          '<td><button type="button" class="btn btn-info action"><span class="material-icons">info</span></button> <button onclick="deleteService(' +
+            "<td>" + jsonIssues + "</td>"
+          ); 
+        
+          
+      
+        if (table[i].ServiceMedia != null)
+        $("#service-table").append(
+          "<td><img width='60' height='60'src='http://localhost/sawebliabackoffice/" + table[i].ServiceMedia + "'/></td>"
+        );
+      else $("#service-table").append("<td></td>");
+        $("#service-table").append(
+          '<td> <button onclick="deleteService(' +
             table[i].ServiceID +
-            ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
+            ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferServiceForm(' +
             table[i].ServiceID +
             ')"><span class="material-icons">create</span></button></td></tr>'
         );
       }
     });
     $("#add-service").click(function () {
-      window.location.replace("../Service/addService.php");
+      window.location.href="../Service/addService.php";
     });
     $("#btn-add").click(function () {
+      uploadImageResult=uploadFile( $("#serviceImage"));
+      if(uploadImageResult=="success") {
       var arr = {
         libelle:$("#libelle").val(),
         description:$("#description").val(),
-        categorie_libelle:$("#typeCategorie").val()
+        categorie_libelle:$("#typeCategorie").val(),
+        service_media:'Media/Service/'+ $("#serviceImage")[0].files[0].name
+
       };
-  
+    
       $.ajax({
         url: "http://webapp.saweblia.ma/services",
         type: "POST",
@@ -54,14 +67,83 @@ $(document).ready(function () {
         async: false,
         success: function (msg) {
           alert(msg);
-        },
+        },error:function(){
+          $('.clearfix').html("")
+          $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le service est ajouté avec succes</span></div>')
+          setTimeout(function() {
+             window.location.href="../Service/services.php"
+            }, 1000);
+        }
       });
+    } else if (uploadImageResult=='Not a valid image!')
+    {
+      $('.clearfix').html("")
+      $('.clearfix').append('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Merci d\'enter une image valide </span></div>')
+      
+    }
     });
+    $('#searchbynameservice').click(function(){
+      $.getJSON('http://webapp.saweblia.ma/services/'+$('#name-searchservice').val(), function (data){
+        
+        var i;
+        var table = data.Services;
+        $("#service-table").html("")
+        for (i = 0; i < table.length; i++) {
+          $("#service-table").append('<tr id="' + table[i].ServiceID + '">');
+          if (table[i].Libelle != null)
+            $("#service-table").append("<td>" + table[i].Libelle + "</td>");
+          else $("#service-table").append("<td></td>");
+          if (table[i].Description != null)
+            $("#service-table").append("<td>" + table[i].Description + "</td>");
+          else $("#service-table").append("<td></td>");
+  
+          
+          var jsonIssues
+          $.ajax({
+            url: "http://webapp.saweblia.ma/categories/"+table[i].CategorieID,
+            async: false,
+            dataType: 'json',
+            success: function(libellefournisseur) {
+                jsonIssues = libellefournisseur.Libelle;
+            }
+        });
+         
+          $("#service-table").append(
+              "<td>" + jsonIssues + "</td>"
+            ); 
+          
+            
+        
+          if (table[i].ServiceMedia != null)
+          $("#service-table").append(
+            "<td><img width='60' height='60'src='http://localhost/sawebliabackoffice/" + table[i].ServiceMedia + "'/></td>"
+          );
+        else $("#service-table").append("<td></td>");
+          $("#service-table").append(
+            '<td> <button onclick="deleteService(' +
+              table[i].ServiceID +
+              ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferServiceForm(' +
+              table[i].ServiceID +
+              ')"><span class="material-icons">create</span></button></td></tr>'
+          );
+        }
+      });
+  })
     $("#btn-edit").click(function () {
+      console.log($("#fournitureImage")[0])
+      uploadImageResult=uploadFile( $("#fournitureImage"));
+      if(uploadImageResult=="success") {
+        var media
+       
+       if($("#fournitureImage")[0].files[0]==undefined)
+            media=$("#fournitureImage").attr("alt")
+        else media='Media/Service/'+ $("#fournitureImage")[0].files[0].name
+       
       var arr = {
         serviceID: localStorage.getItem("idserviceEdited"),
         libelle: $("#libelle").val(),
         description: $("#description").val(),
+        service_media:media
       };
   
       $.ajax({
@@ -75,8 +157,20 @@ $(document).ready(function () {
         async: false,
         success: function (msg) {
           alert(msg);
-        },
-      });
+        },error:function(){
+          $('.clearfix').html("")
+          $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le service est modifié avec succes</span></div>')
+          setTimeout(function() {
+             window.location.href="../Service/services.php"
+            }, 1000);
+        }
+      });}
+      else if (uploadImageResult=='Not a valid image!')
+  {
+    $('.clearfix').html("")
+    $('.clearfix').append('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Merci d\'enter une image valide </span></div>')
+    
+  }
     });
     $('.mdc-tab').click(function(event){
       $(".mdc-tab ").removeClass('mdc-tab--active')
@@ -95,13 +189,47 @@ $(document).ready(function () {
         url: "http://webapp.saweblia.ma/services/" + idservice,
         type: "DELETE",
         success: function (msg) {
-          $("#message").append(
-            '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button>Client supprimé avec succés</div>'
-          );
+          $('.clearfix').html("")
+          $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le service est supprimée avec succes</span></div>')
+          setTimeout(function() {
+             window.location.href="../Service/services.php"
+            }, 1000);
         },
       });
   }
-  function modiferClientForm(idservice) {
+  function modiferServiceForm(idservice) {
     window.location.href="../Service/editService.php?"+idservice
+  }
+  function uploadFile(imageFile){
+ 
+    var result="success"
+  
+    var input = imageFile;
+    file = input[0].files[0];
+    if(file != undefined){
+      formData= new FormData();
+      if(!!file.type.match(/image.*/)){
+        formData.append("image", file);
+        
+        $.ajax({
+          url: "../../uploadImageService.php",
+          type: "POST",
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function(data){
+              
+             
+          },error: function(msg){
+            alert(msg)
+          }
+        });
+      }else{
+        result = 'Not a valid image!';
+      }
+    
+     
+    }
+    return result
   }
   

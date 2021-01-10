@@ -31,7 +31,7 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./icons.html">
+            <a class="nav-link" href="../Fourniture/fourniture.php">
               <i class="material-icons">bubble_chart</i>
               <p>Fournisseurs</p>
             </a>

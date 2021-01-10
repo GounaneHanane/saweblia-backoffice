@@ -67,7 +67,14 @@ require("../Nav/menu.php");
                                     </div>
 
                                 </div>
-                            
+                                <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Media</label>
+                                                <input type="file" class="form-control" id="fournitureImage" name="filename">
+                                            </div>
+                                        </div>
+                                      
+                      
 
 
 

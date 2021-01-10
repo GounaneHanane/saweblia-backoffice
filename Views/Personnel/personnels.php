@@ -47,22 +47,37 @@ require("../Nav/menu.php");
         <div class="row ">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header card-header-primary">
-                        <h4 class="card-title ">Coordianteur</h4>
-                    </div>
+                <div class="card-header card-header-primary row">
+                  <h4 class="card-title col-md-11">Coordinateur</h4>
+                  <button onclick="window.location.reload()" type="button" class="btn btn-primary btn-round btn-just-icon float-right">
+                      <i class="material-icons">autorenew</i>
+                      <div class="ripple-container"></div>
+                  </button>
+                </div>
                     <div class="card-body">
                     <div class="card-header">
                         <div class="row">
-                        <div class="col-md-8">
-                            <div class="input-group no-border">
-                                <input type="text" value="" class="form-control" placeholder="Chercher avec le libelle">
-                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                    <i class="material-icons">search</i>
-                                    <div class="ripple-container"></div>
-                                </button>
+                        <div class="col-md-8 row">
+                            <div class="col-md-6">
+                                <div class="input-group no-border">
+                                    <input id="name-search" type="text" value="" class="form-control" placeholder="Chercher avec le nom">
+                                    <button id="searchbyname" type="button" class="btn btn-white btn-round btn-just-icon">
+                                        <i class="material-icons">search</i>
+                                        <div class="ripple-container"></div>
+                                    </button>
+                                </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="input-group no-border">
+                                    <input id="phone-search" type="text" value="" class="form-control" placeholder="Chercher avec le numéro de téléphone">
+                                    <button id="searchbyphone" type="button" class="btn btn-white btn-round btn-just-icon">
+                                        <i class="material-icons">search</i>
+                                        <div class="ripple-container"></div>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
                         <button type="button" id="add-coordinateur" class="btn btn-primary float-right">Ajouter un coordianteur </button>
                        </div>
                        </div>
@@ -108,21 +123,36 @@ require("../Nav/menu.php");
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header card-header-primary">
-                        <h4 class="card-title ">Artisans</h4>
-                    </div>
+                <div class="card-header card-header-primary row">
+                  <h4 class="card-title col-md-11">Artisans</h4>
+                  <button onclick="window.location.reload()" type="button" class="btn btn-primary btn-round btn-just-icon float-right">
+                      <i class="material-icons">autorenew</i>
+                      <div class="ripple-container"></div>
+                  </button>
+                </div>
                     <div class="card-body">
                     <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="input-group no-border">
-                                <input type="text" value="" class="form-control" placeholder="Chercher avec le libelle">
-                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                    <i class="material-icons">search</i>
-                                    <div class="ripple-container"></div>
-                                </button>
+                        <div class="row">
+                        <div class="col-md-8 row">
+                            <div class="col-md-6">
+                                <div class="input-group no-border">
+                                    <input id="name-searchartisan" type="text" value="" class="form-control" placeholder="Chercher avec le nom">
+                                    <button id="searchbynameartisan" type="button" class="btn btn-white btn-round btn-just-icon">
+                                        <i class="material-icons">search</i>
+                                        <div class="ripple-container"></div>
+                                    </button>
+                                </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="input-group no-border">
+                                    <input id="phone-searchartisan" type="text" value="" class="form-control" placeholder="Chercher avec le numéro de téléphone">
+                                    <button id="searchbyphoneartisan" type="button" class="btn btn-white btn-round btn-just-icon">
+                                        <i class="material-icons">search</i>
+                                        <div class="ripple-container"></div>
+                                    </button>
+                                </div>
                             </div>
+                        </div>
                             <div class="col-md-4">
                         <button type="button" id="add-artisan" class="btn btn-primary float-right">Ajouter un artisan </button>
                         </div>

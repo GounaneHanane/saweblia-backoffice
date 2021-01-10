@@ -66,7 +66,11 @@ require("../Nav/menu.php");
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Type</label>
-                                        <input id="cin" type="text" class="form-control">
+                                        <select class="form-control">
+                                            <option>AutoEntrepreneur</option>
+                                            <option>Independant</option>
+                                            <option>Entreprise</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -93,7 +97,6 @@ require("../Nav/menu.php");
 
 
                             <button id="btn-add" type="button" class="btn btn-primary pull-right">Ajouter</button>
-                            <div class="clearfix"></div>
                         </form>
                     </div>
                 </div>

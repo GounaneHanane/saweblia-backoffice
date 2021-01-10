@@ -14,18 +14,25 @@
                 <div class="card-body">
                   <form id="add-categorie-form">
                     <div class="row">
-                      <div class="col-md-5">
+                      <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Libelle</label>
                           <input id="libelle" type="text" class="form-control" >
                         </div>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Description</label>
                           <input id="description" type="text" class="form-control" required>
                         </div>
                       </div>
+                      <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Media</label>
+                                                <input type="file" class="form-control" id="categorieImage" name="filename">
+                                            </div>
+                                        </div>
+                                        </div>
                       
                    
                    

@@ -61,7 +61,7 @@ require("../Nav/menu.php");
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Email</label>
-                                        <input id="mail" type="text" class="form-control" required>
+                                        <input id="email" type="email" class="form-control" required>
                                     </div>
                                 </div>
                                 
