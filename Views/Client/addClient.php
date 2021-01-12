@@ -24,7 +24,8 @@
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Téléphone</label>
-                          <input id="tel" type="text" class="form-control" required>
+                          <input id="tel" pattern="[0-9]{10}" type="tel" class="form-control" required>
+                          <small>Format: 0600000000</small>
                         </div>
                       </div>
                       <div class="col-md-4">
@@ -115,7 +116,7 @@
                     </div>
                    
                     
-                    <button id="btn-add" type="button" class="btn btn-primary pull-right">Ajouter</button>
+                    <button id="btn-add" type="submit" class="btn btn-primary pull-right">Ajouter</button>
                    
                   </form>
                 </div>

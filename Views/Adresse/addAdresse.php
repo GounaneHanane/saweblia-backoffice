@@ -21,28 +21,30 @@
                         </div>
                       </div>
                       <div class="col-md-3">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Quartier</label>
-                          <input id="Quartier" type="text" class="form-control" required>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Rue</label>
-                          <input id="Rue" type="text" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
+                      
                         <div class="form-group">
                         <label class="bmd-label-floating">Ville</label>
                           <input id="Ville" type="text" class="form-control">
                         </div>
                       </div>
+                      <div class="col-md-4">
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Quartier</label>
+                          <input id="Quartier" type="text" class="form-control" required>
+                        </div>
+                       
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Rue</label>
+                          <input id="Rue" type="text" class="form-control">
+                        </div>
+                      </div>
                       <div class="col-md-6">
                         <div class="form-group">
-                        <label class="bmd-label-floating">N°Bureau</label>
+                        <label class="bmd-label-floating">N°Bureau ( Client Technopark )</label>
                           <input id="NBureau" type="text" class="form-control">
                         </div>
 
@@ -51,7 +53,7 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">N°Surface</label>
+                          <label class="bmd-label-floating">N°Surface ( Client Technopark )</label>
                           <input id="NSurface" type="text" class="form-control">
                         </div>
                       </div>

@@ -36,7 +36,8 @@
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Téléphone</label>
-                          <input id="tel" type="text" class="form-control" required>
+                          <input id="tel" pattern="[0-9]{10}" type="tel" class="form-control" required>
+                          <small>Format: 0600000000</small>
                         </div>
                       </div>
                       <div class="col-md-4">

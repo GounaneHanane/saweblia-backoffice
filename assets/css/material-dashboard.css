@@ -9408,12 +9408,12 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #2196f3 !important;
+  color: #3e5baa !important;
 }
 
 a.text-primary:hover,
 a.text-primary:focus {
-  color: #0c7cd5 !important;
+  color: #3e5baa !important
 }
 
 .text-secondary {
@@ -9502,7 +9502,7 @@ a.text-dark:focus {
 
 .btn {
   position: relative;
-  padding: 12px 30px;
+  padding: 11px 15px;
   margin: 0.3125rem 1px;
   font-size: .75rem;
   font-weight: 400;
@@ -9530,23 +9530,23 @@ a.text-dark:focus {
 
 .btn.btn-primary {
   color: #fff;
-  background-color: #9c27b0;
-  border-color: #9c27b0;
+  background-color: #007bff;
+  border-color: #007bff;
   box-shadow: 0 2px 2px 0 rgba(156, 39, 176, 0.14), 0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
 }
 
 .btn.btn-primary:hover {
   color: #fff;
-  background-color: #9124a3;
-  border-color: #701c7e;
+  background-color: #0069d9;
+  border-color: #0062cc;
 }
 
 .btn.btn-primary:focus,
 .btn.btn-primary.focus,
 .btn.btn-primary:hover {
   color: #fff;
-  background-color: #9124a3;
-  border-color: #701c7e;
+  background-color: #0069d9;
+  border-color: #0062cc;
 }
 
 .btn.btn-primary:active,
@@ -13697,6 +13697,48 @@ select.form-control {
 .form-group .bmd-label-static {
   top: -10px;
 }
+/* Style the navigation menu */
+.topnav {
+  overflow: hidden;
+  background-color: white;
+  position: relative;
+}
+
+/* Hide the links inside the navigation menu (except for logo/home) */
+.topnav #myLinks {
+  display: none;
+}
+
+/* Style navigation menu links */
+.topnav a {
+  color: black;
+  padding: 20px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
+/* Style the hamburger menu */
+.topnav a.icon {
+  background: white;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color:black;
+}
+
+/* Add a grey background color on mouse-over */
+.topnav a:hover {
+  background-color: white;
+  color: black;
+}
+
+/* Style the active link (or home/logo) */
+.active {
+  background-color: transparent;
+  color: white;
+}
 
 textarea {
   height: auto !important;
@@ -14508,7 +14550,7 @@ h2.title {
 }
 
 .text-primary {
-  color: #9c27b0 !important;
+  color: #3e5baa !important
 }
 
 .text-danger {
@@ -14882,6 +14924,12 @@ h2.title {
   .dropdown-menu li>a {
     padding-right: 1.5rem;
     padding-left: 1.5rem;
+  }
+}
+@media (max-width: 991px) {
+
+  .topnav{
+   display: block !important;
   }
 }
 
@@ -15638,7 +15686,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .main-panel>.content {
-  margin-top: 70px;
+
   padding: 30px 15px;
   min-height: calc(100vh - 123px);
 }
@@ -15964,8 +16012,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .fixed-plugin .btn.btn-primary.focus,
 .fixed-plugin .btn.btn-primary:hover {
   color: #fff;
-  background-color: #9124a3;
-  border-color: #701c7e;
+  background-color: #0069d9;
+  border-color: #0062cc;
 }
 
 .fixed-plugin .btn.btn-primary:active,
@@ -17585,7 +17633,7 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
 .card.bg-primary,
 .card.card-rotate.bg-primary .front,
 .card.card-rotate.bg-primary .back {
-  background: linear-gradient(60deg, #ab47bc, #8e24aa);
+  background: linear-gradient(60deg, #3e5baa, #7589c2)
 }
 
 .card .card-header-info .card-icon,
