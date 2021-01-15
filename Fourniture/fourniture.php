@@ -2,7 +2,7 @@
 require("../Nav/header.php");
 require("../Nav/menu.php");
 ?>
-<script src="../../js/fourniture.js"></script>
+<script src="../js/fourniture.js"></script>
 <div class="content">
 <div class="clearfix"></div>
     <div class="mdc-tab-bar" role="tablist">

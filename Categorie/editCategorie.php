@@ -2,7 +2,7 @@
     require("../Nav/header.php");
     require("../Nav/menu.php"); 
     ?>
-<script src="../../js/categorie.js"></script>
+<script src="../js/categorie.js"></script>
 <script>
     $.getJSON('http://webapp.saweblia.ma/categories/'+window.location.search.substring(1).split("?"), function (data){
         $('#categorie').append(data.Libelle)

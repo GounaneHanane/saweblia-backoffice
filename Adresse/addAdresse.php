@@ -2,7 +2,7 @@
     require("../Nav/header.php");
     require("../Nav/menu.php"); 
     ?>
-<script src="../../js/adresse.js"></script>
+<script src="../js/adresse.js"></script>
 <div class="content">
         <div class="container-fluid">
           <div class="row">

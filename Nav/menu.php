@@ -15,7 +15,7 @@ function myFunction() {
 
         Tip 2: you can also add an image using data-image tag
     -->
-      <div class="logo"><img width="250" src="../../assets/img/logo.png" class="simple-text logo-normal">
+      <div class="logo"><img width="250" src="../assets/img/logo.png" class="simple-text logo-normal">
          
         </a></div>
       <div class="sidebar-wrapper">

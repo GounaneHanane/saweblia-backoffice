@@ -2,7 +2,7 @@
 require("../Nav/header.php");
 require("../Nav/menu.php");
 ?>
-<script src="../../js/coordinateur.js"></script>
+<script src="../js/coordinateur.js"></script>
 <script>
 $.getJSON('http://webapp.saweblia.ma/coordinateurs/'+window.location.search.substring(1).split("?"), function (data){
         $('#Nom').val(data.Nom)

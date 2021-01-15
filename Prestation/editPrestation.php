@@ -2,7 +2,7 @@
 require("../Nav/header.php");
 require("../Nav/menu.php");
 ?>
-<script src="../../js/prestation.js"></script>
+<script src="../js/prestation.js"></script>
 <script>
     $(document).ready(function(){
           $.getJSON('http://webapp.saweblia.ma/services', function(data) {

@@ -2,7 +2,7 @@
 require("../Nav/header.php");
 require("../Nav/menu.php");
 ?>
-<script src="../../js/adresse.js"></script>
+<script src="../js/adresse.js"></script>
 <style>
 .table th, .table td {
     border-top:0px;

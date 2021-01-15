@@ -2,7 +2,7 @@
 require("../Nav/header.php");
 require("../Nav/menu.php");
 ?>
-<script src="../../js/service.js"></script>
+<script src="../js/service.js"></script>
 <script>
     $.getJSON('http://webapp.saweblia.ma/categories', function(data) {
         console.log(data.Categories)

@@ -2,7 +2,7 @@
     require("../Nav/header.php");
     require("../Nav/menu.php"); 
     ?>
-<script src="../../js/utilisateur.js"></script>
+<script src="../js/utilisateur.js"></script>
 <script>
 $.getJSON('http://webapp.saweblia.ma/utilisateurs/'+window.location.search.substring(1).split("?"), function (data){
     $('#nom').val(data.Nom)

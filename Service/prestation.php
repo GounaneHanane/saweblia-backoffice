@@ -2,7 +2,7 @@
 require("../Nav/header.php");
 require("../Nav/menu.php");
 ?>
-<script src="../../js/prestation.js"></script>
+<script src="../js/prestation.js"></script>
 
 <div class="content">
 <div class="clearfix"></div>

@@ -2,7 +2,7 @@
 require("../Nav/header.php");
 require("../Nav/menu.php");
 ?>
-<script src="../../js/artisan.js"></script>
+<script src="../js/artisan.js"></script>
 
 <div class="content">
 
