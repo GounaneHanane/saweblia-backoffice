@@ -2,8 +2,8 @@ $(document).ready(function(){
    
     $.getJSON('http://webapp.saweblia.ma/clients/'+window.location.search.substring(1).split("?"), function (data){
         $('#nom').append(data.Nom)
-        $('#nom-header').append(data.Nom)
         $('#tel').append(data.Telephone),
+         $('#nom-header').append(data.Nom)
         $('#canal').append(data.CanalAcquisition),
         $('#email').append(data.Email),
         $('#type').append(data.Type),
@@ -33,7 +33,8 @@ $(document).ready(function(){
             if(table[i].OfficeSurface!="")
                 $('#adresse-table').append("<td>"+table[i].OfficeSurface+"</td>")
             else $('#adresse-table').append("<td></td>")
-            if(table[i].localisation!="")
+            
+            if(table[i].Localisation!="")
                 $('#adresse-table').append('<td><button onclick="deleteadresse('+table[i].AdressID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferAdresseForm('+table[i].AdressID+')"><span class="material-icons">create</span></button><a href="'+table[i].Localisation+'" class="btn btn-success action"><span class="material-icons">room</span></a></td></tr>')
             else  $('#adresse-table').append('<td><button onclick="deleteadresse('+table[i].AdressID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferAdresseForm('+table[i].AdressID+')"><span class="material-icons">create</span></button>')
         }
@@ -44,7 +45,7 @@ $(document).ready(function(){
     $('#add-adresse').click(function(){
         window.location.href="../Adresse/addAdresse.php?"+window.location.search.substring(1).split("?")
     });
-    $('#btn-add').submit(function(){
+    $('#btn-add').click(function(){
         var arr={libelle:$('#Libelle').val(),
                 quartier:$('#Quartier').val(),
                 rue:$('#Rue').val(),

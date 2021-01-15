@@ -24,7 +24,7 @@ $(document).ready(function () {
         }
     });
     $("#add-utilisateur").click(function () {
-        window.location.replace("../Utilisateur/addUtilisateur.php");
+        window.location.href="../Utilisateur/addUtilisateur.php";
       });
       $('#btn-add').click(function(){
           
@@ -43,14 +43,14 @@ $(document).ready(function () {
             success: function(msg) {
              
                 $('.clearfix').html("")
-                $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le client est ajouté avec succes</span></div>')
+                $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> L\'utilisateur est ajouté avec succes</span></div>')
                 setTimeout(function() {
                    window.location.href="../Utilisateur/utilisateurs.php"
                   }, 1000);
                 },
                 error: function() {
                     $('.clearfix').html("")
-                    $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le client est ajouté avec succes</span></div>')
+                    $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> L\'utilisateur est ajouté avec succes</span></div>')
                     setTimeout(function() {
                        window.location.href="../Utilisateur/utilisateurs.php"
                       }, 1000);
@@ -64,7 +64,7 @@ $(document).ready(function () {
                 nom:$('#nom').val(),
                 interne:$('#interne').is(":checked"),
                 login:$('#login').val(),
-                mot_de_passe:$('#mot_de_passe').val()}
+                mot_de_passe:$('#motdepass').val()}
         
         $.ajax({
             url: 'http://webapp.saweblia.ma/utilisateurs/'+localStorage.getItem('idUserEdited'),
@@ -135,7 +135,7 @@ function block(UserId) {
     });
 }
 function modiferUtilisateurForm(idUser) {
-    localStorage.setItem('idUserEdited', idUser)
-    window.location.replace("../Utilisateur/editUtilisateur.php")
+  
+    window.location.href="../Utilisateur/editUtilisateur.php?"+idUser
 }
  

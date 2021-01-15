@@ -12,7 +12,7 @@ $(document).ready(function () {
       else $("#categorie-table").append("<td></td>");
       if (table[i].CategorieMedia != null)
         $("#categorie-table").append(
-          "<td><img width='60' height='60'src='http://localhost/sawebliabackoffice/" + table[i].CategorieMedia + "'/></td>"
+          "<td><img width='60' height='60'src='" +window.location.origin +"/" +table[i].CategorieMedia + "'/></td>"
         );
       else $("#categorie-table").append("<td></td>");
       
@@ -51,7 +51,7 @@ $(document).ready(function () {
         $('.clearfix').html("")
         $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> La catégorie est ajoutée avec succes</span></div>')
         setTimeout(function() {
-           window.location.href="../Service/services.php"
+           window.location.href="../Service/categorie.php"
           }, 1000);
       }
     });
@@ -120,7 +120,7 @@ $(document).ready(function () {
         $('.clearfix').html("")
         $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> La categorie est modifiée avec succes</span></div>')
         setTimeout(function() {
-           window.location.href="../Service/services.php"
+           window.location.href="../Service/categorie.php"
           }, 1000);
       }
     });
@@ -142,7 +142,7 @@ function deleteClient(idCategorie) {
         $('.clearfix').html("")
         $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> La categorie est supprimée avec succes</span></div>')
         setTimeout(function() {
-           window.location.href="../Service/services.php"
+           window.location.href="../Service/categorie.php"
           }, 1000);
       },
     });

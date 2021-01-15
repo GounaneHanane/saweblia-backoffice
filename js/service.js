@@ -1,10 +1,12 @@
 
 $(document).ready(function () {
+ 
     $.getJSON("http://webapp.saweblia.ma/services", function (data) {
       var i;
       var table = data.service.Services;
       
       for (i = 0; i < table.length; i++) {
+          
         $("#service-table").append('<tr id="' + table[i].ServiceID + '">');
         if (table[i].Libelle != null)
           $("#service-table").append("<td>" + table[i].Libelle + "</td>");
@@ -32,7 +34,7 @@ $(document).ready(function () {
       
         if (table[i].ServiceMedia != null)
         $("#service-table").append(
-          "<td><img width='60' height='60'src='http://localhost/sawebliabackoffice/" + table[i].ServiceMedia + "'/></td>"
+          "<td><img width='60' height='60'src='"+window.location.origin +"/"+ table[i].ServiceMedia + "'/></td>"
         );
       else $("#service-table").append("<td></td>");
         $("#service-table").append(
@@ -129,8 +131,58 @@ $(document).ready(function () {
         }
       });
   })
+   $('#name-searchservice').on('keypress',function(e){
+       if(e.which=='13'){
+        
+      $.getJSON('http://webapp.saweblia.ma/services/'+$('#name-searchservice').val(), function (data){
+        
+        var i;
+        var table = data.Services;
+        $("#service-table").html("")
+        for (i = 0; i < table.length; i++) {
+          $("#service-table").append('<tr id="' + table[i].ServiceID + '">');
+          if (table[i].Libelle != null)
+            $("#service-table").append("<td>" + table[i].Libelle + "</td>");
+          else $("#service-table").append("<td></td>");
+          if (table[i].Description != null)
+            $("#service-table").append("<td>" + table[i].Description + "</td>");
+          else $("#service-table").append("<td></td>");
+  
+          
+          var jsonIssues
+          $.ajax({
+            url: "http://webapp.saweblia.ma/categories/"+table[i].CategorieID,
+            async: false,
+            dataType: 'json',
+            success: function(libellefournisseur) {
+                jsonIssues = libellefournisseur.Libelle;
+            }
+        });
+         
+          $("#service-table").append(
+              "<td>" + jsonIssues + "</td>"
+            ); 
+          
+            
+        
+          if (table[i].ServiceMedia != null)
+          $("#service-table").append(
+            "<td><img width='60' height='60'src='http://localhost/sawebliabackoffice/" + table[i].ServiceMedia + "'/></td>"
+          );
+        else $("#service-table").append("<td></td>");
+          $("#service-table").append(
+            '<td> <button onclick="deleteService(' +
+              table[i].ServiceID +
+              ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferServiceForm(' +
+              table[i].ServiceID +
+              ')"><span class="material-icons">create</span></button></td></tr>'
+          );
+        }
+      });
+       }
+  })
     $("#btn-edit").click(function () {
-      console.log($("#fournitureImage")[0])
+     
       uploadImageResult=uploadFile( $("#fournitureImage"));
       if(uploadImageResult=="success") {
         var media
@@ -177,7 +229,7 @@ $(document).ready(function () {
       $(this).addClass('mdc-tab--active')
       $("span.mdc-tab-indicator--active").removeClass('mdc-tab-indicator--active')
       $(this).find("span.mdc-tab-indicator").addClass('mdc-tab-indicator--active')
-      console.log( $('.tab'))
+    
       $('.tab').attr('hidden',true)
       $('#'+$(this).attr('name')).attr('hidden',false)
     })

@@ -44,7 +44,7 @@ $(document).ready(function () {
     $("#add-coordinateur").click(function () {
       window.location.href="../Personnel/addCoordinateur.php";
     });
-    $("#btn-add").click(function () {
+    $("#addCoordinateur").submit(function (e) {
       var arr = {
         nom:$("#Nom").val(),
         telephone:$("#telephone").val(),
@@ -67,10 +67,12 @@ $(document).ready(function () {
           $('.clearfix').html("")
           $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le coordinateur est ajouté avec succes</span></div>')
           setTimeout(function() {
-             window.location.href="../Personnel/personnels.php"
+             window.location.href="../Personnel/coordinateurs.php"
             }, 1000);
         }
       });
+      
+       e.preventDefault();
     });
     $('#searchbyname').click(function(){
       $.getJSON('http://webapp.saweblia.ma/coordinateursbyname/'+$('#name-search').val(), function (data){
@@ -162,7 +164,7 @@ $(document).ready(function () {
       }
     })
   })
-    $("#btn-edit").click(function () {
+    $("#editCoordinateur").submit(function (e) {
       var arr = {
         nom:$("#Nom").val(),
         telephone:$("#telephone").val(),
@@ -187,10 +189,12 @@ $(document).ready(function () {
           $('.clearfix').html("")
           $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le coordinateur est modifier avec succes</span></div>')
           setTimeout(function() {
-             window.location.href="../Personnel/personnels.php"
+             window.location.href="../Personnel/coordinateurs.php"
             }, 1000);
         }
       });
+      
+       e.preventDefault();
     });
     $('.mdc-tab').click(function(event){
       $(".mdc-tab ").removeClass('mdc-tab--active')
@@ -219,7 +223,7 @@ $(document).ready(function () {
             $('.clearfix').html("")
             $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le coordinateur est supprimé avec succes</span></div>')
             setTimeout(function() {
-               window.location.href="../Personnel/personnels.php"
+               window.location.href="../Personnel/coordinateurs.php"
               }, 1000);
         }
       });
