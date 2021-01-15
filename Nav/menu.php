@@ -52,6 +52,12 @@ function myFunction() {
               <p>Paramètres</p>
             </a>
           </li>
+          <li class="nav-item ">
+            <a  href="../Partenaire/jumia.php" class="nav-link" >
+            
+              <p>Partenaire</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -71,6 +77,7 @@ function myFunction() {
     
     <a href="../Service/categorie.php">Services</a>
     <a href="../Utilisateur/utilisateurs.php">Paramètres</a>
+    <a href="../Partenaire/jumia.php">Partenaire</a>
   </div>
   <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
