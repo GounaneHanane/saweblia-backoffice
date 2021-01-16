@@ -10,7 +10,7 @@ $(document).ready(function () {
             $('#jumia-table').append("<td>"+jumia[1]+"</td>")
         else $('#jumia-table').append("<td></td>")
         if(jumia[2]!=null)
-            $('#jumia-table').append("<td>"+jumia[2]+"</td>")
+            $('#jumia-table').append("<td><img src='"+jumia[2]+"' width='100' height='100'/></td>")
         else $('#jumia-table').append("<td></td>")
         if(jumia[3]!=null)
             $('#jumia-table').append("<td>"+jumia[3]+"</td>")
