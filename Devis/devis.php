@@ -15,7 +15,7 @@ require("../Nav/menu.php");
                             <div class="col-md-11">
                                 <h4 class="card-title ">Devis</h4>
                             </div>
-                            <div class="com-md-1"> <button id="add-devis" class="btn btn-primary float-right">Ajouter</button>
+                            <div class="col-md-1"> <button id="add-devis" class="btn btn-primary float-right">Ajouter</button>
                             </div>
 
                         </div>

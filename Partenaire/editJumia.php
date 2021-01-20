@@ -16,7 +16,7 @@ $(document).ready(function() {
         $('#libelle').val(data[0][1])
         $('#pprestation').val(data[0][3])
         $('#consultation').val(data[0][4])
-
+        $('#image').attr('src',data[0][2])
     }
  })
 })
@@ -62,7 +62,22 @@ $(document).ready(function() {
                       </div>
                       
                       </div>
-                    
+                      <div class="">
+                                    
+                                    <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="bmd-label-floating">Media</label>
+                                                        <input type="file" class="form-control" id="fournitureImage" name="filename">
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                       
+                                                       <img height="100" width="100" id="image"/>
+                                                    </div>
+                                                </div>
+                                                </div>
                       
                   
                     <button id="btn-edit" type="button" class="btn btn-success pull-right">Enregistrer</button>
