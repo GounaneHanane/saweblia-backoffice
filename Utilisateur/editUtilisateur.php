@@ -22,25 +22,25 @@ $.getJSON('http://webapp.saweblia.ma/utilisateurs/'+window.location.search.subst
                   <h4 class="card-title">Utilisateur : <i id="user-name"></i></h4>
                 </div>
                 <div class="card-body">
-                  <form id="add-client-form">
+                  <form id="editUtilisateur">
                     <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Nom</label>
-                          <input id="nom" type="text" class="form-control" >
+                          <input id="nom" type="text" class="form-control" required>
                         </div>
                       </div>
                       <div class="col-md-4">
                        <div class="form-group">
                           <label class="bmd-label-floating">Login</label>
-                          <input id="login" type="text" class="form-control">
+                          <input id="login" type="text" class="form-control" required>
                         </div>
                       </div>
                       <div class="col-md-4">
                         
                         <div class="form-group">
                           <label class="bmd-label-floating">Mot de passe</label>
-                          <input id="motdepass" type="text" class="form-control" >
+                          <input id="motdepass" type="text" class="form-control" required>
                         </div>
                       </div>
                     </div>

@@ -17,13 +17,13 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Libelle</label>
-                          <input id="libelle" type="text" class="form-control" >
+                          <input id="libelle" type="text" class="form-control" required>
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Description</label>
-                          <input id="description" type="text" class="form-control" required>
+                          <input id="description" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-4">
@@ -37,7 +37,7 @@
                    
                    
                     
-                    <button  id="btn-add" type="button" class="btn btn-success pull-right">Enregistrer</button>
+                    <button  id="btn-add" type="submit" class="btn btn-success pull-right">Enregistrer</button>
                      <button onclick="window.location.href='../Service/categorie.php'" type="button" class="btn btn-danger pull-right">Annuler</button>
                     <div class="clearfix"></div>
                   </form>

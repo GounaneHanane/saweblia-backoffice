@@ -28,13 +28,20 @@ $(document).ready(function () {
   $("#add-categorie").click(function () {
     window.location.href="../Categorie/addCategorie.php";
   });
-  $("#btn-add").click(function () {
+  $("#add-categorie-form").submit(function (e) {
     uploadImageResult=uploadFile( $("#categorieImage"));
     if(uploadImageResult=="success") {
+     
+        var media
+       if($("#fournitureImage")[0].files[0]==undefined)
+          {  media=""
+            $("#fournitureImage").attr("disabled",true) }
+        else media='Media/Categorie/'+ $("#categorieImage")[0].files[0].name
+       
     var arr = {
       libelle: $("#libelle").val(),
       description: $("#description").val(),
-      categorie_media:'Media/Categorie/'+ $("#categorieImage")[0].files[0].name
+      categorie_media:media
     };
 
     $.ajax({
@@ -61,6 +68,7 @@ $(document).ready(function () {
     $('.clearfix').append('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Merci d\'enter une image valide </span></div>')
     
   }
+  e.preventDefault()
   });
   $('#searchbynamecategorie').click(function(){
     $.getJSON('http://webapp.saweblia.ma/categories/'+$('#name-searchcategorie').val(), function (data){
@@ -91,7 +99,7 @@ $(document).ready(function () {
       }
     });
 })
-  $("#btn-edit").click(function () {
+  $("#edit-categorie-form").submit(function (e) {
     uploadImageResult=uploadFile( $("#fournitureImage"));
     if(uploadImageResult=="success") {
       var media
@@ -130,6 +138,7 @@ $(document).ready(function () {
     $('.clearfix').append('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Merci d\'enter une image valide </span></div>')
     
   }
+  e.preventDefault()
 });
 }
 )

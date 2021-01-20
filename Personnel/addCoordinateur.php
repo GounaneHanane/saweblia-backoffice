@@ -18,7 +18,7 @@ require("../Nav/menu.php");
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Nom</label>
-                                        <input id="Nom" type="text" class="form-control">
+                                        <input id="Nom" type="text" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
