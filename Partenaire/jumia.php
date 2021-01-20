@@ -38,7 +38,9 @@ require("../Nav/menu.php");
                                     <th>
                                         prix consultation
                                     </th>
-
+                                    <th>
+                                    Actions
+                                    </th>
                                 </thead>
                                 <tbody id="jumia-table">
 
