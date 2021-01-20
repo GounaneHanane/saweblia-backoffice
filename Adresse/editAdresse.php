@@ -35,7 +35,7 @@ $.getJSON('http://webapp.saweblia.ma/adresses/'+window.location.search.substring
                         <div class="form-group">
                           
                           <label class="bmd-label-floating">Ville</label>
-                                 <select id="Ville" class="form-control">
+                                 <select id="Ville" class="form-control" required>
                       <option>Casablanca</option>
                       <option>Rabat</option>
                       <option>Mohemmadia</option>
@@ -46,7 +46,7 @@ $.getJSON('http://webapp.saweblia.ma/adresses/'+window.location.search.substring
                       <div class="col-md-4">
                         <div class="form-group">
                             <label class="bmd-label-floating">Quartier</label>
-                          <input id="Quartier" type="text" class="form-control" required>
+                          <input id="Quartier" type="text" class="form-control" >
                          
                         </div>
                       </div>

@@ -2,57 +2,63 @@
     require("../Nav/header.php");
     require("../Nav/menu.php"); 
     ?>
-<script src="../js/utilisateur.js"></script>
+<script src="../js/jumia.js"></script>
 <script>
-$.getJSON('http://webapp.saweblia.ma/utilisateurs/'+window.location.search.substring(1).split("?"), function (data){
-    $('#nom').val(data.Nom)
-    $('#user-name').append(data.Nom)
-    $('#interne').attr("checked",data.Interne)
-    $('#login').val(data.Login)
-               
-    });
+$(document).ready(function() {
+    $.ajax({
+    url: "../jumiaData.php",
+    type: "POST",
+    data:{idJumia:window.location.search.substring(1).split("?")[0],action:"displayEditForm"},
+    async: false,
+    success: function(msg) {
+        var data =JSON.parse(msg)
+        $('#prestation').html(data[0][1])
+        $('#libelle').val(data[0][1])
+        $('#pprestation').val(data[0][3])
+        $('#consultation').val(data[0][4])
+
+    }
+ })
+})
+
+
     </script>
-<div class="content">
+    <div class="content">
 <div class="clearfix"></div>
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Utilisateur : <i id="user-name"></i></h4>
+                  <h4 class="card-title">Prestation : <i id="prestation"></i></h4>
                 </div>
                 <div class="card-body">
                   <form id="editUtilisateur">
                     <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Nom</label>
-                          <input id="nom" type="text" class="form-control" required>
+                          <label class="bmd-label-floating">Libelle</label>
+                          <input id="libelle" type="text" class="form-control" required>
                         </div>
                       </div>
                       <div class="col-md-4">
                        <div class="form-group">
-                          <label class="bmd-label-floating">Login</label>
-                          <input id="login" type="text" class="form-control" required>
+                          <label class="bmd-label-floating">Prix de prestation :</label>
+                          <input id="pprestation" type="text" class="form-control" required>
                         </div>
                       </div>
                       <div class="col-md-4">
                         
                         <div class="form-group">
-                          <label class="bmd-label-floating">Mot de passe</label>
-                          <input id="motdepass" type="text" class="form-control" required>
+                          <label class="bmd-label-floating">Prix de consultation</label>
+                          <input id="consultation" type="text" class="form-control" required>
                         </div>
                       </div>
                     </div>
                      <div class="row">
                       <div class="col-md-4">
                         
-                         <div class="form-group">
-                          <label class="bmd-label-floating">Interne</label><br>
-                          <label class="switch">
-                          <input id="interne" type="checkbox" checked><span class="slider round"></span>
-                          </label>
-                        </div>
+                        
                       </div>
                       
                       </div>
@@ -60,7 +66,7 @@ $.getJSON('http://webapp.saweblia.ma/utilisateurs/'+window.location.search.subst
                       
                   
                     <button id="btn-edit" type="button" class="btn btn-success pull-right">Enregistrer</button>
-                     <button onclick="window.location.href='./utilisateurs.php'" type="button" class="btn btn-danger pull-right">Annuler</button>
+                     <button onclick="window.location.href=document.referrer" type="button" class="btn btn-danger pull-right">Annuler</button>
                  
                                      </form>
                 </div>

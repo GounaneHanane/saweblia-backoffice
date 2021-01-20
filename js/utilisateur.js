@@ -26,7 +26,7 @@ $(document).ready(function () {
     $("#add-utilisateur").click(function () {
         window.location.href="../Utilisateur/addUtilisateur.php";
       });
-      $('#btn-add').click(function(){
+      $('#addUtilisateur').submit(function(e){
           
         var arr={nom:$('#nom').val(),
                 interne:$('#interne').is(":checked"),
@@ -57,9 +57,9 @@ $(document).ready(function () {
                 }
             
         });
-       
+       e.preventDefault()
     })
-    $('#btn-edit').click(function(){
+    $('#editUtilisateur').submit(function(e){
         var arr={
                 nom:$('#nom').val(),
                 interne:$('#interne').is(":checked"),
@@ -86,6 +86,7 @@ $(document).ready(function () {
         });
        
     })
+    e.preventDefault();
 })
 function deleteClient(idUser) {
     if (confirm('Voulez-vous vraiment supprimer cet utilisateur ?'))
