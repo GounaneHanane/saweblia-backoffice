@@ -1,37 +1,41 @@
 $(document).ready(function(){
     $.getJSON('http://webapp.saweblia.ma/clients?p='+window.location.search.substring(1).split("?")[0], function (data){
-        $(".pagination").append('<li class="page-item"><a class="page-link " href="../Client/clients.php?'+data.previouspage+'">Précédent</a></li>')
-        var j
-        for(j=1;j<=data.lastpage;j++) {
-            $(".pagination").append('<li class="page-item"><a class="page-link " href="../Client/clients.php?'+j+'">'+j+'</a></li>')
-       
-        }
-        $(".pagination").append('<li class="page-item"><a class="page-link" href="../Client/clients.php?'+data.nextpage+'">Suivant</a></li>')
-        
+        var table=data.Clients;
+        $("#client-table").DataTable({
+            stateSave: true,
+           
+            "ajax": data,
+            "language": {
+                "paginate": {
+                  "previous": "Précédent",
+                  "next":"Suivant"
+                }
+              }
+        });
         var i;
-        var table=data.Client.Clients;
-        for (i = 0; i < table.length; i++)
+       
+       /* for (i = 0; i < table.length; i++)
         {
-            $('#client-table').append('<tr>')
+            $('#client-body').append('<tr>')
             if(table[i].Nom!=null)
-                $('#client-table').append("<td>"+table[i].Nom+"</td>")
-            else $('#client-table').append("<td></td>")
+                $('#client-body').append("<td>"+table[i].Nom+"</td>")
+            else $('#client-body').append("<td></td>")
             if(table[i].Telephone!=null)
-                $('#client-table').append("<td>"+table[i].Telephone+"</td>")
-            else $('#client-table').append("<td></td>")
+                $('#client-body').append("<td>"+table[i].Telephone+"</td>")
+            else $('#client-body').append("<td></td>")
             if(table[i].Email!=null)
-                $('#client-table').append("<td>"+table[i].Email+"</td>")
-            else $('#client-table').append("<td></td>")
+                $('#client-body').append("<td>"+table[i].Email+"</td>")
+            else $('#client-body').append("<td></td>")
             if(table[i].CanalAcquisition!=null)
-                $('#client-table').append("<td>"+table[i].CanalAcquisition+"</td>")
-            else $('#client-table').append("<td></td>")
+                $('#client-body').append("<td>"+table[i].CanalAcquisition+"</td>")
+            else $('#client-body').append("<td></td>")
             if(table[i].Activer==true)
-                $('#client-table').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox" checked><span class="slider round"></span></label></td>')
-            else $('#client-table').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox"><span class="slider round"></span></label></td>')
+                $('#client-body').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox" checked><span class="slider round"></span></label></td>')
+            else $('#client-body').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox"><span class="slider round"></span></label></td>')
             
-            $('#client-table').append('<td><button type="button" onclick="detail('+table[i].ClientID+')" class="btn btn-info action"><span class="material-icons">info</span></button> <button onclick="deleteClient('+table[i].ClientID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm('+table[i].ClientID+')"><span class="material-icons">create</span></button></td></tr>')
+            $('#client-body').append('<td><button type="button" onclick="detail('+table[i].ClientID+')" class="btn btn-info action"><span class="material-icons">info</span></button> <button onclick="deleteClient('+table[i].ClientID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm('+table[i].ClientID+')"><span class="material-icons">create</span></button></td></tr>')
           
-        }
+        }*/
     });
     $('#add-client').click(function(){
         window.location.href="../Client/addClient.php"
@@ -131,29 +135,29 @@ $(document).ready(function(){
     $('#searchbyname').click(function(){
         $.getJSON('http://webapp.saweblia.ma/clientsbyname/'+$('#name-search').val(), function (data){
             var i;
-            $('#client-table').html("")
+            $('#client-body').html("")
             var table=data.Client.Clients;
             for (i = 0; i < table.length; i++)
             {
                
-                $('#client-table').append('<tr>')
+                $('#client-body').append('<tr>')
                 if(table[i].Nom!=null)
-                    $('#client-table').append("<td>"+table[i].Nom+"</td>")
-                else $('#client-table').append("<td></td>")
+                    $('#client-body').append("<td>"+table[i].Nom+"</td>")
+                else $('#client-body').append("<td></td>")
                 if(table[i].Telephone!=null)
-                    $('#client-table').append("<td>"+table[i].Telephone+"</td>")
-                else $('#client-table').append("<td></td>")
+                    $('#client-body').append("<td>"+table[i].Telephone+"</td>")
+                else $('#client-body').append("<td></td>")
                 if(table[i].Email!=null)
-                    $('#client-table').append("<td>"+table[i].Email+"</td>")
-                else $('#client-table').append("<td></td>")
+                    $('#client-body').append("<td>"+table[i].Email+"</td>")
+                else $('#client-body').append("<td></td>")
                 if(table[i].CanalAcquisition!=null)
-                    $('#client-table').append("<td>"+table[i].CanalAcquisition+"</td>")
-                else $('#client-table').append("<td></td>")
+                    $('#client-body').append("<td>"+table[i].CanalAcquisition+"</td>")
+                else $('#client-body').append("<td></td>")
                 if(table[i].Activer==true)
-                    $('#client-table').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox" checked><span class="slider round"></span></label></td>')
-                else $('#client-table').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox"><span class="slider round"></span></label></td>')
+                    $('#client-body').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox" checked><span class="slider round"></span></label></td>')
+                else $('#client-body').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox"><span class="slider round"></span></label></td>')
                 
-                $('#client-table').append('<td><button type="button" onclick="detail('+table[i].ClientID+')" class="btn btn-info action"><span class="material-icons">info</span></button> <button onclick="deleteClient('+table[i].ClientID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm('+table[i].ClientID+')"><span class="material-icons">create</span></button></td></tr>')
+                $('#client-body').append('<td><button type="button" onclick="detail('+table[i].ClientID+')" class="btn btn-info action"><span class="material-icons">info</span></button> <button onclick="deleteClient('+table[i].ClientID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm('+table[i].ClientID+')"><span class="material-icons">create</span></button></td></tr>')
               
             }
         });
@@ -162,60 +166,60 @@ $(document).ready(function(){
         if(e.keyCode == 13){
         $.getJSON('http://webapp.saweblia.ma/clientsbyname/'+$('#name-search').val(), function (data){
             var i;
-            $('#client-table').html("")
+            $('#client-body').html("")
             var table=data.Client.Clients;
             for (i = 0; i < table.length; i++)
             {
                
-                $('#client-table').append('<tr>')
+                $('#client-body').append('<tr>')
                 if(table[i].Nom!=null)
-                    $('#client-table').append("<td>"+table[i].Nom+"</td>")
-                else $('#client-table').append("<td></td>")
+                    $('#client-body').append("<td>"+table[i].Nom+"</td>")
+                else $('#client-body').append("<td></td>")
                 if(table[i].Telephone!=null)
-                    $('#client-table').append("<td>"+table[i].Telephone+"</td>")
-                else $('#client-table').append("<td></td>")
+                    $('#client-body').append("<td>"+table[i].Telephone+"</td>")
+                else $('#client-body').append("<td></td>")
                 if(table[i].Email!=null)
-                    $('#client-table').append("<td>"+table[i].Email+"</td>")
-                else $('#client-table').append("<td></td>")
+                    $('#client-body').append("<td>"+table[i].Email+"</td>")
+                else $('#client-body').append("<td></td>")
                 if(table[i].CanalAcquisition!=null)
-                    $('#client-table').append("<td>"+table[i].CanalAcquisition+"</td>")
-                else $('#client-table').append("<td></td>")
+                    $('#client-body').append("<td>"+table[i].CanalAcquisition+"</td>")
+                else $('#client-body').append("<td></td>")
                 if(table[i].Activer==true)
-                    $('#client-table').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox" checked><span class="slider round"></span></label></td>')
-                else $('#client-table').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox"><span class="slider round"></span></label></td>')
+                    $('#client-body').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox" checked><span class="slider round"></span></label></td>')
+                else $('#client-body').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox"><span class="slider round"></span></label></td>')
                 
-                $('#client-table').append('<td><button type="button" onclick="detail('+table[i].ClientID+')" class="btn btn-info action"><span class="material-icons">info</span></button> <button onclick="deleteClient('+table[i].ClientID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm('+table[i].ClientID+')"><span class="material-icons">create</span></button></td></tr>')
+                $('#client-body').append('<td><button type="button" onclick="detail('+table[i].ClientID+')" class="btn btn-info action"><span class="material-icons">info</span></button> <button onclick="deleteClient('+table[i].ClientID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm('+table[i].ClientID+')"><span class="material-icons">create</span></button></td></tr>')
               
             }
         });
         }
     })
     $('#searchbyphone').click(function(){
-        $('#client-table').html("")
+        $('#client-body').html("")
         $.getJSON('http://webapp.saweblia.ma/clientsbyphone/'+$('#phone-search').val(), function (data){
             var i;
             var table=data.Client.Clients;
             for (i = 0; i < table.length; i++)
             {
                
-                $('#client-table').append('<tr>')
+                $('#client-body').append('<tr>')
                 if(table[i].Nom!=null)
-                    $('#client-table').append("<td>"+table[i].Nom+"</td>")
-                else $('#client-table').append("<td></td>")
+                    $('#client-body').append("<td>"+table[i].Nom+"</td>")
+                else $('#client-body').append("<td></td>")
                 if(table[i].Telephone!=null)
-                    $('#client-table').append("<td>"+table[i].Telephone+"</td>")
-                else $('#client-table').append("<td></td>")
+                    $('#client-body').append("<td>"+table[i].Telephone+"</td>")
+                else $('#client-body').append("<td></td>")
                 if(table[i].Email!=null)
-                    $('#client-table').append("<td>"+table[i].Email+"</td>")
-                else $('#client-table').append("<td></td>")
+                    $('#client-body').append("<td>"+table[i].Email+"</td>")
+                else $('#client-body').append("<td></td>")
                 if(table[i].CanalAcquisition!=null)
-                    $('#client-table').append("<td>"+table[i].CanalAcquisition+"</td>")
-                else $('#client-table').append("<td></td>")
+                    $('#client-body').append("<td>"+table[i].CanalAcquisition+"</td>")
+                else $('#client-body').append("<td></td>")
                 if(table[i].Activer==true)
-                    $('#client-table').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox" checked><span class="slider round"></span></label></td>')
-                else $('#client-table').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox"><span class="slider round"></span></label></td>')
+                    $('#client-body').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox" checked><span class="slider round"></span></label></td>')
+                else $('#client-body').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox"><span class="slider round"></span></label></td>')
                 
-                $('#client-table').append('<td><button type="button" onclick="detail('+table[i].ClientID+')" class="btn btn-info action"><span class="material-icons">info</span></button> <button onclick="deleteClient('+table[i].ClientID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm('+table[i].ClientID+')"><span class="material-icons">create</span></button></td></tr>')
+                $('#client-body').append('<td><button type="button" onclick="detail('+table[i].ClientID+')" class="btn btn-info action"><span class="material-icons">info</span></button> <button onclick="deleteClient('+table[i].ClientID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm('+table[i].ClientID+')"><span class="material-icons">create</span></button></td></tr>')
               
             }
         });
@@ -223,31 +227,31 @@ $(document).ready(function(){
 $('#phone-search').keydown(function (e){
   
         if(e.keyCode == 13){
-        $('#client-table').html("")
+        $('#client-body').html("")
         $.getJSON('http://webapp.saweblia.ma/clientsbyphone/'+$('#phone-search').val(), function (data){
             var i;
             var table=data.Client.Clients;
             for (i = 0; i < table.length; i++)
             {
                
-                $('#client-table').append('<tr>')
+                $('#client-body').append('<tr>')
                 if(table[i].Nom!=null)
-                    $('#client-table').append("<td>"+table[i].Nom+"</td>")
-                else $('#client-table').append("<td></td>")
+                    $('#client-body').append("<td>"+table[i].Nom+"</td>")
+                else $('#client-body').append("<td></td>")
                 if(table[i].Telephone!=null)
-                    $('#client-table').append("<td>"+table[i].Telephone+"</td>")
-                else $('#client-table').append("<td></td>")
+                    $('#client-body').append("<td>"+table[i].Telephone+"</td>")
+                else $('#client-body').append("<td></td>")
                 if(table[i].Email!=null)
-                    $('#client-table').append("<td>"+table[i].Email+"</td>")
-                else $('#client-table').append("<td></td>")
+                    $('#client-body').append("<td>"+table[i].Email+"</td>")
+                else $('#client-body').append("<td></td>")
                 if(table[i].CanalAcquisition!=null)
-                    $('#client-table').append("<td>"+table[i].CanalAcquisition+"</td>")
-                else $('#client-table').append("<td></td>")
+                    $('#client-body').append("<td>"+table[i].CanalAcquisition+"</td>")
+                else $('#client-body').append("<td></td>")
                 if(table[i].Activer==true)
-                    $('#client-table').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox" checked><span class="slider round"></span></label></td>')
-                else $('#client-table').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox"><span class="slider round"></span></label></td>')
+                    $('#client-body').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox" checked><span class="slider round"></span></label></td>')
+                else $('#client-body').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox"><span class="slider round"></span></label></td>')
                 
-                $('#client-table').append('<td><button type="button" onclick="detail('+table[i].ClientID+')" class="btn btn-info action"><span class="material-icons">info</span></button> <button onclick="deleteClient('+table[i].ClientID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm('+table[i].ClientID+')"><span class="material-icons">create</span></button></td></tr>')
+                $('#client-body').append('<td><button type="button" onclick="detail('+table[i].ClientID+')" class="btn btn-info action"><span class="material-icons">info</span></button> <button onclick="deleteClient('+table[i].ClientID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm('+table[i].ClientID+')"><span class="material-icons">create</span></button></td></tr>')
               
             }
         });

@@ -101,7 +101,7 @@ $(document).ready(function () {
     });
 })
   $("#edit-categorie-form").submit(function (e) {
-    e.preventDefault()
+
     uploadImageResult=uploadFile( $("#fournitureImage"));
     if(uploadImageResult=="success") {
       var media
@@ -115,6 +115,7 @@ $(document).ready(function () {
       description: $("#description").val(),
       categorie_media:media
     };
+    
     $.ajax({
       url:
         "http://webapp.saweblia.ma/categories/" +
@@ -140,6 +141,8 @@ $(document).ready(function () {
     $('.clearfix').append('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Merci d\'enter une image valide </span></div>')
     
   }
+  
+  e.preventDefault()
 
 });
 }

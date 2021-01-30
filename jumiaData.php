@@ -1,6 +1,6 @@
 <?php
 
-$host = "www.saweblia.ma";
+$host = "localhost";
 $user = "saweblia_sawebuser";
 $password = "p@r@d0xait1980";
 $bd = "mobilesw";
@@ -28,6 +28,15 @@ if(isset($_POST['action'])) {
     }
     else if($_POST['action']=='edit') {
         $query = "update Prestations set LibellePrestation='".$_POST['data']['libelle']."', PrixPrestation=".$_POST['data']['prix_prestation'].",PrixConsultation=".$_POST['data']['prix_consultation']." where IDPrestation=".$_POST["data"]["jumiaId"];
+
+        $query_result = $connection->query($query);
+
+        if($query_result==true)
+            echo "success";
+        else echo "error";
+    }
+    else if($_POST['action']=='delete') {
+        $query = "delete from Prestations where IDPrestation=".$_POST["idJumia"];
 
         $query_result = $connection->query($query);
 

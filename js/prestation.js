@@ -48,8 +48,8 @@ $(document).ready(function () {
           ); 
         
        
-        if (table[i].PrestationMedia != null)
-            $("#prestation-table").append("<td><img width='60' height='60'src='"+window.location.origin+"/" + table[i].PrestationMedia + "'/></td>");
+        if (table[i].PrestationMedia != null && table[i].PrestationMedia !="")
+            $("#prestation-table").append("<td><img width='60' height='60'src='"+window.location.origin+"/saweblia-backoffice/" + table[i].PrestationMedia + "'/></td>");
           else $("#prestation-table").append("<td></td>");
         
         $("#prestation-table").append(
@@ -65,8 +65,16 @@ $(document).ready(function () {
       window.location.href="../Prestation/addPrestation.php"
     });
     $("#addPrestation").submit(function (e) {
+      e.preventDefault()
+
       uploadImageResult=uploadFile( $("#fournitureImage"));
       if(uploadImageResult=="success") {
+        var media
+       
+        if($("#fournitureImage")[0].files[0]==undefined)
+             media=""
+         else media='Media/Prestation/'+ $("#fournitureImage")[0].files[0].name
+        
       var arr = {
         libelle:$("#libelle").val(),
         description:$("#description").val(),
@@ -74,7 +82,7 @@ $(document).ready(function () {
         prix_achat:$("#prixAchat").val(),
         prix_vente:$("#prixVente").val(),
         coefficient_remise:$("#coefficientRemise").val(),
-        prestation_media:'Media/Prestation/'+ $("#fournitureImage")[0].files[0].name
+        prestation_media:media
         
       };
   
@@ -102,7 +110,7 @@ $(document).ready(function () {
       $('.clearfix').append('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Merci d\'enter une image valide </span></div>')
       
     }
-    e.preventDefault();
+   
     });
     $("#name-searchprestation").on('keypress',function(e) {
     if(e.which == 13) {
@@ -146,8 +154,8 @@ $(document).ready(function () {
             ); 
           
          
-          if (table[i].PrestationMedia != null)
-              $("#prestation-table").append("<td><img width='60' height='60'src='"+window.location.origin+"/" + table[i].PrestationMedia + "'/></td>");
+          if (table[i].PrestationMedia != null  && table[i].PrestationMedia !="")
+              $("#prestation-table").append("<td><img width='60' height='60'src='"+window.location.origin+"/saweblia-backoffice/" + table[i].PrestationMedia + "'/></td>");
             else $("#prestation-table").append("<td></td>");
           
           $("#prestation-table").append(
@@ -202,8 +210,8 @@ $(document).ready(function () {
             ); 
           
          
-          if (table[i].PrestationMedia != null)
-              $("#prestation-table").append("<td><img width='60' height='60'src='"+window.location.origin+"/" + table[i].PrestationMedia + "'/></td>");
+          if (table[i].PrestationMedia != null  && table[i].PrestationMedia !="")
+              $("#prestation-table").append("<td><img width='60' height='60'src='"+window.location.origin+"/saweblia-backoffice/" + table[i].PrestationMedia + "'/></td>");
             else $("#prestation-table").append("<td></td>");
           
           $("#prestation-table").append(
@@ -217,7 +225,7 @@ $(document).ready(function () {
       });
   })
     $("#editPrestation").submit(function (e) {
-      
+      e.preventDefault()
       uploadImageResult=uploadFile( $("#fournitureImage"));
       //alert(uploadImageResult)
       if(uploadImageResult=="success") {
@@ -265,7 +273,6 @@ $(document).ready(function () {
         }, 1000);
     }
     });
-    e.preventDefault();
   });
   
   function deleteprestation(idprestation) {
@@ -298,7 +305,7 @@ $(document).ready(function () {
         formData.append("image", file);
         
         $.ajax({
-          url: "../../uploadImagePrestation.php",
+          url: "../uploadImagePrestation.php",
           type: "POST",
           data: formData,
           processData: false,

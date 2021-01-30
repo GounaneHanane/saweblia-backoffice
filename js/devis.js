@@ -33,4 +33,13 @@ $(document).ready(function () {
   $("#edit-devis-table").append(
     '<td><button onclick="deletedevis(" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm()"><span class="material-icons">create</span></button></td></tr>'
   );
+  $('#minimizeInfo').click(function() {
+    if($(this).html()=='minimize')
+      {
+        $(this).html("add")
+      }
+    else {
+      $(this).html("minimize")
+    }
+  })
 });

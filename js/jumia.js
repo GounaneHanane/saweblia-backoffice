@@ -19,7 +19,7 @@ $(document).ready(function () {
         if(jumia[4]!=null)
             $('#jumia-table').append("<td>"+jumia[4]+"</td>")
         else $('#jumia-table').append("<td></td>")
-        $('#jumia-table').append("<td><button class='btn btn-warning action' type='button' onclick='editPrestationJumia("+jumia[0]+")'><span class='material-icons'>create</span></td>")
+        $('#jumia-table').append("<td><button class='btn btn-danger action' type='button' onclick='deletePrestationJumia("+jumia[0]+")'><span class='material-icons'>delete_sweep</span> </button>  <button class='btn btn-warning action' type='button' onclick='editPrestationJumia("+jumia[0]+")'><span class='material-icons'>create</span></td>")
         });
     },
   });
@@ -50,4 +50,23 @@ $.ajax({
 })
 function editPrestationJumia(idJumia) {
     window.location.href='./editJumia.php?'+idJumia
+}
+function deletePrestationJumia(idJumia) {
+$.ajax({
+    url: "../jumiaData.php",
+    type: "POST",
+    async: false,
+    data:{idJumia:idJumia,action:'delete'},
+    success: function(msg){
+        if(msg=="success")
+       { $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> La prestation est supprimée avec succes</span></div>')
+        setTimeout(function() {
+           window.location.href="../Partenaire/jumia.php"
+          }, 1000); }
+        else   
+            $('.clearfix').append('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Il y a un erreur au niveau du suppression</span></div>')
+      
+    }
+  })
+
 }

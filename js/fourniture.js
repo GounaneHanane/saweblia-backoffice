@@ -28,7 +28,7 @@ $(document).ready(function () {
           $("#fourniture-table").append("<td>" + table[i].Description + "</td>");
         else $("#fourniture-table").append("<td></td>");
         if (table[i].Media != null)
-          $("#fourniture-table").append("<td><img width='60' height='60'src='"+window.location.origin+"/"+  table[i].Media + "'/></td>");
+          $("#fourniture-table").append("<td><img width='60' height='60'src='"+window.location.origin+"/saweblia-backoffice/"+  table[i].Media + "'/></td>");
         else $("#fourniture-table").append("<td></td>");
         if (table[i].PrixAchat != null)
           $("#fourniture-table").append("<td>" + table[i].PrixAchat + "</td>");
@@ -36,26 +36,17 @@ $(document).ready(function () {
         if (table[i].PrixVente != null)
           $("#fourniture-table").append("<td>" + table[i].PrixVente + "</td>");
         else $("#fourniture-table").append("<td></td>");
-        var jsonIssues
-        $.ajax({
-          url: "http://webapp.saweblia.ma/fournisseurs/"+table[i].FournisseurID,
-          async: false,
-          dataType: 'json',
-          success: function(libellefournisseur) {
-              telephone = libellefournisseur.Telephone;
-               nom = libellefournisseur.NomFournisseur;
-          }
-      });
-      if(nom!=null)
+   
+      if(table[i].Fournisseur.NomFournisseur!=null)
          $("#fourniture-table").append(
-            "<td>" + nom + "</td>"
+            "<td>" + table[i].Fournisseur.NomFournisseur + "</td>"
           ); 
           else $("#fourniture-table").append(
             "<td></td>"
           ); 
-          if(telephone!=null)
+          if(table[i].Fournisseur.Telephone!=null)
         $("#fourniture-table").append(
-            "<td>" + telephone + "</td>"
+            "<td>" + table[i].Fournisseur.Telephone + "</td>"
           ); 
           else  $("#fourniture-table").append(
             "<td></td>"
@@ -117,7 +108,7 @@ $(document).ready(function () {
           $("#fourniture-table").append("<td>" + table[i].Description + "</td>");
         else $("#fourniture-table").append("<td></td>");
         if (table[i].Media != null)
-          $("#fourniture-table").append("<td><img width='60' height='60'src='"+window.location.origin+"/"+  table[i].Media + "'/></td>");
+          $("#fourniture-table").append("<td><img width='60' height='60'src='"+window.location.origin+"/saweblia-backoffice/"+  table[i].Media + "'/></td>");
         else $("#fourniture-table").append("<td></td>");
         if (table[i].PrixAchat != null)
           $("#fourniture-table").append("<td>" + table[i].PrixAchat + "</td>");
@@ -182,7 +173,7 @@ $(document).ready(function () {
           $("#fourniture-table").append("<td>" + table[i].Description + "</td>");
         else $("#fourniture-table").append("<td></td>");
         if (table[i].Media != null)
-          $("#fourniture-table").append("<td><img width='60' height='60'src='"+window.location.origin+"/"+  table[i].Media + "'/></td>");
+          $("#fourniture-table").append("<td><img width='60' height='60'src='"+window.location.origin+"/saweblia-backoffice/"+  table[i].Media + "'/></td>");
         else $("#fourniture-table").append("<td></td>");
         if (table[i].PrixAchat != null)
           $("#fourniture-table").append("<td>" + table[i].PrixAchat + "</td>");
@@ -230,7 +221,7 @@ $(document).ready(function () {
   /// add form submit
   ///
     $("#addFourniture").submit(function (e) {
-        
+        e.preventDefault()
       uploadImageResult=uploadFile( $("#fournitureImage"));
       if(uploadImageResult=="success") {
           var media
@@ -288,13 +279,13 @@ $(document).ready(function () {
         
       }
       
-        e.preventDefault();}
+        }
     );
     ///
     /// Edit fourniture form submit
     ///
     $("#editFourniture").submit(function (e) {
-     
+      e.preventDefault();
       uploadImageResult=uploadFile( $("#fournitureImage"));
       //alert(uploadImageResult)
       if(uploadImageResult=="success") {
@@ -374,7 +365,7 @@ $(document).ready(function () {
         formData.append("image", file);
         
         $.ajax({
-          url: "../../uploadImageFourniture.php",
+          url: "../uploadImageFourniture.php",
           type: "POST",
           data: formData,
           processData: false,
@@ -383,7 +374,7 @@ $(document).ready(function () {
               
              
           },error: function(msg){
-            alert(msg)
+            
           }
         });
       }else{
