@@ -91,7 +91,7 @@ require("../Nav/menu.php");
                                     </th>
                                 
                                     <th>
-                                        Actions
+                                        
                                     </th>
 
                                 </thead>

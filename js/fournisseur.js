@@ -29,11 +29,11 @@ $(document).ready(function () {
         else $("#fournisseur-table").append("<td></td>");
         if (table[i].Localisation != "")
         $("#fournisseur-table").append(
-          '<td><a href="'+table[i].Localisation+'" class="btn btn-success action"><span class="material-icons">room</span></a><button onclick="deleteFournisseur(' +
+          '<td><button onclick="deleteFournisseur(' +
             table[i].Fournisseur +
             ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
             table[i].Fournisseur +
-            ')"><span class="material-icons">create</span></button></td></tr>'
+            ')"><span class="material-icons">create</span></button><a href="'+table[i].Localisation+'" class="btn btn-success action"><span class="material-icons">room</span></a></td></tr>'
         );
         else  $("#fournisseur-table").append(
           '<td><button onclick="deleteFournisseur(' +

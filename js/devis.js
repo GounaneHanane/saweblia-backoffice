@@ -33,4 +33,21 @@ $(document).ready(function () {
   $("#edit-devis-table").append(
     '<td><button onclick="deletedevis(" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm()"><span class="material-icons">create</span></button></td></tr>'
   );
+
+  $("#fournisseur-devis-table").append('<tr id="">');
+
+  $("#fournisseur-devis-table").append("<td> fournisseur1</td>");
+  $("#fournisseur-devis-table").append("<td> Libelle1</td>");
+
+  $("#fournisseur-devis-table").append("<td> 100 </td>");
+
+  $("#fournisseur-devis-table").append("<td> 1 </td>");
+
+
+  $("#fournisseur-devis-table").append("<td> 100 </td>");
+  $("#fournisseur-devis-table").append("<td> artisant1 </td>");
+
+  $("#fournisseur-devis-table").append(
+    '<td><button onclick="deletedevis(" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm()"><span class="material-icons">create</span></button></td></tr>'
+  );
 });
