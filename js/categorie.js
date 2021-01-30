@@ -10,9 +10,9 @@ $(document).ready(function () {
       if (table[i].Description != null)
         $("#categorie-table").append("<td>" + table[i].Description + "</td>");
       else $("#categorie-table").append("<td></td>");
-      if (table[i].CategorieMedia != null)
+      if (table[i].CategorieMedia != null && table[i].CategorieMedia !="")
         $("#categorie-table").append(
-          "<td><img width='60' height='60'src='" +window.location.origin +"/" +table[i].CategorieMedia + "'/></td>"
+          "<td><img width='60' height='60'src='" +window.location.origin +"/saweblia-backoffice/" +table[i].CategorieMedia + "'/></td>"
         );
       else $("#categorie-table").append("<td></td>");
       
@@ -29,13 +29,15 @@ $(document).ready(function () {
     window.location.href="../Categorie/addCategorie.php";
   });
   $("#add-categorie-form").submit(function (e) {
+    
+  e.preventDefault()
     uploadImageResult=uploadFile( $("#categorieImage"));
     if(uploadImageResult=="success") {
      
         var media
-       if($("#fournitureImage")[0].files[0]==undefined)
+       if($("#categorieImage")[0].files[0]==undefined)
           {  media=""
-            $("#fournitureImage").attr("disabled",true) }
+            $("#categorieImage").attr("disabled",true) }
         else media='Media/Categorie/'+ $("#categorieImage")[0].files[0].name
        
     var arr = {
@@ -68,7 +70,6 @@ $(document).ready(function () {
     $('.clearfix').append('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Merci d\'enter une image valide </span></div>')
     
   }
-  e.preventDefault()
   });
   $('#searchbynamecategorie').click(function(){
     $.getJSON('http://webapp.saweblia.ma/categories/'+$('#name-searchcategorie').val(), function (data){
@@ -83,9 +84,9 @@ $(document).ready(function () {
         if (table[i].Description != null)
           $("#categorie-table").append("<td>" + table[i].Description + "</td>");
         else $("#categorie-table").append("<td></td>");
-        if (table[i].CategorieMedia != null)
+        if (table[i].CategorieMedia != null && table[i].CategorieMedia !="")
           $("#categorie-table").append(
-            "<td><img width='60' height='60'src='http://localhost/sawebliabackoffice/" + table[i].CategorieMedia + "'/></td>"
+            "<td><img width='60' height='60'src="+window.location.origin+"/saweblia-backoffice/" + table[i].CategorieMedia + "'/></td>"
           );
         else $("#categorie-table").append("<td></td>");
         
@@ -100,6 +101,7 @@ $(document).ready(function () {
     });
 })
   $("#edit-categorie-form").submit(function (e) {
+    e.preventDefault()
     uploadImageResult=uploadFile( $("#fournitureImage"));
     if(uploadImageResult=="success") {
       var media
@@ -138,7 +140,7 @@ $(document).ready(function () {
     $('.clearfix').append('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Merci d\'enter une image valide </span></div>')
     
   }
-  e.preventDefault()
+
 });
 }
 )
@@ -171,7 +173,7 @@ function uploadFile(imageFile){
       formData.append("image", file);
       
       $.ajax({
-        url: "../../uploadImageCategorie.php",
+        url: "../uploadImageCategorie.php",
         type: "POST",
         data: formData,
         processData: false,

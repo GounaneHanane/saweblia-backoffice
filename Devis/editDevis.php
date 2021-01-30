@@ -25,8 +25,15 @@ require("../Nav/menu.php");
                         <div class="card border">
                             <form id="add-client-form">
                                 <div class="card-body">
-                                    <h3 class="card-title" style="margin-bottom: 15px;">Information Devis</h3>
-
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <h3 class="card-title" style="margin-bottom: 15px;">Information Devis</h3>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span class="material-icons" id="minimizeInfo">add</span>
+                                        </div>
+                                    </div>
+                                    <div id="info">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -111,6 +118,8 @@ require("../Nav/menu.php");
 
                                     </div>
                                 </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="card border">
                             <form id="add-client-form">

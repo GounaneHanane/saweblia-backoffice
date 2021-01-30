@@ -34,7 +34,7 @@ $(document).ready(function () {
       
         if (table[i].ServiceMedia != null)
         $("#service-table").append(
-          "<td><img width='60' height='60'src='"+window.location.origin +"/"+ table[i].ServiceMedia + "'/></td>"
+          "<td><img width='60' height='60'src='"+window.location.origin +"/saweblia-backoffice/"+ table[i].ServiceMedia + "'/></td>"
         );
       else $("#service-table").append("<td></td>");
         $("#service-table").append(
@@ -51,12 +51,18 @@ $(document).ready(function () {
     });
     $("#btn-add").click(function () {
       uploadImageResult=uploadFile( $("#serviceImage"));
-      if(uploadImageResult=="success") {
+    
+        if(uploadImageResult=="success") {
+          var media
+         if($("#serviceImage")[0].files[0]==undefined)
+              media=""
+          else media='Media/Service/'+ $("#serviceImage")[0].files[0].name
+         
       var arr = {
         libelle:$("#libelle").val(),
         description:$("#description").val(),
         categorie_libelle:$("#typeCategorie").val(),
-        service_media:'Media/Service/'+ $("#serviceImage")[0].files[0].name
+        service_media:media
 
       };
     
@@ -116,9 +122,9 @@ $(document).ready(function () {
           
             
         
-          if (table[i].ServiceMedia != null)
+          if (table[i].ServiceMedia != null  && table[i].ServiceMedia !="")
           $("#service-table").append(
-            "<td><img width='60' height='60'src='http://localhost/sawebliabackoffice/" + table[i].ServiceMedia + "'/></td>"
+            "<td><img width='60' height='60'src="+window.locztion.origin+"/saweblia-backoffice/" + table[i].ServiceMedia + "'/></td>"
           );
         else $("#service-table").append("<td></td>");
           $("#service-table").append(
@@ -165,9 +171,9 @@ $(document).ready(function () {
           
             
         
-          if (table[i].ServiceMedia != null)
+          if (table[i].ServiceMedia != null && table[i].ServiceMedia !="")
           $("#service-table").append(
-            "<td><img width='60' height='60'src='http://localhost/sawebliabackoffice/" + table[i].ServiceMedia + "'/></td>"
+            "<td><img width='60' height='60'src="+window.location.origin+"/saweblia-backoffice/" + table[i].ServiceMedia + "'/></td>"
           );
         else $("#service-table").append("<td></td>");
           $("#service-table").append(
@@ -264,7 +270,7 @@ $(document).ready(function () {
         formData.append("image", file);
         
         $.ajax({
-          url: "../../uploadImageService.php",
+          url: "../uploadImageService.php",
           type: "POST",
           data: formData,
           processData: false,
