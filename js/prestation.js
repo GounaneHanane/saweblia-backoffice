@@ -33,7 +33,7 @@ $(document).ready(function () {
           $("#prestation-table").append("<td>" + table[i].CoefficientRemise + "</td>");
         else $("#prestation-table").append("<td></td>");
         
-        var jsonIssues
+       /*  var jsonIssues
         $.ajax({
           url: "http://webapp.saweblia.ma/services/"+table[i].ServiceID,
           async: false,
@@ -41,10 +41,10 @@ $(document).ready(function () {
           success: function(libellefournisseur) {
               jsonIssues = libellefournisseur.Libelle;
           }
-      });
+      }); */
        
         $("#prestation-table").append(
-            "<td>" + jsonIssues + "</td>"
+            "<td>" + table[i].Service.Libelle + "</td>"
           ); 
         
        
