@@ -107,7 +107,7 @@ require("../Nav/menu.php");
                                         Disponibilité
                                     </th>
                                     <th>
-                                        Actions
+                                        
                                     </th>
 
                                 </thead>

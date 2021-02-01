@@ -1,10 +1,10 @@
-<?php 
+<?php
 
-    require("../Nav/header.php");
+require("../Nav/header.php");
 
-    require("../Nav/menu.php"); 
+require("../Nav/menu.php");
 
-    ?>
+?>
 
 <script src="../js/client.js"></script>
 

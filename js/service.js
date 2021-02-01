@@ -16,7 +16,7 @@ $(document).ready(function () {
         else $("#service-table").append("<td></td>");
 
         
-        var jsonIssues
+       /*  var jsonIssues
         $.ajax({
           url: "http://webapp.saweblia.ma/categories/"+table[i].CategorieID,
           async: false,
@@ -24,10 +24,10 @@ $(document).ready(function () {
           success: function(libellefournisseur) {
               jsonIssues = libellefournisseur.Libelle;
           }
-      });
+      }); */
        
         $("#service-table").append(
-            "<td>" + jsonIssues + "</td>"
+            "<td>" + table[i].Categorie.Libelle + "</td>"
           ); 
         
           

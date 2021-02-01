@@ -37,7 +37,7 @@
                           Active/Bloquer
                         </th>
                         <th>
-                          Actions
+                          
                         </th>
                       </thead>
                       <tbody id="client-table">

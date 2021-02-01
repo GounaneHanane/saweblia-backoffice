@@ -108,7 +108,7 @@ require("../Nav/menu.php");
 
                                    
                                     <th>
-                                        Actions
+                                        
                                     </th>
 
                                 </thead>

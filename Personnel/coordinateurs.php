@@ -2,8 +2,7 @@
 require("../Nav/header.php");
 require("../Nav/menu.php");
 ?>
-<script src="../js/artisan.js"></script>
-<script src="../js/coordinateur.js"></script>
+<script src="../../js/coordinateur.js"></script>
 
 <div class="content">
 <div class="clearfix"></div>
@@ -79,7 +78,7 @@ require("../Nav/menu.php");
                                         Disponibilité
                                     </th>
                                     <th>
-                                        Actions
+                                        
                                     </th>
 
                                 </thead>
