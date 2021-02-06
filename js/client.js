@@ -2,40 +2,45 @@ $(document).ready(function(){
     $.getJSON('http://webapp.saweblia.ma/clients?p='+window.location.search.substring(1).split("?")[0], function (data){
         var table=data.Clients;
         $("#client-table").DataTable({
-            stateSave: true,
-           
-            "ajax": data,
+           data:table,
+          
+           columns: [
+            { data: "Nom" },
+            { data: "Telephone" },
+            { data: "Email" },
+            { data: "CanalAcquisition" },
+            { 
+                data: "Activer",
+                orderable:      false,
+                 render: function(data, type, row) {
+                    if(data==true)
+                    return '<label class="switch"><input id="check'+row.ClientID+'" onchange="block('+row.ClientID+')" type="checkbox" checked=true><span class="slider round"></span></label>'
+                else return'<label class="switch"><input id="check'+row.ClientID+'" onchange="block('+row.ClientID+')" type="checkbox"><span class="slider round"></span></label>'
+                
+                } 
+            },
+            {
+                 data : null,
+                 orderable:      false,
+                 render: function ( data, type, row ) {
+                // Combine the first and last names into a single table field
+                return '<button type="button" onclick="detail('+data.ClientID+')" class="btn btn-info action"><span class="material-icons">info</span></button> <button onclick="deleteClient('+data.ClientID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm('+data.ClientID+')"><span class="material-icons">create</span></button>'
+            }}
+        ],
             "language": {
                 "paginate": {
                   "previous": "Précédent",
                   "next":"Suivant"
-                }
+                },
+                "lengthMenu": "Afficher _MENU_ enregistrements par page",
+                "zeroRecords": "Rien n'a été trouvé",
+                "info": "Affichage de la page _PAGE_ de _PAGES_",
+                "infoEmpty": "Aucun enregistrement disponible",
+                "infoFiltered": "(filtré à partir de _MAX_ enregistrements au total)",
+                "search": "Recherche:",
               }
         });
-        var i;
-       
-       /* for (i = 0; i < table.length; i++)
-        {
-            $('#client-body').append('<tr>')
-            if(table[i].Nom!=null)
-                $('#client-body').append("<td>"+table[i].Nom+"</td>")
-            else $('#client-body').append("<td></td>")
-            if(table[i].Telephone!=null)
-                $('#client-body').append("<td>"+table[i].Telephone+"</td>")
-            else $('#client-body').append("<td></td>")
-            if(table[i].Email!=null)
-                $('#client-body').append("<td>"+table[i].Email+"</td>")
-            else $('#client-body').append("<td></td>")
-            if(table[i].CanalAcquisition!=null)
-                $('#client-body').append("<td>"+table[i].CanalAcquisition+"</td>")
-            else $('#client-body').append("<td></td>")
-            if(table[i].Activer==true)
-                $('#client-body').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox" checked><span class="slider round"></span></label></td>')
-            else $('#client-body').append('<td><label class="switch"><input id="check'+table[i].ClientID+'" onchange="block('+table[i].ClientID+')" type="checkbox"><span class="slider round"></span></label></td>')
-            
-            $('#client-body').append('<td><button type="button" onclick="detail('+table[i].ClientID+')" class="btn btn-info action"><span class="material-icons">info</span></button> <button onclick="deleteClient('+table[i].ClientID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm('+table[i].ClientID+')"><span class="material-icons">create</span></button></td></tr>')
-          
-        }*/
+      
     });
     $('#add-client').click(function(){
         window.location.href="../Client/addClient.php"
