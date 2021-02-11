@@ -13,43 +13,42 @@
                   <h4 class="card-title">Nouveau utilisateur</h4>
                 </div>
                 <div class="card-body">
-                  <form id="add-client-form">
+                  <form id="addUtilisateur">
                     <div class="row">
-                      <div class="col-md-5">
+                      <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Nom</label>
-                          <input id="nom" type="text" class="form-control" >
+                          <input id="nom" type="text" class="form-control" required>
                         </div>
                       </div>
                       <div class="col-md-3">
                          <div class="form-group">
                           <label class="bmd-label-floating">Login</label>
-                          <input id="login" type="text" class="form-control">
+                          <input id="login" type="text" class="form-control" required>
                         </div>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                        
                          <div class="form-group">
                         <label class="bmd-label-floating">Mot de passe</label>
-                          <input id="mot_de_passe" type="text" class="form-control">
+                          <input id="mot_de_passe" type="text" class="form-control" required>
                       
                       </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
+                      </div>  <div class="col-md-3">
                           <div class="form-group">
                           <label class="bmd-label-floating">Interne</label><br>
                           <label class="switch">
                           <input id="interne" type="checkbox" checked><span class="slider round"></span>
                           </label>
                         </div>
-                       </div></div>
+                       </div>
+                    </div>
+                   
                      
-                    <button id="btn-add" type="button" class="btn btn-success pull-right">Enregistrer</button>
+                    <button id="btn-add" type="submit" class="btn btn-success pull-right">Enregistrer</button>
                     
                   <button onclick="window.location.href='./utilisateurs.php'" type="button" class="btn btn-danger pull-right">Annuler</button>
-                    <div class="clearfix"></div>
+                   
                   </form>
                 </div>
               </div>

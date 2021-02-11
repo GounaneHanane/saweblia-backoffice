@@ -67,7 +67,7 @@ function myFunction() {
 <!-- Top Navigation Menu -->
 <!-- Top Navigation Menu -->
 <div class="topnav" style="display: none;">
-  <a href="" class="active" ><img width="150" src="../../assets/img/logo.png" class="simple-text logo-normal"></a>
+  <a href="" class="active" ><img width="150" src="../assets/img/logo.png" class="simple-text logo-normal"></a>
   <!-- Navigation links (hidden by default) -->
   <div id="myLinks">
     <a href="../Client/clients.php">Clients</a>

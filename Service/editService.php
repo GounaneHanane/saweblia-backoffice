@@ -21,7 +21,7 @@ require("../Nav/menu.php");
   //may want to use $.trim in here
             return $(this).val() == data.CategorieID;
           }).prop('selected', true);
-        $('#image').attr("src",window.location.origin+"/"+data.ServiceMedia)
+        $('#image').attr("src",window.location.origin+"/saweblia-backoffice/"+data.ServiceMedia)
         $("#fournitureImage").attr("alt",data.ServiceMedia)
     });;
 </script>
@@ -36,42 +36,44 @@ require("../Nav/menu.php");
                     <div class="card-body">
                         <form id="add-client-form">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Libelle</label>
-                                        <input id="libelle" type="text" class="form-control">
+                                        <input id="libelle" type="text" class="form-control" required>
                                     </div>
                                 </div>
+                                
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Description</label>
-                                        <input id="description" type="text" class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">Type categorie</label>
+                                        <label class="bmd-label-floating">Categorie</label>
                                         <select id="typeCategorie" class="form-control">
 
 
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="">
-                            <div class="col-md-4">
+                                <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="bmd-label-floating">Media</label>
-                                                <input type="file" class="form-control" id="fournitureImage" name="filename">
+                                                <input onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])" type="file" class="form-control" id="fournitureImage" name="filename">
                                             </div>
                                         </div>
-                                        </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-2">
                                             <div class="form-group">
                                                
                                                <img width="100" height="100" id="image"/>
                                             </div>
                                         </div>
+                            </div>
+                            <div class="row">
+                         
+                            <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Description</label>
+                                        <input id="description" type="text" class="form-control" >
+                                    </div>
+                                </div>
+                                       </div>
                                      
 
 

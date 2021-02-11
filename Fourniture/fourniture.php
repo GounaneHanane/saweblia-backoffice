@@ -51,21 +51,10 @@ require("../Nav/menu.php");
                 </div>
                     <div class="card-body">
                     <div class="card-header">
-                        <div class=" row">
-                            <div class="col-md-4">
-                                <div class="input-group no-border">
-                                    <input style="margin-right:4px" id="name-searchfourniture" type="text" value="" class="form-control" placeholder="Libelle">
-                                  
-                                      <button id="searchbynamefourniture" type="button" class="btn btn-dark">
-                                Chercher
-                              </button>
-                                </div>
-                            </div>
-                           
-                        </div>
-                    </div>
+                   
+                        
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" id="fourniture-table">
                                 <thead class=" text-primary">
                                     <th>
                                         Libelle
@@ -91,11 +80,11 @@ require("../Nav/menu.php");
                                     </th>
                                 
                                     <th>
-                                        Actions
+                                        
                                     </th>
 
                                 </thead>
-                                <tbody id="fourniture-table">
+                                <tbody >
 
                                 </tbody>
                             </table>

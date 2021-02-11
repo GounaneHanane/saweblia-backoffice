@@ -2,61 +2,66 @@
 $(document).ready(function () {
  
     $.getJSON("http://webapp.saweblia.ma/services", function (data) {
-      var i;
-      var table = data.service.Services;
-      
-      for (i = 0; i < table.length; i++) {
-          
-        $("#service-table").append('<tr id="' + table[i].ServiceID + '">');
-        if (table[i].Libelle != null)
-          $("#service-table").append("<td>" + table[i].Libelle + "</td>");
-        else $("#service-table").append("<td></td>");
-        if (table[i].Description != null)
-          $("#service-table").append("<td>" + table[i].Description + "</td>");
-        else $("#service-table").append("<td></td>");
-
-        
-        var jsonIssues
-        $.ajax({
-          url: "http://webapp.saweblia.ma/categories/"+table[i].CategorieID,
-          async: false,
-          dataType: 'json',
-          success: function(libellefournisseur) {
-              jsonIssues = libellefournisseur.Libelle;
-          }
-      });
+      var table = data.Services;
+      $("#service-table").DataTable({
+        data: table,
+        columns: [
+          {data: "Libelle"},
+          {data: "Description"},
+          {data: "Categorie.Libelle"},
+          {
+            data: "ServiceMedia",
+            render: function(data){
+              if (data != null && data !="")
+                return "<img width='60' height='60'src='" +window.location.origin +"/saweblia-backoffice/" +data + "'/>"
+              else return ""
+            }
+          },
+          {
+            data: null,
+            render: function(data) {
+              return '<button onclick="deleteService(' +
+              data.ServiceID +
+              ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferServiceForm(' +
+              data.ServiceID +
+              ')"><span class="material-icons">create</span></button>'
+            }
+          },
+        ],
+        "order": [],
+            "language": {
+                "paginate": {
+                  "previous": "Précédent",
+                  "next":"Suivant"
+                },
+                "lengthMenu": "Afficher _MENU_ enregistrements par page",
+                "zeroRecords": "Rien n'a été trouvé",
+                "info": "Affichage de la page _PAGE_ de _PAGES_",
+                "infoEmpty": "Aucun enregistrement disponible",
+                "infoFiltered": "(filtré à partir de _MAX_ enregistrements au total)",
+                "search": "Recherche :",
+              }
+      })
+   
        
-        $("#service-table").append(
-            "<td>" + jsonIssues + "</td>"
-          ); 
-        
-          
-      
-        if (table[i].ServiceMedia != null)
-        $("#service-table").append(
-          "<td><img width='60' height='60'src='"+window.location.origin +"/"+ table[i].ServiceMedia + "'/></td>"
-        );
-      else $("#service-table").append("<td></td>");
-        $("#service-table").append(
-          '<td> <button onclick="deleteService(' +
-            table[i].ServiceID +
-            ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferServiceForm(' +
-            table[i].ServiceID +
-            ')"><span class="material-icons">create</span></button></td></tr>'
-        );
-      }
     });
     $("#add-service").click(function () {
       window.location.href="../Service/addService.php";
     });
     $("#btn-add").click(function () {
       uploadImageResult=uploadFile( $("#serviceImage"));
-      if(uploadImageResult=="success") {
+    
+        if(uploadImageResult=="success") {
+          var media
+         if($("#serviceImage")[0].files[0]==undefined)
+              media=""
+          else media='Media/Service/'+ $("#serviceImage")[0].files[0].name
+         
       var arr = {
         libelle:$("#libelle").val(),
         description:$("#description").val(),
         categorie_libelle:$("#typeCategorie").val(),
-        service_media:'Media/Service/'+ $("#serviceImage")[0].files[0].name
+        service_media:media
 
       };
     
@@ -116,9 +121,9 @@ $(document).ready(function () {
           
             
         
-          if (table[i].ServiceMedia != null)
+          if (table[i].ServiceMedia != null  && table[i].ServiceMedia !="")
           $("#service-table").append(
-            "<td><img width='60' height='60'src='http://localhost/sawebliabackoffice/" + table[i].ServiceMedia + "'/></td>"
+            "<td><img width='60' height='60'src="+window.locztion.origin+"/saweblia-backoffice/" + table[i].ServiceMedia + "'/></td>"
           );
         else $("#service-table").append("<td></td>");
           $("#service-table").append(
@@ -165,9 +170,9 @@ $(document).ready(function () {
           
             
         
-          if (table[i].ServiceMedia != null)
+          if (table[i].ServiceMedia != null && table[i].ServiceMedia !="")
           $("#service-table").append(
-            "<td><img width='60' height='60'src='http://localhost/sawebliabackoffice/" + table[i].ServiceMedia + "'/></td>"
+            "<td><img width='60' height='60'src="+window.location.origin+"/saweblia-backoffice/" + table[i].ServiceMedia + "'/></td>"
           );
         else $("#service-table").append("<td></td>");
           $("#service-table").append(
@@ -264,7 +269,7 @@ $(document).ready(function () {
         formData.append("image", file);
         
         $.ajax({
-          url: "../../uploadImageService.php",
+          url: "../uploadImageService.php",
           type: "POST",
           data: formData,
           processData: false,

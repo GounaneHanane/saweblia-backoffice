@@ -9,8 +9,8 @@ require("../Nav/menu.php");
           $.getJSON('http://webapp.saweblia.ma/fournisseurs', function(data) {
        
          var i;
-        for (i = 0; i < data.fournisseurs.Fournisseurs.length; i++) {
-            $('#fournisseurs').append("<option value='"+data.fournisseurs.Fournisseurs[i].Fournisseur+"'>" + data.fournisseurs.Fournisseurs[i].NomFournisseur + "</option>")
+        for (i = 0; i < data.Fournisseurs.length; i++) {
+            $('#fournisseurs').append("<option value='"+data.Fournisseurs[i].Fournisseur+"'>" + data.Fournisseurs[i].NomFournisseur + "</option>")
         } 
 
     });
@@ -25,7 +25,7 @@ require("../Nav/menu.php");
         $('#description').val(data.Description)
         $('#prixAchat').val(data.PrixAchat)
         $('#prixVente').val(data.PrixVente)
-        $('#image').attr("src",window.location.origin+"/"+data.Media)
+        $('#image').attr("src",window.location.origin+"/saweblia-backoffice/"+data.Media)
         $("#fournitureImage").attr("alt",data.Media)
         $("#fournisseurs").val(data.FournisseurID)
      
@@ -44,20 +44,26 @@ require("../Nav/menu.php");
                     <div class="card-body">
                         <form id="editFourniture">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Libelle</label>
-                                        <input id="libelle" type="text" class="form-control">
+                                        <input id="libelle" type="text" class="form-control" required>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                               
+                                <div class="col-md-2">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating">Description</label>
-                                        <input id="description" type="text" class="form-control" required>
+                                        <label class="bmd-label-floating">Prix Achat</label>
+                                        <input pattern="[0-9]+" id="prixAchat" type="text" class="form-control">
                                     </div>
                                 </div>
-                                
-                                <div class="col-md-4">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Prix Vente</label>
+                                        <input pattern="[0-9]+" id="prixVente" type="text" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Fournisseur</label>
                                         <div class="float-right"><input type="checkbox" id="add-fournisseur" style="margin-right:4px"><label>  Nouveau fournisseur</label></div>
@@ -67,40 +73,29 @@ require("../Nav/menu.php");
                                                </div>
                                     </div>
                                 </div>
-                                
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">Prix Achat</label>
-                                        <input id="prixAchat" type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">Prix Vente</label>
-                                        <input id="prixVente" type="text" class="form-control" required>
-                                    </div>
-                                </div>
-                                
-                                
-                            </div>
-                            <div class="">
-                            <div class="col-md-4">
+                                <div class="col-md-3">
                                             <div class="form-group">
                                                 <label class="bmd-label-floating">Media</label>
-                                                <input type="file" class="form-control" id="fournitureImage" name="filename">
+                                                <input onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])"  type="file" class="form-control" id="fournitureImage" name="filename">
                                             </div>
                                         </div>
                                        
-                                        <div class="col-md-4">
+                            </div>
+                         <div class="row">
+                         <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Description</label>
+                                        <textarea id="description" type="text" class="form-control" ></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
                                             <div class="form-group">
                                                
-                                               <img id="image"/>
+                                               <img class="float-right" src='' width='100' height='100' id="image"/>
                                             </div>
                                         </div>
-                                        </div>
-
+                         </div>
+          
 
 
 

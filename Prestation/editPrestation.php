@@ -8,8 +8,8 @@ require("../Nav/menu.php");
           $.getJSON('http://webapp.saweblia.ma/services', function(data) {
         
          var i;
-        for (i = 0; i < data.service.Services.length; i++) {
-            $('#services').append("<option>" + data.service.Services[i].Libelle + "</option>")
+        for (i = 0; i < data.Services.length; i++) {
+            $('#services').append("<option value='"+data.Services[i].ServiceID+"'>" + data.Services[i].Libelle + "</option>")
         } 
 
     });
@@ -21,7 +21,7 @@ require("../Nav/menu.php");
             $('#prixAchat').val(data.PrixAchat)
             $('#prixVente').val(data.PrixVente)
             $('#coefficientRemise').val(data.CoefficientRemise)
-            $('#image').attr("src",window.location.origin+"/"+data.PrestationMedia)
+            $('#image').attr("src",window.location.origin+"/saweblia-backoffice/"+data.PrestationMedia)
             $("#fournitureImage").attr("alt",data.PrestationMedia)
     });
     })
@@ -39,14 +39,14 @@ require("../Nav/menu.php");
                     <div class="card-body">
                         <form id="editPrestation">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Libelle</label>
                                         <input id="libelle" type="text" class="form-control">
                                     </div>
                                 </div>
                                 
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Services</label>
                                         <select id="services" class="form-control js-example-basic-single">
@@ -55,50 +55,49 @@ require("../Nav/menu.php");
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-                                <div class="row">
-                                    <div class="col-md-4">
+                                <div class="col-md-2">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Prix Achat</label>
                                             <input id="prixAchat" type="text" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Prix Vente</label>
                                             <input id="prixVente" type="text" class="form-control" required>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Coefficient de remise </label>
                                             <input id="coefficientRemise" step="0.01" type="text" class="form-control" required>
                                         </div>
                                     </div>
-
-                                </div>
+                                    <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Media</label>
+                                                <input onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])" type="file" class="form-control" id="fournitureImage" name="filename">
+                                            </div>
+                                        </div>
+                            </div>
+                 
                                 <div class="row"><div class="col-md-4">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Description</label>
                                         <textarea rows='5' id="description" class="form-control" required></textarea>
                                     </div>
                                 </div>
-                                      <div class="">
+                                      
                                     
-                            <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Media</label>
-                                                <input type="file" class="form-control" id="fournitureImage" name="filename">
-                                            </div>
-                                        </div>
+                           
                                        
-                                        <div class="col-md-4">
+                                        <div class="col-md-8">
                                             <div class="form-group">
                                                
-                                               <img id="image"/>
+                                            <img class="float-right" id="image"  src='' width='100' height='100'/>
                                             </div>
                                         </div>
-                                        </div>
+                                  
                             
                                 </div>
                           

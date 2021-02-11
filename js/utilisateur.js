@@ -1,32 +1,58 @@
 $(document).ready(function () {
     $.getJSON('http://webapp.saweblia.ma/utilisateurs', function (data){
-        var i;
         var table=data.Utilisateurs;
-        for (i = 0; i < table.length; i++)
-        {
-            $('#client-table').append('<tr>')
-            if(table[i].Nom!=null)
-                $('#client-table').append("<td>"+table[i].Nom+"</td>")
-            else $('#client-table').append("<td></td>")
-            if(table[i].Login!=null)
-                $('#client-table').append("<td>"+table[i].Login+"</td>")
-            else $('#client-table').append("<td></td>")
-            if(table[i].Interne==true)
-            $('#client-table').append('<td>Interne</td>')
-        else $('#client-table').append('<td>Externe</td>')
-        
-            if(table[i].Activer==true)
-                $('#client-table').append('<td><label class="switch"><input id="check'+table[i].UtilisateurID+'" onchange="block('+table[i].UtilisateurID+')" type="checkbox" checked><span class="slider round"></span></label></td>')
-            else $('#client-table').append('<td><label class="switch"><input id="check'+table[i].UtilisateurID+'" onchange="block('+table[i].UtilisateurID+')" type="checkbox"><span class="slider round"></span></label></td>')
+        $('#client-table').DataTable({
+            data: table,
+            columns: [
+                {data:"Nom"},
+                {data:"Login"},
+                {
+                    data:"Interne",
+                    render: function(data) {
+                        if(data==true)
+                            return 'Interne'
+                        else return 'Externe'
+                    }
+                },
+                {
+                    data:"Activer",
+                    render: function(data,type, row) {
+                        if(data==true)
+                            return '<label class="switch"><input id="check'+row.UtilisateurID+'" onchange="block('+row.UtilisateurID+')" type="checkbox" checked><span class="slider round"></span></label>'
+                        else return '<label class="switch"><input id="check'+row.UtilisateurID+'" onchange="block('+row.UtilisateurID+')" type="checkbox"><span class="slider round"></span></label>'
+                    }
+                },
+                {
+                    data: null,
+                    render: function(data) {
+                        return '<button onclick="deleteClient('+data.UtilisateurID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferUtilisateurForm('+data.UtilisateurID+')"><span class="material-icons">create</span></button>'
+                    }
+                }
+            ],
+            "order": [],
+            "language": {
+                "paginate": {
+                  "previous": "Précédent",
+                  "next":"Suivant"
+                },
+                "lengthMenu": "Afficher _MENU_ enregistrements par page",
+                "zeroRecords": "Rien n'a été trouvé",
+                "info": "Affichage de la page _PAGE_ de _PAGES_",
+                "infoEmpty": "Aucun enregistrement disponible",
+                "infoFiltered": "(filtré à partir de _MAX_ enregistrements au total)",
+                "search": "Recherche :",
+              }
+        })
+     
+          
+         
             
-            $('#client-table').append('<td> <button onclick="deleteClient('+table[i].UtilisateurID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferUtilisateurForm('+table[i].UtilisateurID+')"><span class="material-icons">create</span></button></td></tr>')
-        
-        }
+         
     });
     $("#add-utilisateur").click(function () {
         window.location.href="../Utilisateur/addUtilisateur.php";
       });
-      $('#btn-add').click(function(){
+      $('#addUtilisateur').submit(function(e){
           
         var arr={nom:$('#nom').val(),
                 interne:$('#interne').is(":checked"),
@@ -57,9 +83,9 @@ $(document).ready(function () {
                 }
             
         });
-       
+       e.preventDefault()
     })
-    $('#btn-edit').click(function(){
+    $('#editUtilisateur').submit(function(e){
         var arr={
                 nom:$('#nom').val(),
                 interne:$('#interne').is(":checked"),
@@ -67,7 +93,7 @@ $(document).ready(function () {
                 mot_de_passe:$('#motdepass').val()}
         
         $.ajax({
-            url: 'http://webapp.saweblia.ma/utilisateurs/'+localStorage.getItem('idUserEdited'),
+            url: 'http://webapp.saweblia.ma/utilisateurs/'+ window.location.search.substring(1).split("?"),
             type: 'PUT',
             data: JSON.stringify(arr),
             contentType: 'application/json; charset=utf-8',
@@ -84,8 +110,9 @@ $(document).ready(function () {
                   }, 1000);
             }
         });
-       
+         e.preventDefault();
     })
+  
 })
 function deleteClient(idUser) {
     if (confirm('Voulez-vous vraiment supprimer cet utilisateur ?'))

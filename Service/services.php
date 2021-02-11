@@ -64,21 +64,10 @@ require("../Nav/menu.php");
                     </div>
                     <div class="card-body">
                     <div class="card-header">
-                        <div class="row">
-                        <div class="col-md-4">
-                            <div class="input-group no-border">
-                                <input style="margin-right:4px" id="name-searchservice" type="text" value="" class="form-control" placeholder="Libelle">
-
-                                   <button type="button" id="searchbynameservice" class="btn btn-dark ">
-                                    Chercher
-                                    </button>
-                            </div>
-                        </div>
                        
-                        </div>
                     </div>
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" id="service-table">
                                 <thead class=" text-primary">
                                     <th>
                                         Libelle
@@ -94,11 +83,11 @@ require("../Nav/menu.php");
                                     </th>
                                    
                                     <th>
-                                        Actions
+                                        
                                     </th>
 
                                 </thead>
-                                <tbody id="service-table">
+                                <tbody >
 
                                 </tbody>
                             </table>

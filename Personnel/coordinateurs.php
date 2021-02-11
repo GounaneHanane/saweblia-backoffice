@@ -2,8 +2,7 @@
 require("../Nav/header.php");
 require("../Nav/menu.php");
 ?>
-<script src="../js/artisan.js"></script>
-<script src="../../js/coordinateur.js"></script>
+<script src="../js/coordinateur.js"></script>
 
 <div class="content">
 <div class="clearfix"></div>
@@ -47,7 +46,7 @@ require("../Nav/menu.php");
                 <div class="card">
                
                    <div class="card-header card-header-primary row">
-                  <h4 style="cursor:pointer" onclick="window.location.reload()" class="card-title col-md-8">Coordinateur</h4>
+                  <h4 style="cursor:pointer" class="card-title col-md-8">Coordinateur</h4>
                   <div class="col-md-4">
                              <button type="button" id="add-coordinateur" class="btn btn-primary float-right">Ajouter </button>
                        </div>
@@ -59,7 +58,7 @@ require("../Nav/menu.php");
                         <div class="row">
                        
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" id="coordianteur-table">
                                 <thead class=" text-primary">
                                     <th>
                                         Nom
@@ -79,11 +78,11 @@ require("../Nav/menu.php");
                                         Disponibilité
                                     </th>
                                     <th>
-                                        Actions
+                                        
                                     </th>
 
                                 </thead>
-                                <tbody id="coordianteur-table">
+                                <tbody >
 
                                 </tbody>
                             </table>
