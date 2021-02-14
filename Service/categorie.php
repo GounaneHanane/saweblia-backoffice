@@ -64,21 +64,9 @@ require("../Nav/menu.php");
                     </div>
                     <div class="card-body">
                     <div class="card-header">
-                        <div class="row">
-                        <div class="col-md-8">
-                            <div class="input-group no-border">
-                                <input style="margin-right:4px" id="name-searchcategorie" type="text" value="" class="form-control col-md-4" placeholder="Libelle">
-                           
-                                 <button type="button" id="searchbynamecategorie" class="btn btn-dark">
-                                    Chercher
-                                    </button>
-                            </div>
-                            </div>
-                        
-                        </div>
-                    </div>
+                       
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" id="categorie-table">
                                 <thead class=" text-primary">
                                     <th>
                                         Libelle
@@ -95,7 +83,7 @@ require("../Nav/menu.php");
                                     </th>
 
                                 </thead>
-                                <tbody id="categorie-table">
+                                <tbody >
 
                                 </tbody>
                             </table>

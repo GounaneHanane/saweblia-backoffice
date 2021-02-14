@@ -15,19 +15,19 @@ require("../Nav/menu.php");
                     <div class="card-body">
                         <form id="addCoordinateur">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Nom</label>
                                         <input id="Nom" type="text" class="form-control" required>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Téléphone</label>
                                         <input id="telephone" placeholder="EX : 06XXXXXXXX"  pattern="[0-9]{10}" type="tel"  class="form-control" required>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Ville</label>
                                          <select id="ville" class="form-control">
@@ -38,21 +38,19 @@ require("../Nav/menu.php");
                       </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">CIN</label>
                                         <input id="cin" type="text" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Email</label>
                                         <input id="email" type="email" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-1">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Disponibilité</label>
                                         <br>
@@ -63,6 +61,7 @@ require("../Nav/menu.php");
                                 </div>
                                
                             </div>
+                     
 
 
 

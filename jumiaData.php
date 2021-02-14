@@ -44,4 +44,10 @@ if(isset($_POST['action'])) {
             echo "success";
         else echo "error";
     }
+    if($_POST['action']=='displayCommandeJumia') {
+        $query = "select * from CommandesJumia,Prestation,Clients_Adresses where CommandesJumia.IDPrestation=Prestations.IDPrestation and CommandesJumia.IDClientAdresses=Clients_Adresses.IDClientAdresses";
+        $query_result = $connection->query($query);
+        $array = mysqli_fetch_all($query_result);
+        echo json_encode($array);
+    }
 }

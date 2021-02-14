@@ -1,65 +1,49 @@
 $(document).ready(function () {
     $('.js-example-basic-single').select2();
     $.getJSON("http://webapp.saweblia.ma/prestations?p="+window.location.search.substring(1).split("?"), function (data) {
-      $(".pagination-prestation").append('<li class="page-item"><a class="page-link " href="../Service/prestation.php?'+data.previouspage+'">Précédent</a></li>')
-      var j
-      for(j=1;j<=data.lastpage;j++) {
-          if(window.location.search.substring(1).split("?")==j)
-            $(".pagination-prestation").append('<li class="page-item active"><a class="page-link " href="../Service/prestation.php?'+j+'">'+j+'</a></li>')
-            else  $(".pagination-prestation").append('<li class="page-item"><a class="page-link " href="../Service/prestation.php?'+j+'">'+j+'</a></li>')
-     
-      }
-      $(".pagination-prestation").append('<li class="page-item"><a class="page-link " href="../Service/prestation.php?'+data.nextpage+'">Suivant</a></li>')
-      
-      var i;
-      var table = data.prestations.Prestations;
-     
-      for (i = 0; i < table.length; i++) {
-        $("#prestation-table").append('<tr id="' + table[i].PrestationID + '">');
-       
-        if (table[i].Libelle != null)
-          $("#prestation-table").append("<td>" + table[i].Libelle + "</td>");
-        else $("#prestation-table").append("<td></td>");
-        if (table[i].Description != null)
-          $("#prestation-table").append("<td>" + table[i].Description + "</td>");
-        else $("#prestation-table").append("<td></td>");
-        if (table[i].PrixAchat != null)
-          $("#prestation-table").append("<td>" + table[i].PrixAchat + "</td>");
-        else $("#prestation-table").append("<td></td>");
-        if (table[i].PrixVente != null)
-          $("#prestation-table").append("<td>" + table[i].PrixVente + "</td>");
-        else $("#prestation-table").append("<td></td>");
-        if (table[i].CoefficientRemise != null)
-          $("#prestation-table").append("<td>" + table[i].CoefficientRemise + "</td>");
-        else $("#prestation-table").append("<td></td>");
-        
-       /*  var jsonIssues
-        $.ajax({
-          url: "http://webapp.saweblia.ma/services/"+table[i].ServiceID,
-          async: false,
-          dataType: 'json',
-          success: function(libellefournisseur) {
-              jsonIssues = libellefournisseur.Libelle;
-          }
-      }); */
-       
-        $("#prestation-table").append(
-            "<td>" + table[i].Service.Libelle + "</td>"
-          ); 
-        
-       
-        if (table[i].PrestationMedia != null && table[i].PrestationMedia !="")
-            $("#prestation-table").append("<td><img width='60' height='60'src='"+window.location.origin+"/saweblia-backoffice/" + table[i].PrestationMedia + "'/></td>");
-          else $("#prestation-table").append("<td></td>");
-        
-        $("#prestation-table").append(
-          '<td> <button onclick="deleteprestation(' +
-            table[i].PrestationID +
-            ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
-            table[i].PrestationID +
-            ')"><span class="material-icons">create</span></button></td></tr>'
-        );
-      }
+      var table = data.Prestations;
+      $('#prestation-table').DataTable({
+        data: table,
+        columns: [
+          {data: "Libelle"},
+          {data: "Description"},
+          {data: "PrixAchat"},
+          {data: "PrixVente"},
+          {data: "CoefficientRemise"},
+          {data: "Service.Libelle"},
+          {
+            data: "PrestationMedia",
+            render: function(data){
+              if (data != null && data !="")
+                return "<img width='60' height='60'src='" +window.location.origin +"/saweblia-backoffice/" +data + "'/>"
+              else return ""
+            }
+          },
+          {
+            data: null,
+            render: function(data) {
+              return '<button onclick="deleteprestation(' +
+              data.PrestationID +
+              ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
+              data.PrestationID +
+              ')"><span class="material-icons">create</span></button>'
+            }
+          },
+        ],
+        "order": [],
+            "language": {
+                "paginate": {
+                  "previous": "Précédent",
+                  "next":"Suivant"
+                },
+                "lengthMenu": "Afficher _MENU_ enregistrements par page",
+                "zeroRecords": "Rien n'a été trouvé",
+                "info": "Affichage de la page _PAGE_ de _PAGES_",
+                "infoEmpty": "Aucun enregistrement disponible",
+                "infoFiltered": "(filtré à partir de _MAX_ enregistrements au total)",
+                "search": "Recherche :",
+              }
+      })
     });
     $("#add-prestation").click(function () {
       window.location.href="../Prestation/addPrestation.php"
@@ -78,7 +62,7 @@ $(document).ready(function () {
       var arr = {
         libelle:$("#libelle").val(),
         description:$("#description").val(),
-        service_libelle:$("#services").val(),
+        serviceId:$("#services").val(),
         prix_achat:$("#prixAchat").val(),
         prix_vente:$("#prixVente").val(),
         coefficient_remise:$("#coefficientRemise").val(),
@@ -121,7 +105,7 @@ $(document).ready(function () {
         var table = data.Prestations;
         $("#prestation-table").html("")
         for (i = 0; i < table.length; i++) {
-          $("#prestation-table").append('<tr id="' + table[i].PrestationID + '">');
+          $("#prestation-table").append('<tr id="' + data.PrestationID + '">');
        
           if (table[i].Libelle != null)
             $("#prestation-table").append("<td>" + table[i].Libelle + "</td>");
@@ -154,15 +138,15 @@ $(document).ready(function () {
             ); 
           
          
-          if (table[i].PrestationMedia != null  && table[i].PrestationMedia !="")
-              $("#prestation-table").append("<td><img width='60' height='60'src='"+window.location.origin+"/saweblia-backoffice/" + table[i].PrestationMedia + "'/></td>");
+          if (data != null  && data !="")
+              $("#prestation-table").append("<td><img width='60' height='60'src='"+window.location.origin+"/saweblia-backoffice/" + data + "'/></td>");
             else $("#prestation-table").append("<td></td>");
           
           $("#prestation-table").append(
             '<td> <button onclick="deleteprestation(' +
-              table[i].PrestationID +
+              data.PrestationID +
               ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
-              table[i].PrestationID +
+              data.PrestationID +
               ')"><span class="material-icons">create</span></button></td></tr>'
           );
         }
@@ -177,7 +161,7 @@ $(document).ready(function () {
         var table = data.Prestations;
         $("#prestation-table").html("")
         for (i = 0; i < table.length; i++) {
-          $("#prestation-table").append('<tr id="' + table[i].PrestationID + '">');
+          $("#prestation-table").append('<tr id="' + data.PrestationID + '">');
        
           if (table[i].Libelle != null)
             $("#prestation-table").append("<td>" + table[i].Libelle + "</td>");
@@ -210,15 +194,15 @@ $(document).ready(function () {
             ); 
           
          
-          if (table[i].PrestationMedia != null  && table[i].PrestationMedia !="")
-              $("#prestation-table").append("<td><img width='60' height='60'src='"+window.location.origin+"/saweblia-backoffice/" + table[i].PrestationMedia + "'/></td>");
+          if (data != null  && data !="")
+              $("#prestation-table").append("<td><img width='60' height='60'src='"+window.location.origin+"/saweblia-backoffice/" + data + "'/></td>");
             else $("#prestation-table").append("<td></td>");
           
           $("#prestation-table").append(
             '<td> <button onclick="deleteprestation(' +
-              table[i].PrestationID +
+              data.PrestationID +
               ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
-              table[i].PrestationID +
+              data.PrestationID +
               ')"><span class="material-icons">create</span></button></td></tr>'
           );
         }
@@ -244,7 +228,6 @@ $(document).ready(function () {
         prestation_media:media,
         serviceId:$('#services').val()
       };
-  
       $.ajax({
         url:
           "http://webapp.saweblia.ma/prestations/" +

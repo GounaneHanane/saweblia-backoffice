@@ -154,7 +154,7 @@ require("../Nav/menu.php");
 
 
 
-              <table class="table">
+              <table class="table"  id="adresse-table" >
 
                 <thead class=" text-primary">
 
@@ -204,7 +204,6 @@ require("../Nav/menu.php");
 
                 </thead>
 
-                <tbody id="adresse-table">
 
 
 

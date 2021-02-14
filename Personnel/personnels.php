@@ -54,31 +54,9 @@ require("../Nav/menu.php");
                 </div>
                     <div class="card-body">
                     <div class="card-header">
-                        <div class="row">
-                        <div class="col-md-8 row">
-                            <div class="col-md-6">
-                                <div class="input-group no-border">
-                                    <input style="margin-right:13px" id="name-searchartisan" type="text" value="" class="form-control" placeholder="Nom">
-                                    <button id="searchbynameartisan" type="button" class="btn btn-dark">
-                                Chercher
-                              </button>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="input-group no-border">
-                                    <input style="margin-right:13px" id="phone-searchartisan" type="text" value="" class="form-control" placeholder="Téléphone">
-                                 
-                                    <button id="searchbyphoneartisan" type="button" class="btn btn-dark">
-                                Chercher
-                              </button>
-                                </div>
-                            </div>
-                        </div>
-                           
-                        </div>
-                    </div>
+                       
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" id="artisan-table">
                                 <thead class=" text-primary">
                                     <th>
                                         Nom
@@ -111,7 +89,7 @@ require("../Nav/menu.php");
                                     </th>
 
                                 </thead>
-                                <tbody id="artisan-table">
+                                <tbody >
 
                                 </tbody>
                             </table>

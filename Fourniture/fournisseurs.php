@@ -57,20 +57,9 @@ require("../Nav/menu.php");
                 </div>
                     <div class="card-body">
                         <div class="card-header">
-                            <div class="row">
-                            <div class="col-md-4">
-                                <div class="input-group no-border">
-                                    <input style="margin-right:4px" id="name-searchfournisseur"  type="text" value="" class="form-control" placeholder="Nom">
-                                    <button id="searchbynamefournisseur" type="button" class="btn btn-dark">
-                                        Chercher
-                                    </button>
-                                </div>
-                                </div>
-                             
-                            </div>
-                        </div>
+                            
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" id="fournisseur-table">
                                 <thead class=" text-primary">
                                     <th>
                                         Nom fournisseur
@@ -95,7 +84,7 @@ require("../Nav/menu.php");
                                     </th>
 
                                 </thead>
-                                <tbody id="fournisseur-table">
+                                <tbody >
 
                                 </tbody>
                             </table>

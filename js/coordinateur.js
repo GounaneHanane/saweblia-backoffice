@@ -1,45 +1,50 @@
 
 $(document).ready(function () {
     $.getJSON("http://webapp.saweblia.ma/coordinateurs", function (data) {
-      var i;
       var table = data.Coordinateurs;
-      for (i = 0; i < table.length; i++) {
-        $("#coordianteur-table").append('<tr>');
-        if (table[i].Nom != null)
-          $("#coordianteur-table").append("<td>" + table[i].Nom + "</td>");
-        else $("#coordianteur-table").append("<td></td>");
-        if (table[i].Telephone != null)
-          $("#coordianteur-table").append("<td>" + table[i].Telephone + "</td>");
-        else $("#coordianteur-table").append("<td></td>");
+      $("#coordianteur-table").DataTable({
+        data: table,
+        columns : [ 
+          {data:"Nom"},
+          {data:"Telephone"},
+          {data:"Email"},
+          {data:"Ville"},
+          {data:"Cin"},
+          {
+            data:"Disponible", 
+            render : function(data, type,row) {
 
-    
-        if (table[i].Email != null)
-          $("#coordianteur-table").append(
-            "<td>" + table[i].Email + "</td>"
-          );
-        else $("#coordianteur-table").append("<td></td>");
-        if (table[i].Ville != null)
-        $("#coordianteur-table").append(
-          "<td>" + table[i].Ville + "</td>"
-        );
-      else $("#coordianteur-table").append("<td></td>");
-      if (table[i].Cin != null)
-      $("#coordianteur-table").append(
-        "<td>" + table[i].Cin + "</td>"
-      );
-    else $("#coordianteur-table").append("<td></td>");
-    if(table[i].Disponible==true)
-      $('#coordianteur-table').append('<td><label class="switch"><input id="check'+table[i].CoordinateurID+'" onchange="block('+table[i].CoordinateurID+')" type="checkbox" checked><span class="slider round"></span></label></td>');
-    else $('#coordianteur-table').append('<td><label class="switch"><input id="check'+table[i].CoordinateurID+'" onchange="block('+table[i].CoordinateurID+')" type="checkbox"><span class="slider round"></span></label></td>');
-
-        $("#coordianteur-table").append(
-          '<td><button onclick="deletecoordianteur(' +
-            table[i].CoordinateurID +
-            ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
-            table[i].CoordinateurID +
-            ')"><span class="material-icons">create</span></button></td></tr>'
-        );
-      }
+              if(data==true)
+                return '<label class="switch"><input  onchange="block('+row.CoordinateurID+')" type="checkbox" checked><span class="slider round"></span></label>';
+              else return '<label class="switch"><input  onchange="block('+row.CoordinateurID+')" type="checkbox"><span class="slider round"></span></label>';
+            }
+          },
+          {
+            data: null,
+            render: function(data) {
+              return '<button onclick="deletecoordianteur(' +
+              data.CoordinateurID +
+              ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
+              data.CoordinateurID +
+              ')"><span class="material-icons">create</span></button>'
+            }
+          }
+        ],
+        "order": [],
+            "language": {
+                "paginate": {
+                  "previous": "Précédent",
+                  "next":"Suivant"
+                },
+                "lengthMenu": "Afficher _MENU_ enregistrements par page",
+                "zeroRecords": "Rien n'a été trouvé",
+                "info": "Affichage de la page _PAGE_ de _PAGES_",
+                "infoEmpty": "Aucun enregistrement disponible",
+                "infoFiltered": "(filtré à partir de _MAX_ enregistrements au total)",
+                "search": "Recherche :",
+              }
+      })
+      
     });
     $("#add-coordinateur").click(function () {
       window.location.href="../Personnel/addCoordinateur.php";
@@ -81,38 +86,38 @@ $(document).ready(function () {
         var table = data.Coordinateurs;
         for (i = 0; i < table.length; i++) {
           $("#coordianteur-table").append('<tr>');
-          if (table[i].Nom != null)
-            $("#coordianteur-table").append("<td>" + table[i].Nom + "</td>");
+          if (data.Nom != null)
+            $("#coordianteur-table").append("<td>" + data.Nom + "</td>");
           else $("#coordianteur-table").append("<td></td>");
-          if (table[i].Telephone != null)
-            $("#coordianteur-table").append("<td>" + table[i].Telephone + "</td>");
+          if (data.Telephone != null)
+            $("#coordianteur-table").append("<td>" + data.Telephone + "</td>");
           else $("#coordianteur-table").append("<td></td>");
   
       
-          if (table[i].Email != null)
+          if (data.Email != null)
             $("#coordianteur-table").append(
-              "<td>" + table[i].Email + "</td>"
+              "<td>" + data.Email + "</td>"
             );
           else $("#coordianteur-table").append("<td></td>");
-          if (table[i].Ville != null)
+          if (data.Ville != null)
           $("#coordianteur-table").append(
-            "<td>" + table[i].Ville + "</td>"
+            "<td>" + data.Ville + "</td>"
           );
         else $("#coordianteur-table").append("<td></td>");
-        if (table[i].Cin != null)
+        if (data.Cin != null)
         $("#coordianteur-table").append(
-          "<td>" + table[i].Cin + "</td>"
+          "<td>" + data.Cin + "</td>"
         );
       else $("#coordianteur-table").append("<td></td>");
-      if(table[i].Disponible==true)
-        $('#coordianteur-table').append('<td><label class="switch"><input id="check'+table[i].CoordinateurID+'" onchange="block('+table[i].CoordinateurID+')" type="checkbox" checked><span class="slider round"></span></label></td>');
-      else $('#coordianteur-table').append('<td><label class="switch"><input id="check'+table[i].CoordinateurID+'" onchange="block('+table[i].CoordinateurID+')" type="checkbox"><span class="slider round"></span></label></td>');
+      if(data.Disponible==true)
+        $('#coordianteur-table').append('<td><label class="switch"><input id="check'+data.CoordinateurID+'" onchange="block('+data.CoordinateurID+')" type="checkbox" checked><span class="slider round"></span></label></td>');
+      else $('#coordianteur-table').append('<td><label class="switch"><input id="check'+data.CoordinateurID+'" onchange="block('+data.CoordinateurID+')" type="checkbox"><span class="slider round"></span></label></td>');
   
           $("#coordianteur-table").append(
             '<td><button onclick="deletecoordianteur(' +
-              table[i].CoordinateurID +
+              data.CoordinateurID +
               ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
-              table[i].CoordinateurID +
+              data.CoordinateurID +
               ')"><span class="material-icons">create</span></button></td></tr>'
           );
         }
@@ -128,36 +133,36 @@ $(document).ready(function () {
         for (i = 0; i < table.length; i++) {
           $("#coordianteur-table").append('<tr>');
 
-          if (table[i].Nom != null)
-            $("#coordianteur-table").append("<td>" + table[i].Nom + "</td>");
+          if (data.Nom != null)
+            $("#coordianteur-table").append("<td>" + data.Nom + "</td>");
           else $("#coordianteur-table").append("<td></td>");
 
-          if (table[i].Telephone != null)
-            $("#coordianteur-table").append("<td>" + table[i].Telephone + "</td>");
+          if (data.Telephone != null)
+            $("#coordianteur-table").append("<td>" + data.Telephone + "</td>");
           else $("#coordianteur-table").append("<td></td>");
       
-          if (table[i].Email != null)
+          if (data.Email != null)
             $("#coordianteur-table").append(
-              "<td>" + table[i].Email + "</td>"
+              "<td>" + data.Email + "</td>"
             );
           else $("#coordianteur-table").append("<td></td>");
 
-          if (table[i].Ville != null)
-          $("#coordianteur-table").append("<td>" + table[i].Ville + "</td>");
+          if (data.Ville != null)
+          $("#coordianteur-table").append("<td>" + data.Ville + "</td>");
           else $("#coordianteur-table").append("<td></td>");
 
-          if (table[i].Cin != null) $("#coordianteur-table").append( "<td>" + table[i].Cin + "</td>" );
+          if (data.Cin != null) $("#coordianteur-table").append( "<td>" + data.Cin + "</td>" );
          else $("#coordianteur-table").append("<td></td>");
 
-        if(table[i].Disponible==true)
-          $('#coordianteur-table').append('<td><label class="switch"><input id="check'+table[i].CoordinateurID+'" onchange="block('+table[i].CoordinateurID+')" type="checkbox" checked><span class="slider round"></span></label></td>');
-        else $('#coordianteur-table').append('<td><label class="switch"><input id="check'+table[i].CoordinateurID+'" onchange="block('+table[i].CoordinateurID+')" type="checkbox"><span class="slider round"></span></label></td>');
+        if(data.Disponible==true)
+          $('#coordianteur-table').append('<td><label class="switch"><input id="check'+data.CoordinateurID+'" onchange="block('+data.CoordinateurID+')" type="checkbox" checked><span class="slider round"></span></label></td>');
+        else $('#coordianteur-table').append('<td><label class="switch"><input id="check'+data.CoordinateurID+'" onchange="block('+data.CoordinateurID+')" type="checkbox"><span class="slider round"></span></label></td>');
   
         $("#coordianteur-table").append(
             '<td><button onclick="deletecoordianteur(' +
-              table[i].CoordinateurID +
+              data.CoordinateurID +
               ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
-              table[i].CoordinateurID +
+              data.CoordinateurID +
               ')"><span class="material-icons">create</span></button></td></tr>'
           );
         
@@ -216,7 +221,7 @@ $(document).ready(function () {
           $('.clearfix').html("")
           $('.clearfix').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le coordinateur est supprimé avec succes</span></div>')
           setTimeout(function() {
-             window.location.href="../Personnel/personnels.php"
+             window.location.href="../Personnel/coordinateurs.php"
             }, 1000);
         },
         error: function() {
@@ -232,29 +237,16 @@ $(document).ready(function () {
     window.location.href="../Personnel/editCoordinateur.php?"+idcoordianteur
   }
   function block(CoordinateurID) {
-    var arr={}
-   var checkbox=$('#check'+CoordinateurID).is(":checked")
- $.getJSON('http://webapp.saweblia.ma/coordinateurs/'+CoordinateurID, function (data){
-  var arr = {
-    nom:data.Nom,
-    telephone:data.Telephone,
-    email:data.Email,
-    ville:data.Ville,
-    cin:data.Cin,
-    disponibilite:checkbox
-  };
-
+   
     $.ajax({
-        url: 'http://webapp.saweblia.ma/coordinateurs/'+CoordinateurID,
+        url: 'http://webapp.saweblia.ma/coordinateurdisponible/'+CoordinateurID,
         type: 'PUT',
-        data: JSON.stringify(arr),
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         async: false,
         success: function(msg) {
             alert(msg);
         }
-    });
     });
  
 

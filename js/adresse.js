@@ -10,34 +10,41 @@ $(document).ready(function(){
         $('#comment').append(data.Comment)
     });
     $.getJSON('http://webapp.saweblia.ma/adresse_client/'+window.location.search.substring(1).split("?"), function (data){
-        var i;
         var table=data.Adresses;
-        for (i = 0; i < table.length; i++)
-        {
-            $('#adresse-table').append('<tr>')
-            if(table[i].Libelle!=null)
-                $('#adresse-table').append("<td>"+table[i].Libelle+"</td>")
-            else $('#adresse-table').append("<td></td>")
-            if(table[i].Quartier!=null)
-                $('#adresse-table').append("<td>"+table[i].Quartier+"</td>")
-            else $('#adresse-table').append("<td></td>")
-            if(table[i].Rue!=null)
-                $('#adresse-table').append("<td>"+table[i].Rue+"</td>")
-            else $('#adresse-table').append("<td></td>")
-            if(table[i].Ville!=null)
-                $('#adresse-table').append("<td>"+table[i].Ville+"</td>")
-            else $('#adresse-table').append("<td></td>")
-            if(table[i].OfficeNumber!="")
-            $('#adresse-table').append("<td>"+table[i].OfficeNumber+"</td>")
-            else   $('#adresse-table').append("<td></td>")
-            if(table[i].OfficeSurface!="")
-                $('#adresse-table').append("<td>"+table[i].OfficeSurface+"</td>")
-            else $('#adresse-table').append("<td></td>")
-            
-            if(table[i].Localisation!="")
-                $('#adresse-table').append('<td><button onclick="deleteadresse('+table[i].AdressID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferAdresseForm('+table[i].AdressID+')"><span class="material-icons">create</span></button><a href="'+table[i].Localisation+'" class="btn btn-success action"><span class="material-icons">room</span></a></td></tr>')
-            else  $('#adresse-table').append('<td><button onclick="deleteadresse('+table[i].AdressID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferAdresseForm('+table[i].AdressID+')"><span class="material-icons">create</span></button>')
-        }
+    $("#adresse-table").DataTable({
+        data:table,
+          
+        columns: [
+         { data: "Libelle" },
+         { data: "Quartier" },
+         { data: "Rue" },
+         { data: "Ville" },
+         { data: "OfficeNumber" },
+         { data: "OfficeNumber" },
+         {
+              data : null,
+              orderable:      false,
+              render: function ( data, type, row ) {
+                if(data.Localisation!="")
+                    return '<button onclick="deleteadresse('+data.AdressID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferAdresseForm('+data.AdressID+')"><span class="material-icons">create</span></button><a href="'+data.Localisation+'" class="btn btn-success action"><span class="material-icons">room</span></a>'
+            else return '<button onclick="deleteadresse('+data.AdressID+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferAdresseForm('+data.AdressID+')"><span class="material-icons">create</span></button>'
+      
+              }}
+     ],
+     "order": [],
+     "language": {
+         "paginate": {
+           "previous": "Précédent",
+           "next":"Suivant"
+         },
+         "lengthMenu": "Afficher _MENU_ enregistrements par page",
+         "zeroRecords": "Rien n'a été trouvé",
+         "info": "Affichage de la page _PAGE_ de _PAGES_",
+         "infoEmpty": "Aucun enregistrement disponible",
+         "infoFiltered": "(filtré à partir de _MAX_ enregistrements au total)",
+         "search": "Recherche :",
+       }
+      })
     });
     $('#edit-client').click(function(){
         window.location.href="../Client/editClient.php?"+window.location.search.substring(1).split("?")

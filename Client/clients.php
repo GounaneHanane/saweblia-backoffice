@@ -22,7 +22,7 @@ require("../Nav/menu.php");
 
                 <div class="card-header card-header-primary row">
 
-                  <h4 style="cursor:pointer" onclick="window.location.reload()" class="card-title col-md-8">Clients</h4>
+                  <h4 style="cursor:pointer" class="card-title col-md-8">Clients</h4>
 
                   <div class="col-md-4">
 
@@ -36,48 +36,9 @@ require("../Nav/menu.php");
 
                 <div class="card-body">
 
-                <div class="row">
+             
 
-                        <div class="col-md-8 row">
-
-                          <div class="col-md-6">
-
-                            <div class="input-group no-border">
-
-                              <input style="margin-right:13px" id="name-search" type="text" value="" class="form-control" placeholder="Nom">
-
-                              <button id="searchbyname" type="button" class="btn btn-dark">
-
-                                Chercher
-
-                              </button>
-
-                            </div>
-
-                          </div>
-
-                          <div class="col-md-6">
-
-                            <div class="input-group no-border">
-
-                              <input style="margin-right:13px"  id="phone-search" type="text" value="" class="form-control" placeholder="Téléphone">
-
-                              <button id="searchbyphone" type="button" class="btn btn-dark">
-
-                            Chercher
-
-                              </button>
-
-                            </div>
-
-                          </div>
-
-                        </div>
-
-                         
-
-                       </div>
-
+                      
               
 
                   <div class="table-responsive">
@@ -120,7 +81,7 @@ require("../Nav/menu.php");
 
                         <th>
 
-                          Actions
+                         
 
                         </th>
 

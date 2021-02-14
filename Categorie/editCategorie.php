@@ -23,36 +23,34 @@
                 <div class="card-body">
                   <form id="edit-categorie-form">
                     <div class="row">
-                      <div class="col-md-5">
+                      <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Libelle</label>
                           <input id="libelle" type="text" class="form-control" required>
                         </div>
                       </div>
                       <div class="col-md-3">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Description</label>
-                          <input id="description" type="text" class="form-control">
-                        </div>
-                      </div>
-                      </div>
-                      <div class="">
-                            <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="bmd-label-floating">Media</label>
-                                                <input type="file" class="form-control" id="fournitureImage" name="filename">
+                                                <input onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])" type="file" type="file" class="form-control" id="fournitureImage" name="filename">
                                             </div>
                                         </div>
                                       
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                
-                                               <img id="image"/>
+                                               <img id="image"  src='' width='100' height='100'/>
                                             </div>
                                         </div>
-                                        </div>
-
-
+                      </div>
+                      <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Description</label>
+                          <textarea id="description" type="text" class="form-control"></textarea>
+                        </div>
+                      </div>
+                      </div>
 
                  
                    

@@ -28,237 +28,254 @@
 
                 <div class="card-body">
 
-                  <form id="add-client-form">
+                <form id="add-client-form">
 
-                    <div class="row">
+<div class="row">
 
-                      <div class="col-md-5">
+  <div class="col-md-2">
 
-                        <div class="form-group">
+    <div class="form-group">
 
-                          <label class="bmd-label-floating">Nom</label>
+      <label class="bmd-label-floating">Nom</label>
 
-                          <input id="nom" type="text" class="form-control" >
+      <input id="nom" type="text" class="form-control" spellcheck="false" data-ms-editor="true">
 
-                        </div>
+    </div>
 
-                      </div>
+  </div>
 
-                      <div class="col-md-3">
+  <div class="col-md-2">
 
-                        <div class="form-group">
+    <div class="form-group">
 
-                          <label class="bmd-label-floating">Téléphone</label>
+      <label class="bmd-label-floating">Téléphone</label>
 
-                          <input placeholder="EX : 06XXXXXXXX" id="tel" pattern="[0-9]{10}" type="tel" class="form-control" required>
+      <input placeholder="EX : 06XXXXXXXX" id="tel" pattern="[0-9]{10}" type="tel" class="form-control" required="">
 
-                        </div>
+    </div>
 
-                      </div>
+  </div>
 
-                      <div class="col-md-4">
+  <div class="col-md-2">
 
-                        <div class="form-group">
+    <div class="form-group">
 
-                          <label class="bmd-label-floating">Email</label>
+      <label class="bmd-label-floating">Email</label>
 
-                          <input id="email" type="email" class="form-control">
+      <input id="email" type="email" class="form-control">
 
-                        </div>
+    </div>
 
-                      </div>
+  </div>
+<div class="col-md-2">
 
-                    </div>
+    <div class="form-group">
 
-                    <div class="row">
+      <label class="bmd-label-floating">Type</label>
 
-                      <div class="col-md-6">
+      <select id="type" class="form-control" required="">
 
-                        <div class="form-group">
+          <option value="particulier">Particulier</option>
 
-                          <label class="bmd-label-floating">Type</label>
+          <option value="societe">Société</option>
 
-                          <select id="type" class="form-control" required>
+        </select>
 
-                              <option value="particulier">Particulier</option>
+    </div>
 
-                              <option value="societe">Société</option>
+  </div>
 
-                            </select>
+  <div class="col-md-2">
 
-                        </div>
+    <div class="form-group">
 
-                      </div>
+      <label class="bmd-label-floating">Canal d'aquisition</label>
 
-                      <div class="col-md-6">
+      <select id="canal" class="form-control">
 
-                        <div class="form-group">
+          <option>Appli Mobile</option>
 
-                          <label class="bmd-label-floating">Canal d'aquisition</label>
+          <option>Facebook, Whatsapp</option>
 
-                          <select id="canal" class="form-control">
+          <option>Site web</option>
 
-                              <option>Appli Mobile</option>
+          <option>Autre</option>
 
-                              <option>Facebook, Whatsapp</option>
+        </select>
 
-                              <option>Site web</option>
+    </div>
 
-                              <option>Autre</option>
+  </div>
 
-                            </select>
+  
 
-                        </div>
+</div>
 
-                      </div>
 
-                    </div>
 
-                    <div class="row">
+<div class="row">
+<div class="col-md-4">
 
-                      <div class="col-md-12">
+    <div class="form-group"><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none;" class="cGcvT"></grammarly-extension>
 
-                        <div class="form-group">
+      <label class="bmd-label-floating">Commentaire</label>
 
-                          <label class="bmd-label-floating">Commentaire</label>
+      <textarea id="comment" class="form-control" rows="5" spellcheck="false" data-ms-editor="true"></textarea>
 
-                          <textarea id="comment"  class="form-control" rows="5"></textarea>
+    </div>
 
-                        </div>
+  </div>
 
-                      </div>
+</div>
+<h3>Adresse</h3>
+<div class="">
 
-                    </div>
 
-                    <div class="row">
 
-                      <div class="col-md-5">
+<div class="row">
 
-                        <div class="form-group">
+  <div class="col-md-2">
 
-                          <label class="bmd-label-floating">Libelle</label>
+    <div class="form-group">
 
-                          <input id="Libelle" type="text" class="form-control" >
+      <label class="bmd-label-floating">Libelle</label>
 
-                        </div>
+      <input id="Libelle" type="text" class="form-control" spellcheck="false" data-ms-editor="true">
 
-                      </div>
+    <div class="ms-editor-squiggles-container" style="all: initial;"></div></div>
 
-                      <div class="col-md-3">
+  </div>
 
-                           <div class="form-group">
+  <div class="col-md-2">
 
-                        <label class="bmd-label-floating">Ville</label>
+  
 
-                          
+    <div class="form-group">
 
-                              <select id="Ville" class="form-control">
+    <label class="bmd-label-floating">Ville</label>
 
-                                  <option>Casablanca</option>
+        <select id="Ville" class="form-control" required="">
 
-                                  <option>Rabat</option>
+  <option>Casablanca</option>
 
-                                  <option>Mohemmadia</option>
+  <option>Rabat</option>
 
-                                  <option>Autre</option>
+  <option>Mohemmadia</option>
 
-                              </select>
+  <option>Autre</option>
 
-                        </div>
+  </select>
 
-                       
+    </div>
 
-                      </div>
+  </div>
 
-                      <div class="col-md-4">
+  <div class="col-md-2">
 
-                           <div class="form-group">
+  <div class="form-group">
 
-                            
+      <label class="bmd-label-floating">Quartier</label>
 
-                          <label class="bmd-label-floating">Quartier</label>
+      <input id="Quartier" type="text" class="form-control" spellcheck="false" data-ms-editor="true">
 
-                          <input id="Quartier" type="text" class="form-control">
+    </div>
 
-                        </div>
+   
 
-                        
+  </div>
+<div class="col-md-2">
 
-                      </div>
+  <div class="form-group">
 
-                    </div>
+      <label class="bmd-label-floating">Rue</label>
 
-                    <div class="row">
+      <input id="Rue" type="text" class="form-control" spellcheck="false" data-ms-editor="true">
 
-                      <div class="col-md-6">
+    </div>
 
-                       <div class="form-group">
+  </div>
+<div class="col-md-4">
 
-                          <label class="bmd-label-floating">Rue</label>
+   
 
-                          <input id="Rue" type="text" class="form-control">
+    <div class="form-group">
 
-                        </div>
+      <label class="bmd-label-floating">Localisation</label>
 
-                      </div>
+      <input id="Localisation" type="text" class="form-control" spellcheck="false" data-ms-editor="true">
 
-                      <div class="col-md-6">
+    </div>
 
-                        <div class="form-group">
+  </div>
+</div>
 
-                        <label class="bmd-label-floating">N°Bureau ( Client Technopark )</label>
+<div class="row">
 
-                          <input id="NBureau" type="text" class="form-control">
+  
 
-                        </div>
+  <div class="col-md-3">
 
+    <div class="form-group">
 
+    <label class="bmd-label-floating">N Bureau ( Client Technopark )</label>
 
-                      </div>
+      <input id="NBureau" type="text" class="form-control" spellcheck="false" data-ms-editor="true">
 
-                    </div>
+    </div>
 
-                    <div class="row">
 
-                      <div class="col-md-6">
 
-                        <div class="form-group">
+  </div>
+<div class="col-md-3">
 
-                          <label class="bmd-label-floating">Localisation</label>
+     <div class="form-group">
 
-                          <input id="Localisation" type="text" class="form-control">
+      <label class="bmd-label-floating">Surface Bureau ( Client Technopark )</label>
 
-                        </div>
+      <input id="NSurface" type="text" class="form-control" spellcheck="false" data-ms-editor="true">
 
-                      </div>
+    </div>
 
-                      <div class="col-md-6">
+  </div>
+</div>
 
-                           <div class="form-group">
+<div class="row">
 
-                          <label class="bmd-label-floating">Surface Bureau ( Client Technopark )</label>
+  
 
-                          <input id="NSurface" type="text" class="form-control">
+  
 
-                        </div>
+</div>
 
-                       
 
-                      </div>
 
-                    </div>
 
-                   
 
-                    
 
-                    <button id="btn-add" type="submit" class="btn btn-success pull-right">Enregistrer</button>
 
-                    <button onclick="window.location.href='./clients.php'" type="button" class="btn btn-danger pull-right">Annuler</button>
+ 
 
-                   
 
-                  </form>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<button id="btn-add" type="submit" class="btn btn-success pull-right">Enregistrer</button>
+
+<button onclick="window.location.href='./clients.php'" type="button" class="btn btn-danger pull-right">Annuler</button>
+
+
+
+</form>
 
                 </div>
 

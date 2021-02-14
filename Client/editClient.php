@@ -64,7 +64,7 @@
 
                     <div class="row">
 
-                      <div class="col-md-5">
+                      <div class="col-md-2">
 
                         <div class="form-group">
 
@@ -76,7 +76,7 @@
 
                       </div>
 
-                      <div class="col-md-3">
+                      <div class="col-md-2">
 
                         <div class="form-group">
 
@@ -90,7 +90,7 @@
 
                       </div>
 
-                      <div class="col-md-4">
+                      <div class="col-md-2">
 
                         <div class="form-group">
 
@@ -101,12 +101,7 @@
                         </div>
 
                       </div>
-
-                    </div>
-
-                    <div class="row">
-
-                      <div class="col-md-6">
+                      <div class="col-md-2">
 
                         <div class="form-group">
 
@@ -122,35 +117,41 @@
 
                         </div>
 
-                      </div>
-
-                      <div class="col-md-6">
-
-                        <div class="form-group">
-
-                          <label class="bmd-label-floating">Canal d'aquisition</label>
-
-                          <select id="canal" class="form-control">
-
-                              <option value="Appli Mobile">Appli Mobile</option>
-
-                              <option value="Facebook, Whatsapp">Facebook, Whatsapp</option>
-
-                              <option value="Site web">Site web</option>
-
-                              <option value="Autre">Autre</option>
-
-                            </select>
-
                         </div>
+                        <div class="col-md-2">
 
-                      </div>
+<div class="form-group">
+
+  <label class="bmd-label-floating">Canal d'aquisition</label>
+
+  <select id="canal" class="form-control">
+
+      <option value="Appli Mobile">Appli Mobile</option>
+
+      <option value="Facebook, Whatsapp">Facebook, Whatsapp</option>
+
+      <option value="Site web">Site web</option>
+
+      <option value="Autre">Autre</option>
+
+    </select>
+
+</div>
+
+</div>
+                    </div>
+
+                    <div class="row">
+
+                 
+
+                      
 
                     </div>
 
                     <div class="row">
 
-                      <div class="col-md-12">
+                      <div class="col-md-4">
 
                         <div class="form-group">
 

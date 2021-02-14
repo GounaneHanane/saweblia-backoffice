@@ -2,47 +2,52 @@
 $(document).ready(function () {
     $.getJSON("http://webapp.saweblia.ma/fournisseurs", function (data) {
       var i;
-      var table = data.fournisseurs.Fournisseurs;
+      var table = data.Fournisseurs;
 
+     $('#fournisseur-table').DataTable({
+       data: table,
+       columns: [
+         {data: "NomFournisseur"},
+         {data: "NomContact"},
+         {data: "Telephone"},
+         {data: "Adresse"},
+         {data: "Email"},
+         {
+           data: null,
+           render: function(data,row) {
+              if (data.Localisation != "" && data.Localisation != null)
+             return '<button onclick="deleteFournisseur(' +
+                  data.Fournisseur +
+                  ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
+                  data.Fournisseur +
+                  ')"><span class="material-icons">create</span></button><a href="'+data.Localisation+'" class="btn btn-success action"><span class="material-icons">room</span></a>'
+              
+              else  return '<button onclick="deleteFournisseur(' +
+                  data.Fournisseur +
+                  ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
+                  data.Fournisseur +
+                  ')"><span class="material-icons">create</span></button>'
+              
+           }
+          }
+       ],
+       "order": [],
+            "language": {
+                "paginate": {
+                  "previous": "Précédent",
+                  "next":"Suivant"
+                },
+                "lengthMenu": "Afficher _MENU_ enregistrements par page",
+                "zeroRecords": "Rien n'a été trouvé",
+                "info": "Affichage de la page _PAGE_ de _PAGES_",
+                "infoEmpty": "Aucun enregistrement disponible",
+                "infoFiltered": "(filtré à partir de _MAX_ enregistrements au total)",
+                "search": "Recherche :",
+              }
+     })
+      
      
       
-      for (i = 0; i < table.length; i++) {
-        $("#fournisseur-table").append('<tr id="' + table[i].Fournisseur + '">');
-        if (table[i].NomFournisseur != null)
-          $("#fournisseur-table").append("<td>" + table[i].NomFournisseur + "</td>");
-        else $("#fournisseur-table").append("<td></td>");
-        if (table[i].NomContact != null)
-          $("#fournisseur-table").append("<td>" + table[i].NomContact + "</td>");
-        else $("#fournisseur-table").append("<td></td>");
-        if (table[i].Telephone != null)
-          $("#fournisseur-table").append("<td>" + table[i].Telephone + "</td>");
-        else $("#fournisseur-table").append("<td></td>");
-        if (table[i].Adresse != null)
-          $("#fournisseur-table").append("<td>" + table[i].Adresse + "</td>");
-        else $("#fournisseur-table").append("<td></td>");
-        
-          
-        if (table[i].Email != null)
-          $("#fournisseur-table").append(
-            "<td>" + table[i].Email + "</td>"
-          );
-        else $("#fournisseur-table").append("<td></td>");
-        if (table[i].Localisation != "")
-        $("#fournisseur-table").append(
-          '<td><button onclick="deleteFournisseur(' +
-            table[i].Fournisseur +
-            ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
-            table[i].Fournisseur +
-            ')"><span class="material-icons">create</span></button><a href="'+table[i].Localisation+'" class="btn btn-success action"><span class="material-icons">room</span></a></td></tr>'
-        );
-        else  $("#fournisseur-table").append(
-          '<td><button onclick="deleteFournisseur(' +
-            table[i].Fournisseur +
-            ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
-            table[i].Fournisseur +
-            ')"><span class="material-icons">create</span></button></td></tr>'
-        );
-      }
     });
     $("#add-fournisseur").click(function () {
       window.location.replace("../Fourniture/addFournisseur.php");

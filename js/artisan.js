@@ -2,42 +2,50 @@
 $(document).ready(function () {
     $.getJSON("http://webapp.saweblia.ma/artisans", function (data) {
       var i;
-      var table = data.artisan.Artisans;
-      for (i = 0; i < table.length; i++) {
-        $("#artisan-table").append('<tr>');
-        if (table[i].Nom != null)
-          $("#artisan-table").append("<td>" + table[i].Nom + "</td>");
-        else $("#artisan-table").append("<td></td>");
-        if (table[i].Telephone != null)
-          $("#artisan-table").append("<td>" + table[i].Telephone + "</td>");
-        else $("#artisan-table").append("<td></td>");
-        if (table[i].Ville != null)
-        $("#artisan-table").append(
-          "<td>" + table[i].Ville + "</td>"
-        );
-      else $("#artisan-table").append("<td></td>");
-        if (table[i].SoldeArtisan!= null)
-        $("#artisan-table").append(
-        "<td>" + table[i].SoldeArtisan + "</td>"
-        );
-        else $("#artisan-table").append("<td></td>");
-        if (table[i].SoldeSaweblia != null)
-        $("#artisan-table").append(
-        "<td>" + table[i].SoldeSaweblia + "</td>"
-        );
-        else $("#artisan-table").append("<td></td>");
-            if(table[i].Disponible==true)
-            $('#artisan-table').append('<td><label class="switch"><input id="check'+table[i].ArtisanID+'" onchange="blockArtisan('+table[i].ArtisanID+')" type="checkbox" checked><span class="slider round"></span></label></td>')
-        else $('#artisan-table').append('<td><label class="switch"><input id="check'+table[i].ArtisanID+'" onchange="blockArtisan('+table[i].ArtisanID+')" type="checkbox"><span class="slider round"></span></label></td>')
-
-        $("#artisan-table").append(
-          '<td><button onclick="deleteartisan(' +
-            table[i].ArtisanID +
-            ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferArtisanForm(' +
-            table[i].ArtisanID +
-            ')"><span class="material-icons">create</span></button></td></tr>'
-        );
-      }
+      var table = data.Artisans;
+      $("#artisan-table").DataTable({
+        data: table,
+        columns : [ 
+          {data:"Nom"},
+          {data:"Telephone"},
+          {data:"Ville"},
+          {data:"SoldeArtisan"},
+          {data:"SoldeSaweblia"},
+          {
+            data:"Disponible", 
+            render : function(data, type,row) {
+              if(data==true)
+                return '<label class="switch"><input id="check'+row.ArtisanID+'" onchange="blockArtisan('+row.ArtisanID+')" type="checkbox" checked><span class="slider round"></span></label>';
+              else return '<label class="switch"><input id="check'+row.ArtisanID+'" onchange="blockArtisan('+row.ArtisanID+')" type="checkbox"><span class="slider round"></span></label>';
+            }
+          },
+          {
+            data: null,
+            render: function(data) {
+              return '<button onclick="deleteartisan(' +
+              data.ArtisanID +
+              ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferArtisanForm(' +
+              data.ArtisanID +
+              ')"><span class="material-icons">create</span></button>'
+            }
+          }
+        ],
+        "order": [],
+            "language": {
+                "paginate": {
+                  "previous": "Précédent",
+                  "next":"Suivant"
+                },
+                "lengthMenu": "Afficher _MENU_ enregistrements par page",
+                "zeroRecords": "Rien n'a été trouvé",
+                "info": "Affichage de la page _PAGE_ de _PAGES_",
+                "infoEmpty": "Aucun enregistrement disponible",
+                "infoFiltered": "(filtré à partir de _MAX_ enregistrements au total)",
+                "search": "Recherche :",
+              }
+      })
+      
+     
     });
     $('#searchbynameartisan').click(function(){
    
@@ -329,25 +337,10 @@ $(document).ready(function () {
   }
   function blockArtisan(ArtisanId) {
    
-    var arr={}
-   var checkbox=$('#check'+ArtisanId).is(":checked")
- $.getJSON('http://webapp.saweblia.ma/artisans/'+ArtisanId, function (data){
-   arr = {
-    nom:data.Nom ,
-     telephone:data.Telephone,
-     ville:data.Ville,
-     solde_artisan:data.SoldeArtisan,
-     solde_Saweblia:data.SoldeSaweblia,
-     langue:data.Langue,
-     cin:data.Cin,
-     email:data.Email,
-     disponible:checkbox
-   };
-
+   
     $.ajax({
-        url: 'http://webapp.saweblia.ma/artisans/'+ArtisanId,
+        url: 'http://webapp.saweblia.ma/artisandisponible/'+ArtisanId,
         type: 'PUT',
-        data: JSON.stringify(arr),
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         async: false,
@@ -355,8 +348,6 @@ $(document).ready(function () {
            
         }
     });
-    });
- 
 
     
 }
