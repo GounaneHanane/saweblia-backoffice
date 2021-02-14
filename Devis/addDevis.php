@@ -30,16 +30,26 @@ require("../Nav/menu.php");
                                     
 
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
+                                    <div class="col-md-4">
+                                            <div class="form-group ">
                                                 <label class="bmd-label-floating">Client</label>
-                                                <input id="client" type="text" class="form-control">
+                                                <div class="float-right"><input type="checkbox" id="add-client" style="margin-right:4px"><label>  Nouveau Client</label></div>
+                                               <div class="clientArea">
+                                                    <select id="clients"  class="form-control js-example-basic-single" >
+                                                    </select>
+                                               </div>
                                             </div>
                                         </div>
+
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="bmd-label-floating">Coordinateur</label>
-                                                <input id="coordinateur" type="text" class="form-control">
+                                                <label class="bmd-label-floating">Coordinateur</label> <select id="typeCategorie" class="form-control">
+                                                    <option>Coordinateur 1</option>
+                                                    <option>Coordinateur 2</option>
+                                                    <option>coordinateur 3</option>
+
+
+                                                </select>
                                             </div>
                                         </div>
 
@@ -48,8 +58,8 @@ require("../Nav/menu.php");
                         </div>
                         <div class="card border">
                             <form id="add-client-form">
-                                <div class="card-body">
-                                    <h3 class="card-title" style="margin-bottom: 15px;">Adresse </h3>
+                                <div class="card-body" id="client-info-area">
+                                    <h3 class="card-title" style="margin-bottom: 15px;">Client : <i id="client-name"> </h3>
 
                                     <div class="row">
                                         <div class="col-md-6">
@@ -116,6 +126,7 @@ require("../Nav/menu.php");
 
 
                                 </div>
+                            </form>
                         </div>
                         <div class="card border">
                             <form id="add-client-form">
@@ -142,10 +153,8 @@ require("../Nav/menu.php");
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <select id="typeCategorie" class="form-control">
-                                                            <option>adresse 1</option>
-                                                            <option>adresse 2</option>
-                                                            <option>adresse 3</option>
+                                                        <select id="select-prestation" class="form-control">
+                                                         
 
 
                                                         </select>
@@ -206,7 +215,7 @@ require("../Nav/menu.php");
 
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <div class="form-group"><input id="PUVente" type="text" class="form-control" placeholder="P.U.Achat">
+                                                    <div class="form-group"><input id="PUAchat" type="text" class="form-control" placeholder="P.U.Achat">
                                                     </div>
                                                 </div>
 
