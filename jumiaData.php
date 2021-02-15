@@ -19,7 +19,7 @@ if(isset($_POST['action'])) {
     }
     else if($_POST['action']=='displayData') {
        
-        $query = "select * from Prestations";
+        $query = "select * from Prestations ,Services WHERE Prestations.IDService=Services.IDService";
 
         $query_result = $connection->query($query);
 
@@ -27,7 +27,7 @@ if(isset($_POST['action'])) {
         echo json_encode($array);
     }
     else if($_POST['action']=='edit') {
-        $query = "update Prestations set LibellePrestation='".$_POST['data']['libelle']."', PrixPrestation=".$_POST['data']['prix_prestation'].",PrixConsultation=".$_POST['data']['prix_consultation']." where IDPrestation=".$_POST["data"]["jumiaId"];
+        $query = 'update Prestations set LibellePrestation="'.$_POST['data']['libelle'].'", PrixPrestation='.$_POST['data']['prix_prestation'].',PrixConsultation='.$_POST['data']['prix_consultation'].' where IDPrestation='.$_POST["data"]["jumiaId"];
 
         $query_result = $connection->query($query);
 
@@ -43,10 +43,11 @@ if(isset($_POST['action'])) {
         if($query_result==true)
             echo "success";
         else echo "error";
-    }
-    if($_POST['action']=='displayCommandeJumia') {
-        $query = "select * from CommandesJumia,Prestation,Clients_Adresses where CommandesJumia.IDPrestation=Prestations.IDPrestation and CommandesJumia.IDClientAdresses=Clients_Adresses.IDClientAdresses";
+    }  else if($_POST['action']=='displayCommandes') {
+        $query = "SELECT * FROM `CommandesJumia` as cmd,Prestations as pres,Clients_Adresses as ads WHERE cmd.IDPrestation=pres.IDPrestation and cmd.IDClientAdresses=ads.IDClientAdresses";
+
         $query_result = $connection->query($query);
+
         $array = mysqli_fetch_all($query_result);
         echo json_encode($array);
     }
