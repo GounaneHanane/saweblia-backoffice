@@ -3,7 +3,7 @@ require("../Nav/header.php");
 require("../Nav/menu.php");
 ?>
 
-<script src="../js/jumia.js"></script>
+<script src="../js/commande_jumia.js"></script>
 
 <div class="content">
     <div class="clearfix"></div>
@@ -12,11 +12,11 @@ require("../Nav/menu.php");
         <div class="mdc-tab-scroller__scroll-area mdc-tab-scroller__scroll-area--scroll" style="margin-bottom: 0px;">
           <div class="mdc-tab-scroller__scroll-content">
             <!---->
-             <button  name="categorie_button" role="tab" onclick="window.location.href='./jumia.php'"  class="mdc-tab mdc-tab--active mdc-tab--stacked nav-bar" aria-selected="true" tabindex="0" id="goog_667979833-FIXED-0">
+             <button  name="categorie_button" role="tab" onclick="window.location.href='./jumia.php'"  class="mdc-tab  mdc-tab--stacked nav-bar" aria-selected="true" tabindex="0" id="goog_667979833-FIXED-0">
                 <span class="mdc-tab__content">
                     <span class="mdc-tab__text-label">Prestations</span>
                 </span>
-                <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                <span class="mdc-tab-indicator">
                     <span class="mdc-tab-indicator__content
                     mdc-tab-indicator__content--underline"></span>
                 </span>
@@ -25,11 +25,11 @@ require("../Nav/menu.php");
             </button>
  
     <!---->
-            <button   onclick="window.location.href='./commandeJumia.php'" role="tab"  class="nav-bar mdc-tab mdc-tab--stacked" aria-selected="false" tabindex="-1" id="goog_667979833-FIXED-2">
+            <button   onclick="window.location.href='./commandeJumia.php'" role="tab"  class="nav-bar mdc-tab--active  mdc-tab mdc-tab--stacked" aria-selected="false" tabindex="-1" id="goog_667979833-FIXED-2">
                 <span class="mdc-tab__content">
                     <span class="mdc-tab__text-label">Commandes</span>
                 </span>
-                <span class="mdc-tab-indicator">
+                <span class="mdc-tab-indicator  mdc-tab-indicator--active">
                     <span class="mdc-tab-indicator__content
                     mdc-tab-indicator__content--underline"></span>
                 </span>
@@ -59,25 +59,33 @@ require("../Nav/menu.php");
                             <table class="table" id="jumia-table">
                                 <thead class=" text-primary">
                                     <th>
-                                        Libelle Prestation
+                                       ID Commande
                                     </th>
                                     <th>
-                                        Pictogramme
+                                    ID Facture
+                                       
                                     </th>
                                     <th>
-                                        Service
+                                    Prestation
                                     </th>
 
                                     <th>
-                                        Prix prestation
-                                    </th>
-
-                                    <th>
-                                        Prix consultation
+                                        Date du prestation
                                     </th>
                                     <th>
-                                    Actions
+                                        Heure du prestation
                                     </th>
+                                    <th>
+                                        Téléphone du client
+                                    </th>
+                                    <th>
+                                    Adresse
+                                        
+                                    </th>
+                                    <th>
+                                        Prix
+                                    </th>
+                                   
                                 </thead>
                                 <tbody >
 

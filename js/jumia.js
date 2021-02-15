@@ -6,6 +6,7 @@ $(document).ready(function () {
     url: "../jumiaData.php",
     type: "POST",
     async: false,
+<<<<<<< HEAD
     data: { action: "displayData" },
     success: function (msg) {
       var data = JSON.parse(msg);
@@ -33,6 +34,26 @@ $(document).ready(function () {
             ")'><span class='material-icons'>create</span></td>"
         );
       });
+=======
+    data:{action:'displayData'},
+    success: function (msg) { 
+        var data =JSON.parse(msg)
+        $('#jumia-table').DataTable({
+          data:data,
+          columns: [
+              {data: 1},
+              {data: null, render:function(data){  return "<img src='"+data[2]+"' width='100' height='100'/>"}},
+              {data: 11},
+           
+              {data: 3 },
+              {data: 4},
+              {data: null, render: function(data){ return "<button class='btn btn-danger action' type='button' onclick='deletePrestationJumia("+data[0]+")'><span class='material-icons'>delete_sweep</span> </button>  <button class='btn btn-warning action' type='button' onclick='editPrestationJumia("+data[0]+")'><span class='material-icons'>create</span>"}},
+             
+          ]
+      })
+   
+      
+>>>>>>> 38f864b36f6fc984b524288d61118d5a4d962c2b
     },
   });
   $("#btn-edit").click(function (e) {
