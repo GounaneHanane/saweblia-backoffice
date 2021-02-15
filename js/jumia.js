@@ -5,25 +5,41 @@ $(document).ready(function () {
   $.ajax({
     url: "../jumiaData.php",
     type: "POST",
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
     async: false,
-    data:{action:'displayData'},
-    success: function (msg) { 
-        var data =JSON.parse(msg)
-        $('#jumia-table').DataTable({
-          data:data,
-          columns: [
-              {data: 1},
-              {data: null, render:function(data){  return "<img src='"+data[2]+"' width='100' height='100'/>"}},
-              {data: 11},
-           
-              {data: 3 },
-              {data: 4},
-              {data: null, render: function(data){ return "<button class='btn btn-danger action' type='button' onclick='deletePrestationJumia("+data[0]+")'><span class='material-icons'>delete_sweep</span> </button>  <button class='btn btn-warning action' type='button' onclick='editPrestationJumia("+data[0]+")'><span class='material-icons'>create</span>"}},
-             
-          ]
-      })
-   
-      
+    data: { action: "displayData" },
+    success: function (msg) {
+      var data = JSON.parse(msg);
+      $("#jumia-table").DataTable({
+        data: data,
+        columns: [
+          { data: 1 },
+          {
+            data: null,
+            render: function (data) {
+              return "<img src='" + data[2] + "' width='100' height='100'/>";
+            },
+          },
+          { data: 11 },
+
+          { data: 3 },
+          { data: 4 },
+          {
+            data: null,
+            render: function (data) {
+              return (
+                "<button class='btn btn-danger action' type='button' onclick='deletePrestationJumia(" +
+                data[0] +
+                ")'><span class='material-icons'>delete_sweep</span> </button>  <button class='btn btn-warning action' type='button' onclick='editPrestationJumia(" +
+                data[0] +
+                ")'><span class='material-icons'>create</span>"
+              );
+            },
+          },
+        ],
+      });
     },
   });
   $("#btn-edit").click(function (e) {
@@ -36,6 +52,9 @@ $(document).ready(function () {
     $.ajax({
       url: "../jumiaData.php",
       type: "POST",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
       async: false,
       data: { data: arr, action: "edit" },
       success: function (msg) {
@@ -62,6 +81,9 @@ function deletePrestationJumia(idJumia) {
   $.ajax({
     url: "../jumiaData.php",
     type: "POST",
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
     async: false,
     data: { idJumia: idJumia, action: "delete" },
     success: function (msg) {

@@ -21,11 +21,11 @@ $(document).ready(function () {
           window.location.href =
             window.location.origin + "/saweblia-backoffice/Client/clients.php";
         } else {
-          alert("mail incorrecte ! ");
+          alert("Votre mail ou votre mot de passe est incorrecte ! ");
         }
       },
       error: function () {
-        alert("mot de passe incorrecte ! ");
+        alert("Votre mail ou votre mot de passe est incorrecte ! ");
       },
     });
   });

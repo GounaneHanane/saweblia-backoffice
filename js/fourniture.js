@@ -5,10 +5,14 @@ $(document).ready(function () {
   ////
   //// Display Data
   ////
-  $.getJSON(
+  $.ajax({
     "http://webapp.saweblia.ma/fournitures?p=" +
       window.location.search.substring(1).split("?"),
-    function (data) {
+      type:"GET",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+   success: function (data) {
       var i;
       var table = data.Fournitures;
       $("#fourniture-table").DataTable({
@@ -61,7 +65,7 @@ $(document).ready(function () {
           search: "Recherche :",
         },
       });
-    }
+    }}
   );
   ////
   //// add fournisseur checkbox in add fourniture
@@ -75,7 +79,10 @@ $(document).ready(function () {
     } else {
       $(".fournisseurArea").html("");
 
-      $.getJSON("http://webapp.saweblia.ma/fournisseurs", function (data) {
+      $.ajax({
+        url:"http://webapp.saweblia.ma/fournisseurs", type:"GET",headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },success: function (data) {
         console.log(data);
         var i;
         for (i = 0; i < data.Fournisseurs.length; i++) {
@@ -86,7 +93,7 @@ $(document).ready(function () {
               data.Fournisseurs[i].NomFournisseur +
               "</option>"
           );
-        }
+      }}
       });
       $(".fournisseurArea").append(
         ' <select id="fournisseurs"  class="form-control js-example-basic-single" ></select>'
@@ -99,159 +106,6 @@ $(document).ready(function () {
   });
   ///
   /// Search by name (button click)
-  ///
-  $("#searchbynamefourniture").click(function () {
-    $("#fourniture-table").html("");
-    $.getJSON(
-      "http://webapp.saweblia.ma/fournitures/" +
-        $("#name-searchfourniture").val(),
-      function (data) {
-        $(".pagination-fourniture").html("");
-        var i;
-        var table = data.fournitures.Fournitures;
-
-        for (i = 0; i < table.length; i++) {
-          $("#fourniture-table").append(
-            '<tr id="' + table[i].FournitureID + '">'
-          );
-          if (table[i].Libelle != null)
-            $("#fourniture-table").append("<td>" + table[i].Libelle + "</td>");
-          else $("#fourniture-table").append("<td></td>");
-          if (table[i].Description != null)
-            $("#fourniture-table").append(
-              "<td>" + table[i].Description + "</td>"
-            );
-          else $("#fourniture-table").append("<td></td>");
-          if (table[i].Media != null)
-            $("#fourniture-table").append(
-              "<td><img width='60' height='60'src='" +
-                window.location.origin +
-                "/saweblia-backoffice/" +
-                table[i].Media +
-                "'/></td>"
-            );
-          else $("#fourniture-table").append("<td></td>");
-          if (table[i].PrixAchat != null)
-            $("#fourniture-table").append(
-              "<td>" + table[i].PrixAchat + "</td>"
-            );
-          else $("#fourniture-table").append("<td></td>");
-          if (table[i].PrixVente != null)
-            $("#fourniture-table").append(
-              "<td>" + table[i].PrixVente + "</td>"
-            );
-          else $("#fourniture-table").append("<td></td>");
-          var jsonIssues;
-          $.ajax({
-            url:
-              "http://webapp.saweblia.ma/fournisseurs/" +
-              table[i].FournisseurID,
-            async: false,
-            dataType: "json",
-            success: function (libellefournisseur) {
-              telephone = libellefournisseur.Telephone;
-              nom = libellefournisseur.NomFournisseur;
-            },
-          });
-          if (nom != null)
-            $("#fourniture-table").append("<td>" + nom + "</td>");
-          else $("#fourniture-table").append("<td></td>");
-          if (telephone != null)
-            $("#fourniture-table").append("<td>" + telephone + "</td>");
-          else $("#fourniture-table").append("<td></td>");
-
-          $("#fourniture-table").append(
-            '<td><button onclick="deleteFourniture(' +
-              table[i].FournitureID +
-              ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferFournitureForm(' +
-              table[i].FournitureID +
-              ')"><span class="material-icons">create</span></button></td></tr>'
-          );
-        }
-      }
-    );
-  });
-  ///
-  /// Search by name (enter)
-  ///
-  $("#name-searchfourniture").keydown(function (e) {
-    if (e.keyCode == 13) {
-      $("#fourniture-table").html("");
-      $.getJSON(
-        "http://webapp.saweblia.ma/fournitures/" +
-          $("#name-searchfourniture").val(),
-        function (data) {
-          $(".pagination-fourniture").html("");
-
-          var i;
-          var table = data.fournitures.Fournitures;
-
-          for (i = 0; i < table.length; i++) {
-            $("#fourniture-table").append(
-              '<tr id="' + table[i].FournitureID + '">'
-            );
-            if (table[i].Libelle != null)
-              $("#fourniture-table").append(
-                "<td>" + table[i].Libelle + "</td>"
-              );
-            else $("#fourniture-table").append("<td></td>");
-            if (table[i].Description != null)
-              $("#fourniture-table").append(
-                "<td>" + table[i].Description + "</td>"
-              );
-            else $("#fourniture-table").append("<td></td>");
-            if (table[i].Media != null)
-              $("#fourniture-table").append(
-                "<td><img width='60' height='60'src='" +
-                  window.location.origin +
-                  "/saweblia-backoffice/" +
-                  table[i].Media +
-                  "'/></td>"
-              );
-            else $("#fourniture-table").append("<td></td>");
-            if (table[i].PrixAchat != null)
-              $("#fourniture-table").append(
-                "<td>" + table[i].PrixAchat + "</td>"
-              );
-            else $("#fourniture-table").append("<td></td>");
-            if (table[i].PrixVente != null)
-              $("#fourniture-table").append(
-                "<td>" + table[i].PrixVente + "</td>"
-              );
-            else $("#fourniture-table").append("<td></td>");
-            var jsonIssues;
-            $.ajax({
-              url:
-                "http://webapp.saweblia.ma/fournisseurs/" +
-                table[i].FournisseurID,
-              async: false,
-              dataType: "json",
-              success: function (libellefournisseur) {
-                telephone = libellefournisseur.Telephone;
-                nom = libellefournisseur.NomFournisseur;
-              },
-            });
-            if (nom != null)
-              $("#fourniture-table").append("<td>" + nom + "</td>");
-            else $("#fourniture-table").append("<td></td>");
-            if (telephone != null)
-              $("#fourniture-table").append("<td>" + telephone + "</td>");
-            else $("#fourniture-table").append("<td></td>");
-
-            $("#fourniture-table").append(
-              '<td><button onclick="deleteFourniture(' +
-                table[i].FournitureID +
-                ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferFournitureForm(' +
-                table[i].FournitureID +
-                ')"><span class="material-icons">create</span></button></td></tr>'
-            );
-          }
-        }
-      );
-    }
-  });
-  ///
-  /// add form submit
   ///
   $("#addFourniture").submit(function (e) {
     e.preventDefault();
@@ -285,6 +139,9 @@ $(document).ready(function () {
       $.ajax({
         url: "http://webapp.saweblia.ma/fournitures",
         type: "POST",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
         data: JSON.stringify(arr),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -353,6 +210,9 @@ $(document).ready(function () {
           "http://webapp.saweblia.ma/fournitures/" +
           window.location.search.substring(1).split("?"),
         type: "PUT",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
         data: JSON.stringify(arr),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -405,6 +265,9 @@ function uploadFile(imageFile) {
       $.ajax({
         url: "../uploadImageFourniture.php",
         type: "POST",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
         data: formData,
         processData: false,
         contentType: false,
@@ -422,6 +285,9 @@ function deleteFourniture(idfourniture) {
     $.ajax({
       url: "http://webapp.saweblia.ma/fournitures/" + idfourniture,
       type: "DELETE",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
       success: function (msg) {
         $(".clearfix").html("");
         $(".clearfix").append(
