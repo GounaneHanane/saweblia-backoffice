@@ -3,10 +3,15 @@ if (sessionStorage.getItem("token") === null)
     window.location.origin + "/saweblia-backoffice/login/login.php";
 $(document).ready(function () {
   $(".js-example-basic-single").select2();
-  $.getJSON(
-    "http://webapp.saweblia.ma/prestations?p=" +
+  $.ajax({
+    url:
+      "http://webapp.saweblia.ma/prestations?p=" +
       window.location.search.substring(1).split("?"),
-    function (data) {
+    type: "GET",
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+    success: function (data) {
       var table = data.Prestations;
       $("#prestation-table").DataTable({
         data: table,
@@ -58,8 +63,8 @@ $(document).ready(function () {
           search: "Recherche :",
         },
       });
-    }
-  );
+    },
+  });
   $("#add-prestation").click(function () {
     window.location.href = "../Prestation/addPrestation.php";
   });
@@ -86,6 +91,9 @@ $(document).ready(function () {
       $.ajax({
         url: "http://webapp.saweblia.ma/prestations",
         type: "POST",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
         data: JSON.stringify(arr),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -109,152 +117,6 @@ $(document).ready(function () {
         '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Merci d\'enter une image valide </span></div>'
       );
     }
-  });
-  $("#name-searchprestation").on("keypress", function (e) {
-    if (e.which == 13) {
-      $.getJSON(
-        "http://webapp.saweblia.ma/prestations/" +
-          $("#name-searchprestation").val(),
-        function (data) {
-          $(".pagination-prestation").html("");
-
-          var i;
-          var table = data.Prestations;
-          $("#prestation-table").html("");
-          for (i = 0; i < table.length; i++) {
-            $("#prestation-table").append(
-              '<tr id="' + data.PrestationID + '">'
-            );
-
-            if (table[i].Libelle != null)
-              $("#prestation-table").append(
-                "<td>" + table[i].Libelle + "</td>"
-              );
-            else $("#prestation-table").append("<td></td>");
-            if (table[i].Description != null)
-              $("#prestation-table").append(
-                "<td>" + table[i].Description + "</td>"
-              );
-            else $("#prestation-table").append("<td></td>");
-            if (table[i].PrixAchat != null)
-              $("#prestation-table").append(
-                "<td>" + table[i].PrixAchat + "</td>"
-              );
-            else $("#prestation-table").append("<td></td>");
-            if (table[i].PrixVente != null)
-              $("#prestation-table").append(
-                "<td>" + table[i].PrixVente + "</td>"
-              );
-            else $("#prestation-table").append("<td></td>");
-            if (table[i].CoefficientRemise != null)
-              $("#prestation-table").append(
-                "<td>" + table[i].CoefficientRemise + "</td>"
-              );
-            else $("#prestation-table").append("<td></td>");
-
-            var jsonIssues;
-            $.ajax({
-              url: "http://webapp.saweblia.ma/services/" + table[i].ServiceID,
-              async: false,
-              dataType: "json",
-              success: function (libellefournisseur) {
-                jsonIssues = libellefournisseur.Libelle;
-              },
-            });
-
-            $("#prestation-table").append("<td>" + jsonIssues + "</td>");
-
-            if (data != null && data != "")
-              $("#prestation-table").append(
-                "<td><img width='60' height='60'src='" +
-                  window.location.origin +
-                  "/saweblia-backoffice/" +
-                  data +
-                  "'/></td>"
-              );
-            else $("#prestation-table").append("<td></td>");
-
-            $("#prestation-table").append(
-              '<td> <button onclick="deleteprestation(' +
-                data.PrestationID +
-                ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
-                data.PrestationID +
-                ')"><span class="material-icons">create</span></button></td></tr>'
-            );
-          }
-        }
-      );
-    }
-  });
-  $("#searchbynameprestation").click(function () {
-    $.getJSON(
-      "http://webapp.saweblia.ma/prestations/" +
-        $("#name-searchprestation").val(),
-      function (data) {
-        $(".pagination-prestation").html("");
-
-        var i;
-        var table = data.Prestations;
-        $("#prestation-table").html("");
-        for (i = 0; i < table.length; i++) {
-          $("#prestation-table").append('<tr id="' + data.PrestationID + '">');
-
-          if (table[i].Libelle != null)
-            $("#prestation-table").append("<td>" + table[i].Libelle + "</td>");
-          else $("#prestation-table").append("<td></td>");
-          if (table[i].Description != null)
-            $("#prestation-table").append(
-              "<td>" + table[i].Description + "</td>"
-            );
-          else $("#prestation-table").append("<td></td>");
-          if (table[i].PrixAchat != null)
-            $("#prestation-table").append(
-              "<td>" + table[i].PrixAchat + "</td>"
-            );
-          else $("#prestation-table").append("<td></td>");
-          if (table[i].PrixVente != null)
-            $("#prestation-table").append(
-              "<td>" + table[i].PrixVente + "</td>"
-            );
-          else $("#prestation-table").append("<td></td>");
-          if (table[i].CoefficientRemise != null)
-            $("#prestation-table").append(
-              "<td>" + table[i].CoefficientRemise + "</td>"
-            );
-          else $("#prestation-table").append("<td></td>");
-
-          var jsonIssues;
-          $.ajax({
-            url: "http://webapp.saweblia.ma/services/" + table[i].ServiceID,
-            async: false,
-            dataType: "json",
-            success: function (libellefournisseur) {
-              jsonIssues = libellefournisseur.Libelle;
-            },
-          });
-
-          $("#prestation-table").append("<td>" + jsonIssues + "</td>");
-
-          if (data != null && data != "")
-            $("#prestation-table").append(
-              "<td><img width='60' height='60'src='" +
-                window.location.origin +
-                "/saweblia-backoffice/" +
-                data +
-                "'/></td>"
-            );
-          else $("#prestation-table").append("<td></td>");
-
-          $("#prestation-table").append(
-            '<td> <button onclick="deleteprestation(' +
-              data.PrestationID +
-              ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
-              data.PrestationID +
-              ')"><span class="material-icons">create</span></button></td></tr>'
-          );
-        }
-      }
-    );
   });
   $("#editPrestation").submit(function (e) {
     e.preventDefault();
@@ -284,6 +146,9 @@ $(document).ready(function () {
         data: JSON.stringify(arr),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
         async: false,
         success: function (msg) {
           alert(msg);
@@ -315,6 +180,9 @@ function deleteprestation(idprestation) {
     $.ajax({
       url: "http://webapp.saweblia.ma/prestations/" + idprestation,
       type: "DELETE",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
       success: function (msg) {
         $(".clearfix").html("");
         $(".clearfix").append(
@@ -342,6 +210,9 @@ function uploadFile(imageFile) {
       $.ajax({
         url: "../uploadImagePrestation.php",
         type: "POST",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
         data: formData,
         processData: false,
         contentType: false,

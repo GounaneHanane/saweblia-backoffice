@@ -2,55 +2,62 @@ if (sessionStorage.getItem("token") === null)
   window.location.href =
     window.location.origin + "/saweblia-backoffice/login/login.php";
 $(document).ready(function () {
-  $.getJSON("http://webapp.saweblia.ma/categories", function (data) {
-    var i;
-    var table = data.Categories;
-    $("#categorie-table").DataTable({
-      data: table,
-      columns: [
-        { data: "Libelle" },
-        { data: "Description" },
-        {
-          data: "CategorieMedia",
-          render: function (data) {
-            if (data != null && data != "")
+  $.ajax({
+    url: "http://webapp.saweblia.ma/categories",
+    type: "GET",
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+    success: function (data) {
+      var i;
+      var table = data.Categories;
+      $("#categorie-table").DataTable({
+        data: table,
+        columns: [
+          { data: "Libelle" },
+          { data: "Description" },
+          {
+            data: "CategorieMedia",
+            render: function (data) {
+              if (data != null && data != "")
+                return (
+                  "<img width='60' height='60'src='" +
+                  window.location.origin +
+                  "/saweblia-backoffice/" +
+                  data +
+                  "'/>"
+                );
+              else return "";
+            },
+          },
+          {
+            data: null,
+            render: function (data, row) {
               return (
-                "<img width='60' height='60'src='" +
-                window.location.origin +
-                "/saweblia-backoffice/" +
-                data +
-                "'/>"
+                '<button onclick="deleteClient(' +
+                data.CategorieID +
+                ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferCategorieForm(' +
+                data.CategorieID +
+                ')"><span class="material-icons">create</span></button>'
               );
-            else return "";
+            },
           },
-        },
-        {
-          data: null,
-          render: function (data, row) {
-            return (
-              '<button onclick="deleteClient(' +
-              data.CategorieID +
-              ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferCategorieForm(' +
-              data.CategorieID +
-              ')"><span class="material-icons">create</span></button>'
-            );
+        ],
+        order: [],
+        language: {
+          paginate: {
+            previous: "Précédent",
+            next: "Suivant",
           },
+          lengthMenu: "Afficher _MENU_ enregistrements par page",
+          zeroRecords: "Rien n'a été trouvé",
+          info: "Affichage de la page _PAGE_ de _PAGES_",
+          infoEmpty: "Aucun enregistrement disponible",
+          infoFiltered: "(filtré à partir de _MAX_ enregistrements au total)",
+          search: "Recherche :",
         },
-      ],
-      order: [],
-      language: {
-        paginate: {
-          previous: "Précédent",
-          next: "Suivant",
-        },
-        lengthMenu: "Afficher _MENU_ enregistrements par page",
-        zeroRecords: "Rien n'a été trouvé",
-        info: "Affichage de la page _PAGE_ de _PAGES_",
-        infoEmpty: "Aucun enregistrement disponible",
-        infoFiltered: "(filtré à partir de _MAX_ enregistrements au total)",
-        search: "Recherche :",
-      },
-    });
+      });
+    },
   });
   $("#add-categorie").click(function () {
     window.location.href = "../Categorie/addCategorie.php";
@@ -74,6 +81,9 @@ $(document).ready(function () {
       $.ajax({
         url: "http://webapp.saweblia.ma/categories",
         type: "POST",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
         data: JSON.stringify(arr),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -98,47 +108,7 @@ $(document).ready(function () {
       );
     }
   });
-  $("#searchbynamecategorie").click(function () {
-    $.getJSON(
-      "http://webapp.saweblia.ma/categories/" +
-        $("#name-searchcategorie").val(),
-      function (data) {
-        $("#categorie-table").html("");
-        var i;
-        var table = data.Categories;
-        for (i = 0; i < table.length; i++) {
-          $("#categorie-table").append(
-            '<tr id="' + table[i].CategorieID + '">'
-          );
-          if (table[i].Libelle != null)
-            $("#categorie-table").append("<td>" + table[i].Libelle + "</td>");
-          else $("#categorie-table").append("<td></td>");
-          if (table[i].Description != null)
-            $("#categorie-table").append(
-              "<td>" + table[i].Description + "</td>"
-            );
-          else $("#categorie-table").append("<td></td>");
-          if (table[i].CategorieMedia != null && table[i].CategorieMedia != "")
-            $("#categorie-table").append(
-              "<td><img width='60' height='60'src=" +
-                window.location.origin +
-                "/saweblia-backoffice/" +
-                table[i].CategorieMedia +
-                "'/></td>"
-            );
-          else $("#categorie-table").append("<td></td>");
 
-          $("#categorie-table").append(
-            '<td><button onclick="deleteClient(' +
-              table[i].CategorieID +
-              ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferCategorieForm(' +
-              table[i].CategorieID +
-              ')"><span class="material-icons">create</span></button></td></tr>'
-          );
-        }
-      }
-    );
-  });
   $("#edit-categorie-form").submit(function (e) {
     e.preventDefault();
     uploadImageResult = uploadFile($("#fournitureImage"));
@@ -159,6 +129,9 @@ $(document).ready(function () {
           "http://webapp.saweblia.ma/categories/" +
           window.location.search.substring(1).split("?"),
         type: "PUT",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
         data: JSON.stringify(arr),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -189,6 +162,9 @@ function deleteClient(idCategorie) {
     $.ajax({
       url: "http://webapp.saweblia.ma/categories/" + idCategorie,
       type: "DELETE",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
       success: function (msg) {
         $(".clearfix").html("");
         $(".clearfix").append(
@@ -216,6 +192,9 @@ function uploadFile(imageFile) {
       $.ajax({
         url: "../uploadImageCategorie.php",
         type: "POST",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
         data: formData,
         processData: false,
         contentType: false,

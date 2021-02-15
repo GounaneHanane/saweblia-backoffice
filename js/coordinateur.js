@@ -2,60 +2,65 @@ if (sessionStorage.getItem("token") === null)
   window.location.href =
     window.location.origin + "/saweblia-backoffice/login/login.php";
 $(document).ready(function () {
-  $.getJSON("http://webapp.saweblia.ma/coordinateurs", function (data) {
-    var table = data.Coordinateurs;
-    $("#coordianteur-table").DataTable({
-      data: table,
-      columns: [
-        { data: "Nom" },
-        { data: "Telephone" },
-        { data: "Email" },
-        { data: "Ville" },
-        { data: "Cin" },
-        {
-          data: "Disponible",
-          render: function (data, type, row) {
-            if (data == true)
-              return (
-                '<label class="switch"><input  onchange="block(' +
-                row.CoordinateurID +
-                ')" type="checkbox" checked><span class="slider round"></span></label>'
-              );
-            else
-              return (
-                '<label class="switch"><input  onchange="block(' +
-                row.CoordinateurID +
-                ')" type="checkbox"><span class="slider round"></span></label>'
-              );
+  $.ajax({
+    url: "http://webapp.saweblia.ma/coordinateurs",
+    type: "GET",
+
+    success: function (data) {
+      var table = data.Coordinateurs;
+      $("#coordianteur-table").DataTable({
+        data: table,
+        columns: [
+          { data: "Nom" },
+          { data: "Telephone" },
+          { data: "Email" },
+          { data: "Ville" },
+          { data: "Cin" },
+          {
+            data: "Disponible",
+            render: function (data, type, row) {
+              if (data == true)
+                return (
+                  '<label class="switch"><input  onchange="block(' +
+                  row.CoordinateurID +
+                  ')" type="checkbox" checked><span class="slider round"></span></label>'
+                );
+              else
+                return (
+                  '<label class="switch"><input  onchange="block(' +
+                  row.CoordinateurID +
+                  ')" type="checkbox"><span class="slider round"></span></label>'
+                );
+            },
           },
-        },
-        {
-          data: null,
-          render: function (data) {
-            return (
-              '<button onclick="deletecoordianteur(' +
-              data.CoordinateurID +
-              ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
-              data.CoordinateurID +
-              ')"><span class="material-icons">create</span></button>'
-            );
+          {
+            data: null,
+            render: function (data) {
+              return (
+                '<button onclick="deletecoordianteur(' +
+                data.CoordinateurID +
+                ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
+                data.CoordinateurID +
+                ')"><span class="material-icons">create</span></button>'
+              );
+            },
           },
+        ],
+        order: [],
+        language: {
+          paginate: {
+            previous: "Précédent",
+            next: "Suivant",
+          },
+          lengthMenu: "Afficher _MENU_ enregistrements par page",
+          zeroRecords: "Rien n'a été trouvé",
+          info: "Affichage de la page _PAGE_ de _PAGES_",
+          infoEmpty: "Aucun enregistrement disponible",
+          infoFiltered: "(filtré à partir de _MAX_ enregistrements au total)",
+          search: "Recherche :",
         },
-      ],
-      order: [],
-      language: {
-        paginate: {
-          previous: "Précédent",
-          next: "Suivant",
-        },
-        lengthMenu: "Afficher _MENU_ enregistrements par page",
-        zeroRecords: "Rien n'a été trouvé",
-        info: "Affichage de la page _PAGE_ de _PAGES_",
-        infoEmpty: "Aucun enregistrement disponible",
-        infoFiltered: "(filtré à partir de _MAX_ enregistrements au total)",
-        search: "Recherche :",
-      },
-    });
+      });
+    },
   });
   $("#add-coordinateur").click(function () {
     window.location.href = "../Personnel/addCoordinateur.php";
@@ -73,6 +78,9 @@ $(document).ready(function () {
     $.ajax({
       url: "http://webapp.saweblia.ma/coordinateurs",
       type: "POST",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
       data: JSON.stringify(arr),
       contentType: "application/json; charset=utf-8",
       dataType: "json",
@@ -91,120 +99,7 @@ $(document).ready(function () {
 
     e.preventDefault();
   });
-  $("#searchbyname").click(function () {
-    $.getJSON(
-      "http://webapp.saweblia.ma/coordinateursbyname/" +
-        $("#name-search").val(),
-      function (data) {
-        $("#coordianteur-table").html("");
-        var i;
-        var table = data.Coordinateurs;
-        for (i = 0; i < table.length; i++) {
-          $("#coordianteur-table").append("<tr>");
-          if (data.Nom != null)
-            $("#coordianteur-table").append("<td>" + data.Nom + "</td>");
-          else $("#coordianteur-table").append("<td></td>");
-          if (data.Telephone != null)
-            $("#coordianteur-table").append("<td>" + data.Telephone + "</td>");
-          else $("#coordianteur-table").append("<td></td>");
 
-          if (data.Email != null)
-            $("#coordianteur-table").append("<td>" + data.Email + "</td>");
-          else $("#coordianteur-table").append("<td></td>");
-          if (data.Ville != null)
-            $("#coordianteur-table").append("<td>" + data.Ville + "</td>");
-          else $("#coordianteur-table").append("<td></td>");
-          if (data.Cin != null)
-            $("#coordianteur-table").append("<td>" + data.Cin + "</td>");
-          else $("#coordianteur-table").append("<td></td>");
-          if (data.Disponible == true)
-            $("#coordianteur-table").append(
-              '<td><label class="switch"><input id="check' +
-                data.CoordinateurID +
-                '" onchange="block(' +
-                data.CoordinateurID +
-                ')" type="checkbox" checked><span class="slider round"></span></label></td>'
-            );
-          else
-            $("#coordianteur-table").append(
-              '<td><label class="switch"><input id="check' +
-                data.CoordinateurID +
-                '" onchange="block(' +
-                data.CoordinateurID +
-                ')" type="checkbox"><span class="slider round"></span></label></td>'
-            );
-
-          $("#coordianteur-table").append(
-            '<td><button onclick="deletecoordianteur(' +
-              data.CoordinateurID +
-              ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
-              data.CoordinateurID +
-              ')"><span class="material-icons">create</span></button></td></tr>'
-          );
-        }
-      }
-    );
-  });
-  $("#searchbyphone").click(function () {
-    $("#coordianteur-table").html("");
-    $.getJSON(
-      "http://webapp.saweblia.ma/coordinateursbyphone/" +
-        $("#phone-search").val(),
-      function (data) {
-        $("#coordianteur-table").html();
-        var i;
-        var table = data.Coordinateurs;
-        for (i = 0; i < table.length; i++) {
-          $("#coordianteur-table").append("<tr>");
-
-          if (data.Nom != null)
-            $("#coordianteur-table").append("<td>" + data.Nom + "</td>");
-          else $("#coordianteur-table").append("<td></td>");
-
-          if (data.Telephone != null)
-            $("#coordianteur-table").append("<td>" + data.Telephone + "</td>");
-          else $("#coordianteur-table").append("<td></td>");
-
-          if (data.Email != null)
-            $("#coordianteur-table").append("<td>" + data.Email + "</td>");
-          else $("#coordianteur-table").append("<td></td>");
-
-          if (data.Ville != null)
-            $("#coordianteur-table").append("<td>" + data.Ville + "</td>");
-          else $("#coordianteur-table").append("<td></td>");
-
-          if (data.Cin != null)
-            $("#coordianteur-table").append("<td>" + data.Cin + "</td>");
-          else $("#coordianteur-table").append("<td></td>");
-
-          if (data.Disponible == true)
-            $("#coordianteur-table").append(
-              '<td><label class="switch"><input id="check' +
-                data.CoordinateurID +
-                '" onchange="block(' +
-                data.CoordinateurID +
-                ')" type="checkbox" checked><span class="slider round"></span></label></td>'
-            );
-          else
-            $("#coordianteur-table").append(
-              '<td><label class="switch"><input id="check' +
-                data.CoordinateurID +
-                '" onchange="block(' +
-                data.CoordinateurID +
-                ')" type="checkbox"><span class="slider round"></span></label></td>'
-            );
-
-          $("#coordianteur-table").append(
-            '<td><button onclick="deletecoordianteur(' +
-              data.CoordinateurID +
-              ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' +
-              data.CoordinateurID +
-              ')"><span class="material-icons">create</span></button></td></tr>'
-          );
-        }
-      }
-    );
-  });
   $("#editCoordinateur").submit(function (e) {
     var arr = {
       nom: $("#Nom").val(),
@@ -220,6 +115,9 @@ $(document).ready(function () {
         "http://webapp.saweblia.ma/coordinateurs/" +
         window.location.search.substring(1).split("?"),
       type: "PUT",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
       data: JSON.stringify(arr),
       contentType: "application/json; charset=utf-8",
       dataType: "json",
@@ -258,6 +156,9 @@ function deletecoordianteur(idcoordianteur) {
     $.ajax({
       url: "http://webapp.saweblia.ma/coordinateurs/" + idcoordianteur,
       type: "DELETE",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
       success: function (msg) {
         $(".clearfix").html("");
         $(".clearfix").append(
@@ -287,6 +188,9 @@ function block(CoordinateurID) {
     type: "PUT",
     contentType: "application/json; charset=utf-8",
     dataType: "json",
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
     async: false,
     success: function (msg) {
       alert(msg);

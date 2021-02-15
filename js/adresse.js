@@ -2,22 +2,30 @@ if (sessionStorage.getItem("token") === null)
   window.location.href =
     window.location.origin + "/saweblia-backoffice/login/login.php";
 $(document).ready(function () {
-  $.getJSON(
-    "http://webapp.saweblia.ma/clients/" +
+  $.ajax({
+    url:"http://webapp.saweblia.ma/clients/" +
       window.location.search.substring(1).split("?"),
-    function (data) {
+    type:"GET",
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+    success:function (data) {
       $("#nom").append(data.Nom);
       $("#tel").append(data.Telephone), $("#nom-header").append(data.Nom);
       $("#canal").append(data.CanalAcquisition),
         $("#email").append(data.Email),
         $("#type").append(data.Type),
         $("#comment").append(data.Comment);
-    }
+  }}
   );
-  $.getJSON(
-    "http://webapp.saweblia.ma/adresse_client/" +
+  $.ajax({
+    url:"http://webapp.saweblia.ma/adresse_client/" +
       window.location.search.substring(1).split("?"),
-    function (data) {
+    type:"GET",
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+    success:function (data) {
       var table = data.Adresses;
       $("#adresse-table").DataTable({
         data: table,
@@ -69,7 +77,7 @@ $(document).ready(function () {
         },
       });
     }
-  );
+});
   $("#edit-client").click(function () {
     window.location.href =
       "../Client/editClient.php?" +
@@ -95,6 +103,9 @@ $(document).ready(function () {
     $.ajax({
       url: "http://webapp.saweblia.ma/adresses",
       type: "POST",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
       data: JSON.stringify(arr),
       contentType: "application/json; charset=utf-8",
       dataType: "json",
@@ -129,6 +140,9 @@ $(document).ready(function () {
         "http://webapp.saweblia.ma/adresses/" +
         window.location.search.substring(1).split("?")[1],
       type: "PUT",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
       data: JSON.stringify(arr),
       contentType: "application/json; charset=utf-8",
       dataType: "json",
@@ -159,6 +173,9 @@ function deleteadresse(idAdresse) {
     $.ajax({
       url: "http://webapp.saweblia.ma/adresses/" + idAdresse,
       type: "DELETE",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
       success: function (msg) {
         $(".clearfix").append(
           '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le client est supprimé avec succes</span></div>'
