@@ -329,7 +329,7 @@ require("../Nav/menu.php");
 
 
                                             
-                                            <button id="btn-edit" type="button" class="btn btn-primary pull-right">valider</button>
+                                            <button id="valider-fourniture" type="button" class="btn btn-primary pull-right">valider</button>
 
                                         </div>
 
@@ -344,7 +344,7 @@ require("../Nav/menu.php");
 
 
                                                     <th>
-                                                        Libelle
+                                                        Fournisseur
                                                     </th>
 
                                                     <th>
@@ -363,7 +363,7 @@ require("../Nav/menu.php");
                                                         Actions
                                                     </th>
                                                 </thead>
-                                                <tbody id="fournisseur-devis-table">
+                                                <tbody id="table-fourniture">
 
                                                 </tbody>
                                             </table>

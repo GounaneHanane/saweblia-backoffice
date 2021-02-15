@@ -1,6 +1,6 @@
 <?php
 
-$host = "localhost";
+$host = "saweblia.ma";
 $user = "saweblia_sawebuser";
 $password = "p@r@d0xait1980";
 $bd = "mobilesw";

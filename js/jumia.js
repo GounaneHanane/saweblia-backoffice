@@ -6,35 +6,6 @@ $(document).ready(function () {
     url: "../jumiaData.php",
     type: "POST",
     async: false,
-<<<<<<< HEAD
-    data: { action: "displayData" },
-    success: function (msg) {
-      var data = JSON.parse(msg);
-      data.forEach((jumia) => {
-        $("#jumia-table").append("<tr>");
-        if (jumia[1] != null)
-          $("#jumia-table").append("<td>" + jumia[1] + "</td>");
-        else $("#jumia-table").append("<td></td>");
-        if (jumia[2] != null)
-          $("#jumia-table").append(
-            "<td><img src='" + jumia[2] + "' width='100' height='100'/></td>"
-          );
-        else $("#jumia-table").append("<td></td>");
-        if (jumia[3] != null)
-          $("#jumia-table").append("<td>" + jumia[3] + "</td>");
-        else $("#jumia-table").append("<td></td>");
-        if (jumia[4] != null)
-          $("#jumia-table").append("<td>" + jumia[4] + "</td>");
-        else $("#jumia-table").append("<td></td>");
-        $("#jumia-table").append(
-          "<td><button class='btn btn-danger action' type='button' onclick='deletePrestationJumia(" +
-            jumia[0] +
-            ")'><span class='material-icons'>delete_sweep</span> </button>  <button class='btn btn-warning action' type='button' onclick='editPrestationJumia(" +
-            jumia[0] +
-            ")'><span class='material-icons'>create</span></td>"
-        );
-      });
-=======
     data:{action:'displayData'},
     success: function (msg) { 
         var data =JSON.parse(msg)
@@ -53,7 +24,6 @@ $(document).ready(function () {
       })
    
       
->>>>>>> 38f864b36f6fc984b524288d61118d5a4d962c2b
     },
   });
   $("#btn-edit").click(function (e) {
