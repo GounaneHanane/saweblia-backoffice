@@ -1,9 +1,10 @@
 if (sessionStorage.getItem("token") === null)
   window.location.href =
     window.location.origin + "/saweblia-backoffice/login/login.php";
-$(document).ready(function () {
-  var fourniture=[]
-  var prestation=[]
+    var fourniture=[]
+    var prestation=[]
+    $(document).ready(function () {
+  
   displayClients()
   displayCoordinateurs()
   displayPrestation()  
@@ -74,7 +75,7 @@ $(document).ready(function () {
       $('#fPUVente').val(data.PrixVente)
       $('#fquantité').val(0)
       $('#fdescirption').val(data.Description)
-      $('#fFournisseur').val(data.Fournisseur.NomFournisseur)
+     // $('#fFournisseur').val(data.Fournisseur.NomFournisseur)
    }})
   });
       ////
@@ -142,8 +143,20 @@ $('#listeAdresse').change(function(){
 /// Valider une prestation 
 ///
 $("#valider-prestation").click(function(){
+  if(prestation.length==0)
+    var id=1
+  else var id=parseInt(prestation[prestation.length-1].id)+1
+  var data={"id":id,
+  "prestation":  $("#select-prestation").find(":selected").val(),
+   "coifficient":$("#coifficient").val(),
+ 
+"Artisan": $("#listeArtisans").find(":selected").val(),
+"Quantite":$("#quantité").val(),
+"Total":$("#total").val()
+}
+prestation.push(data)
   var tableau=""
-  tableau+="<tr>"
+  tableau+="<tr id='prestation"+id+"'>"
  tableau+="<td id='"+
       $("#select-prestation").find(":selected").val()+"'>"+
       $("#select-prestation").find(":selected").text()+"</td>"
@@ -152,7 +165,7 @@ $("#valider-prestation").click(function(){
  tableau+="<td>"+$("#coifficient").val()+"</td>"
  tableau+="<td> "+$("#total").val()+"</td>"
  tableau+="<td id='"+$("#listeArtisans").find(":selected").val()+"'> "+ $("#listeArtisans").find(":selected").text()+"</td>"
- tableau+='<td><button onclick="" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick=""><span class="material-icons">create</span></button></td>'
+ tableau+='<td><button onclick="removePrestation('+id+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="editPrestation('+id+')"><span class="material-icons">create</span></button></td>'
  
  tableau+="</tr>"
  $('#table-prestation').append(tableau)
@@ -162,17 +175,29 @@ $("#valider-prestation").click(function(){
 /// Valider une fourniture 
 ///
 $("#valider-fourniture").click(function(){
+  if(fourniture.length==0)
+    var id=1
+  else var id=parseInt(fourniture[fourniture.length-1].id)+1
+  var data={"id":id,
+  "fourniture": $("#listeFourniture").find(":selected").val(),
+   "fournisseur":$("#fFournisseur").html(),
+  "description":$("#fdescription").val(),
+"PUVente": $("#fPUVente").val(),
+"Quantite":$("#fquantité").val(),
+"Total":$("#ftotal").val()
+}
+fourniture.push(data)
   var tableau=""
-  tableau+="<tr>"
+  tableau+="<tr id='fourniture"+id+"'>"
  tableau+="<td id='"+
       $("#listeFourniture").find(":selected").val()+"'>"+
       $("#listeFourniture").find(":selected").text()+"</td>"
  tableau+="<td> "+$("#fFournisseur").html()+"</td>"
- tableau+="<td>"+$("#fDescription").val()+"</td>"
+ tableau+="<td>"+$("#fdescription").val()+"</td>"
  tableau+="<td> "+$("#fPUVente").val()+"</td>"
  tableau+="<td> "+$("#fquantité").val()+"</td>"
  tableau+="<td> "+$("#ftotal").val()+"</td>"
- tableau+='<td><button onclick="" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick=""><span class="material-icons">create</span></button></td>'
+ tableau+='<td><button onclick="removeFourniture('+id+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="editFourniture('+ id+')"><span class="material-icons">create</span></button></td>'
  
  tableau+="</tr>"
  $('#table-fourniture').append(tableau)
@@ -222,9 +247,43 @@ function displayClients() {
        
 
 
-
-        
+    function removeFourniture(id) {
+      $("#fourniture"+id).remove()
+    }
+   function editFourniture(line) {
+     for(var i=0;i<fourniture.length;i++) {
+       if(fourniture[i].id==line) {
+        $("#listeFourniture").val(fourniture[i].fourniture)
+        $("#fFournisseur").html(fourniture[i].fournisseur)
+        $("#fdescription").val(fourniture[i].description)
+        $("#fPUVente").val(fourniture[i].PUVente)
+        $("#fquantité").val(fourniture[i].Quantite)
+        $("#ftotal").val(fourniture[i].Total)
+        $("#"+fourniture[i].id).remove()
+       }
+     }
+    
+   }    
+   function removePrestation(id) {
+     $("#prestation"+id).remove()
+  }
+ function editPrestation(line) {
+ 
+   for(var i=0;i<prestation.length;i++) {
+   
+     if(prestation[i].id==line) {
       
+      $("#select-prestation").val(prestation[i].prestation)
+      console.log(prestation[i].prestation)
+      $("#coifficient").html(prestation[i].coifficient)
+      $("#listeArtisans").val(prestation[i].Artisan)
+      $("#quantité").val(prestation[i].Quantite)
+      $("#total").val(prestation[i].Total)
+      $("#"+prestation[i].id).remove()
+     }
+   }
+  
+ }    
 
     
       
@@ -301,7 +360,7 @@ function displayFourniture(){
     $('#fPUVente').val(data.Fournitures[i].PrixVente)
     $('#fquantité').val(0)
     $('#fFournisseur').html(data.Fournitures[i].Fournisseur.NomFournisseur)
-    $('#fdescirption').val(data.Fournitures[i].Description)
+    $('#fdescription').val(data.Fournitures[i].Description)
    
    }
   else    $('#listeFourniture').append("<option value='"+data.Fournitures[i].FournitureID+"'>" + data.Fournitures[i].Libelle+ "</option>")

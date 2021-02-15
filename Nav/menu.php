@@ -20,7 +20,12 @@ function myFunction() {
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          
+        <li class="nav-item ">
+            <a class="nav-link" href="../devis/devis.php">
+             
+              <p>Devis</p>
+            </a>
+          </li>
           <li class="nav-item ">
             <a class="nav-link" href="../Client/clients.php">
              

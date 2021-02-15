@@ -319,7 +319,7 @@ require("../Nav/menu.php");
                                                     <div class="form-group">
 
                                                         <label class="bmd-label-floating">Description</label>
-                                                        <textarea id="fdescirption" class="form-control"></textarea>
+                                                        <textarea id="fdescription" class="form-control"></textarea>
 
                                                     </div>
                                                 </div>
@@ -336,7 +336,7 @@ require("../Nav/menu.php");
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table">
+                                            <table class="table"  id="table-fourniture">
                                                 <thead class=" text-primary">
                                                     <th>
                                                         Fourniture
@@ -363,7 +363,7 @@ require("../Nav/menu.php");
                                                         Actions
                                                     </th>
                                                 </thead>
-                                                <tbody id="table-fourniture">
+                                                <tbody >
 
                                                 </tbody>
                                             </table>
