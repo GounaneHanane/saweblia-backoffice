@@ -43,11 +43,9 @@ require("../Nav/menu.php");
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="bmd-label-floating">Coordinateur</label> <select id="typeCategorie" class="form-control">
-                                                    <option>Coordinateur 1</option>
-                                                    <option>Coordinateur 2</option>
-                                                    <option>coordinateur 3</option>
-
+                                                <label class="bmd-label-floating">Coordinateur</label>
+                                                 <select id="listeCoordinateur" class="js-example-basic-single form-control">
+                                                
 
                                                 </select>
                                             </div>
@@ -65,14 +63,14 @@ require("../Nav/menu.php");
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="bmd-label-floating">Nom : </label>
-                                                <label class="bmd-label-floating">Cliznt 1 </label>
+                                                <label id="nom-client" class="bmd-label-floating"></label>
 
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="bmd-label-floating">Telephone : </label>
-                                                <label class="bmd-label-floating">0612457896</label>
+                                                <label id="tel-client" class="bmd-label-floating"></label>
                                             </div>
                                         </div>
 
@@ -81,48 +79,48 @@ require("../Nav/menu.php");
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="bmd-label-floating">Commentaire : </label>
-                                                <label class="bmd-label-floating">Commentaire1</label>
+                                                <label id="comment-client" class="bmd-label-floating"></label>
                                             </div>
                                         </div>
 
 
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-1">
                                             <div class="form-group">
 
-                                                <label class="bmd-label-floating">Adresse</label>
-                                                <select id="typeCategorie" class="form-control">
-                                                    <option>adresse 1</option>
-                                                    <option>adresse 2</option>
-                                                    <option>adresse 3</option>
+                                                <label class="bmd-label-floating ">Adresse</label>
+                                                
 
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+
+                                        <select id="listeAdresse" class="form-control js-example-basic-single">
+                                        <option disabled value="">--- Adresses ---</option>
 
                                                 </select>
-
-                                            </div>
+                                                </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-2">
                                             <div class="form-group">
                                                 <label class="bmd-label-floating">Libelle : </label>
-                                                <label class="bmd-label-floating">Libelle1</label>
+                                                <label class="bmd-label-floating" id="libelle-adresse">Libelle1</label>
                                             </div>
                                         </div>
-
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-5">
                                             <div class="form-group">
                                                 <label class="bmd-label-floating">Localisation : </label>
-                                                <label class="bmd-label-floating">https://g.page/villagedusoir?share</label>
+                                                <label class="bmd-label-floating"id="localisation-adresse">https://g.page/villagedusoir?share</label>
                                                 <a>
                                                     <button type="button" class="btn btn-light action"><span class="material-icons">content_copy</span></button></a>
 
                                             </div>
                                         </div>
-
                                     </div>
+
+                                   
 
 
                                 </div>
@@ -153,10 +151,7 @@ require("../Nav/menu.php");
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <select id="select-prestation" class="form-control">
-                                                         
-
-
+                                                        <select id="select-prestation" class="form-control js-example-basic-single">
                                                         </select>
                                                     </div>
 
@@ -204,11 +199,8 @@ require("../Nav/menu.php");
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <select id="typeCategorie" class="form-control">
-                                                            <option>Artisant 1</option>
-                                                            <option>Artisant 2</option>
-                                                            <option>Artisant 3</option>
-
+                                                        <select id="listeArtisans" class="form-control js-example-basic-single">
+                                                           
 
                                                         </select>
                                                     </div>
@@ -221,7 +213,7 @@ require("../Nav/menu.php");
 
 
                                             </div>
-                                            <button id="btn-edit" type="button" class="btn btn-primary pull-right">valider</button>
+                                            <button id="valider-prestation" type="button" class="btn btn-primary pull-right">valider</button>
 
                                         </div>
 
@@ -249,13 +241,13 @@ require("../Nav/menu.php");
                                                         Total
                                                     </th>
                                                     <th>
-                                                        Artisant
+                                                        Artisan
                                                     </th>
                                                     <th>
                                                         Actions
                                                     </th>
                                                 </thead>
-                                                <tbody id="edit-devis-table">
+                                                <tbody id="table-prestation">
 
                                                 </tbody>
                                             </table>
@@ -269,7 +261,7 @@ require("../Nav/menu.php");
                                     <div class="row">
 
                                         <div class="col-md-8">
-                                            <h3 class="card-title" style="margin-bottom: 15px;">Prestation / Artisant </h3>
+                                            <h3 class="card-title" style="margin-bottom: 15px;">Fourniture </h3>
                                         </div>
 
                                         <div class="col-md-4">
@@ -286,13 +278,10 @@ require("../Nav/menu.php");
 
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
+                                                <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <select id="typeCategorie" class="form-control">
-                                                            <option>adresse 1</option>
-                                                            <option>adresse 2</option>
-                                                            <option>adresse 3</option>
-
+                                                        <select id="listeFourniture" class="form-control js-example-basic-single">
+                                                            
 
                                                         </select>
                                                     </div>
@@ -312,27 +301,25 @@ require("../Nav/menu.php");
                                                         <input id="ftotal" type="text" class="form-control" placeholder="Total">
                                                     </div>
                                                 </div>
-
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-12">
+                  
+                                                <div class="col-md-3">
                                                     <div class="form-group">
 
-                                                        <label class="bmd-label-floating">Libelle</label>
-                                                        <input id="fLibelle" type="text" class="form-control"></input>
+                                                        <label class="bmd-label-floating">Fournisseur : </label>
+                                                        <label  id="fFournisseur"></label>
 
                                                     </div>
                                                 </div>
 
-
                                             </div>
+
+                                           
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
 
                                                         <label class="bmd-label-floating">Description</label>
-                                                        <textarea id="descirption" class="form-control"></textarea>
+                                                        <textarea id="fdescirption" class="form-control"></textarea>
 
                                                     </div>
                                                 </div>
