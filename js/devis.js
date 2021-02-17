@@ -170,7 +170,17 @@ prestation.push(data)
  tableau+="</tr>"
  $('#table-prestation').append(tableau)
 })
-
+///
+/// Calculer le total de prestation
+///
+$('.totalPrestation').change(function(){
+  $('#total').val( $('#PUVente').val()*  $('#quantité').val()* $('#coifficient').val())
+    
+})
+$('.totalFourniture').change(function(){
+  $('#ftotal').val( $('#fPUVente').val()*  $('#fquantité').val())
+    
+})
 ///
 /// Valider une fourniture 
 ///
@@ -214,35 +224,38 @@ function displayClients() {
     },success: function(data) {
        /// list of clients
     var i;
+    var selectedClient
    for (i = 0; i < data.Clients.length; i++) {
      if (i==0) {
       $('#clients').append("<option value='"+data.Clients[i].ClientID+"' selected='true'>" + data.Clients[i].Nom+ "</option>")
-     
+      selectedClient=data.Clients[i].ClientID
       /// first client information
       $('#nom-client').html(data.Clients[i].Nom)
         $('#tel-client').html(data.Clients[i].Telephone)
-        $('#comment-client').html(data.Clients[i].Comment) 
+        $('#comment-client').html(data.Clients[i].Comment)
+            /// first client adresses 
+        $.ajax({
+          url:'http://webapp.saweblia.ma/adresse_client/'+selectedClient,
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },success: function(data) {
+                $('#listeAdresse').html('')
+                  
+                for (i = 0; i < data.Adresses.length; i++) {
+                  if (i==0) { $('#listeAdresse').append("<option value='"+data.Adresses[i].AdressID+"' selected='true'>" + data.Adresses[i].Rue+" "+data.Adresses[i].Quartier+","+data.Adresses[i].Ville+ "</option>")
+                  $('#libelle-adresse').html(data.Libelle)
+                  $('#localisation-adresse').html(data.Localisation)
+                
+                } else $('#listeAdresse').append("<option value='"+data.Adresses[i].AdressID+"'>" + data.Adresses[i].Rue+" "+data.Adresses[i].Quartier+","+data.Adresses[i].Ville+ "</option>")
+                    
+                }
+              }})
       } else   $('#clients').append("<option value='"+data.Clients[i].ClientID+"' >" + data.Clients[i].Nom+ "</option>")
      
       }}})
-      /// first client information
-   var selectedClient=$('#clients').find(':selected').val()
-       /// first client adresses
-        $.ajax({
-    url:'http://webapp.saweblia.ma/adresse_client/'+selectedClient,headers: {
-      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-    },success: function(data) {
-          $('#listeAdresse').html('')
-            
-          for (i = 0; i < data.Adresses.length; i++) {
-            if (i==0) { $('#listeAdresse').append("<option value='"+data.Adresses[i].AdressID+"' selected='true'>" + data.Adresses[i].Rue+" "+data.Adresses[i].Quartier+","+data.Adresses[i].Ville+ "</option>")
-            $('#libelle-adresse').html(data.Libelle)
-            $('#localisation-adresse').html(data.Localisation)
-          
-          } else $('#listeAdresse').append("<option value='"+data.Adresses[i].AdressID+"'>" + data.Adresses[i].Rue+" "+data.Adresses[i].Quartier+","+data.Adresses[i].Ville+ "</option>")
-              
-          }
-        }})
+ 
+   
+     
       }
        
 
@@ -253,13 +266,14 @@ function displayClients() {
    function editFourniture(line) {
      for(var i=0;i<fourniture.length;i++) {
        if(fourniture[i].id==line) {
-        $("#listeFourniture").val(fourniture[i].fourniture)
+       $('#listeFourniture').val(fourniture[i].FournitureID).trigger('change')
+      //  $('#listeFourniture').empty().trigger('change');
         $("#fFournisseur").html(fourniture[i].fournisseur)
         $("#fdescription").val(fourniture[i].description)
         $("#fPUVente").val(fourniture[i].PUVente)
         $("#fquantité").val(fourniture[i].Quantite)
         $("#ftotal").val(fourniture[i].Total)
-        $("#"+fourniture[i].id).remove()
+        $("#fourniture"+fourniture[i].id).remove()
        }
      }
     
@@ -273,13 +287,12 @@ function displayClients() {
    
      if(prestation[i].id==line) {
       
-      $("#select-prestation").val(prestation[i].prestation)
-      console.log(prestation[i].prestation)
-      $("#coifficient").html(prestation[i].coifficient)
+      $("#select-prestation").val(prestation[i].prestation).trigger('change')
+      $("#coifficient").val(prestation[i].coifficient)
       $("#listeArtisans").val(prestation[i].Artisan)
       $("#quantité").val(prestation[i].Quantite)
       $("#total").val(prestation[i].Total)
-      $("#"+prestation[i].id).remove()
+      $("#prestation"+prestation[i].id).remove()
      }
    }
   
@@ -327,6 +340,7 @@ function displayPrestation(){
       $('#coifficient').val(data.Prestations[i].CoefficientRemise)
       $('#descirption').val(data.Prestations[i].Description)
       $('#PUAchat').val(data.Prestations[i].PrixAchat)
+      $('#total').val(data.Prestations[i].PrixVente*0*data.Prestations[i].CoefficientRemise)
      }
     else    $('#select-prestation').append("<option value='"+data.Prestations[i].PrestationID+"'>" + data.Prestations[i].Libelle+ "</option>")
        
@@ -361,7 +375,8 @@ function displayFourniture(){
     $('#fquantité').val(0)
     $('#fFournisseur').html(data.Fournitures[i].Fournisseur.NomFournisseur)
     $('#fdescription').val(data.Fournitures[i].Description)
-   
+    $('#ftotal').val(0)
+    
    }
   else    $('#listeFourniture').append("<option value='"+data.Fournitures[i].FournitureID+"'>" + data.Fournitures[i].Libelle+ "</option>")
      

@@ -106,13 +106,13 @@ require("../Nav/menu.php");
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label class="bmd-label-floating">Libelle : </label>
-                                                <label class="bmd-label-floating" id="libelle-adresse">Libelle1</label>
+                                                <label class="bmd-label-floating" id="libelle-adresse"></label>
                                             </div>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label class="bmd-label-floating">Localisation : </label>
-                                                <label class="bmd-label-floating"id="localisation-adresse">https://g.page/villagedusoir?share</label>
+                                                <label class="bmd-label-floating"id="localisation-adresse"></label>
                                                 <a>
                                                     <button type="button" class="btn btn-light action"><span class="material-icons">content_copy</span></button></a>
 
@@ -157,15 +157,15 @@ require("../Nav/menu.php");
 
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <div class="form-group"><input id="PUVente" type="text" class="form-control" placeholder="P.U.Vente">
+                                                    <div class="form-group"><input  id="PUVente" type="text" class="totalPrestation form-control" placeholder="P.U.Vente">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <div class="form-group"><input id="quantité" type="text" class="form-control" placeholder="Quantité">
+                                                    <div class="form-group"><input id="quantité" type="text" class=" totalPrestation form-control" placeholder="Quantité">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <div class="form-group"><input id="coifficient" type="text" class="form-control" placeholder="Coeifficient">
+                                                    <div class="form-group"><input id="coifficient" type="text" class="totalPrestation form-control" placeholder="Coeifficient">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -280,7 +280,7 @@ require("../Nav/menu.php");
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <select id="listeFourniture" class="form-control js-example-basic-single">
+                                                        <select id="listeFourniture" class="form-control  js-example-basic-single">
                                                             
 
                                                         </select>
@@ -288,11 +288,11 @@ require("../Nav/menu.php");
 
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <div class="form-group"><input id="fPUVente" type="text" class="form-control" placeholder="P.U.Vente">
+                                                    <div class="form-group"><input id="fPUVente" type="text" class=" totalFourniture form-control" placeholder="P.U.Vente">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <div class="form-group"><input id="fquantité" type="text" class="form-control" placeholder="Quantité">
+                                                    <div class="form-group"><input id="fquantité" type="text" class=" totalFourniture form-control" placeholder="Quantité">
                                                     </div>
                                                 </div>
                                                 

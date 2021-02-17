@@ -21,7 +21,7 @@ function myFunction() {
       <div class="sidebar-wrapper">
         <ul class="nav">
         <li class="nav-item ">
-            <a class="nav-link" href="../devis/devis.php">
+            <a class="nav-link" href="../Devis/devis.php">
              
               <p>Devis</p>
             </a>

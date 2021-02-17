@@ -6,9 +6,8 @@ $(document).ready(function () {
   //// Display Data
   ////
   $.ajax({
-    "http://webapp.saweblia.ma/fournitures?p=" +
-      window.location.search.substring(1).split("?"),
-      type:"GET",
+    url:"http://webapp.saweblia.ma/fournitures" ,
+     type:"GET",
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
