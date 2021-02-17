@@ -4,33 +4,40 @@ require("../Nav/menu.php");
 ?>
 <script src="../js/artisan.js"></script>
 <script>
-$.getJSON('http://webapp.saweblia.ma/artisans/'+window.location.search.substring(1).split("?"), function (data){
-    
-    
-        $('#nom-artisan').html(data.Nom)
-        $('#Nom').val(data.Nom)
-        $('#telephone').val(data.Telephone)
-        $('#SArtisan').val(data.SoldeArtisan)
-        $('#SSaweblia').val(data.SoldeSaweblia)
-        if(data.Langue=="arabe&français")
-            $('#langue').attr("checked",true)
-        $('#cin').val(data.Cin)
-        $('#email').val(data.Email)
-         $('#ville option').filter(function() {
-            
-            return $(this).val() == data.Ville;
-          }).prop('selected', true);
-         $('#type option').filter(function() {
-            
-            return $(this).val() == data.Type;
-          }).prop('selected', true);
-        $('#dispo').attr('checked',data.Disponible)
+    $.ajax({
+        url: 'http://webapp.saweblia.ma/artisans/' + window.location.search.substring(1).split("?"),
+        type: "GET",
+        headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+        success: function(data) {
 
+
+            $('#nom-artisan').html(data.Nom)
+            $('#Nom').val(data.Nom)
+            $('#telephone').val(data.Telephone)
+            $('#SArtisan').val(data.SoldeArtisan)
+            $('#SSaweblia').val(data.SoldeSaweblia)
+            if (data.Langue == "arabe&français")
+                $('#langue').attr("checked", true)
+            $('#cin').val(data.Cin)
+            $('#email').val(data.Email)
+            $('#ville option').filter(function() {
+
+                return $(this).val() == data.Ville;
+            }).prop('selected', true);
+            $('#type option').filter(function() {
+
+                return $(this).val() == data.Type;
+            }).prop('selected', true);
+            $('#dispo').attr('checked', data.Disponible)
+
+        }
     });
 </script>
 <div class="content">
 
-<div class="clearfix"></div>
+    <div class="clearfix"></div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -56,17 +63,17 @@ $.getJSON('http://webapp.saweblia.ma/artisans/'+window.location.search.substring
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Ville</label>
-                                        
-                                         <select id="ville" class="form-control">
-                      <option>Casablanca</option>
-                      <option>Rabat</option>
-                      <option>Mohemmadia</option>
-                      <option>Autre</option>
-                      </select>
+
+                                        <select id="ville" class="form-control">
+                                            <option>Casablanca</option>
+                                            <option>Rabat</option>
+                                            <option>Mohemmadia</option>
+                                            <option>Autre</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
-                                 <div class="form-group">
+                                    <div class="form-group">
                                         <label class="bmd-label-floating">CIN</label>
                                         <input id="cin" type="text" class="form-control">
                                     </div>
@@ -89,17 +96,17 @@ $.getJSON('http://webapp.saweblia.ma/artisans/'+window.location.search.substring
                                 </div>
                             </div>
                             <div class="row">
-                                
-                                
+
+
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Langue Française</label>
-                                        
+
                                         <div class="row">
                                             <div class="col-md-2">
-                                                <input id="langue" type="checkbox" class="form-control" >
+                                                <input id="langue" type="checkbox" class="form-control">
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -112,11 +119,11 @@ $.getJSON('http://webapp.saweblia.ma/artisans/'+window.location.search.substring
                                         </label>
                                     </div>
                                 </div>
-                               
+
                             </div>
                             <button id="btn-edit" type="submit" class="btn btn-success pull-right">Enregistrer</button>
                             <button onclick="window.location.href='./personnels.php'" type="button" class="btn btn-danger pull-right">Annuler</button>
-                            
+
                         </form>
                     </div>
                 </div>

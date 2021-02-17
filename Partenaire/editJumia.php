@@ -8,6 +8,9 @@ $(document).ready(function() {
     $.ajax({
     url: "../jumiaData.php",
     type: "POST",
+    headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
     data:{idJumia:window.location.search.substring(1).split("?")[0],action:"displayEditForm"},
     async: false,
     success: function(msg) {

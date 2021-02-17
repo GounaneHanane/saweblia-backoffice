@@ -4,20 +4,27 @@ require("../Nav/menu.php");
 ?>
 <script src="../js/coordinateur.js"></script>
 <script>
-$.getJSON('http://webapp.saweblia.ma/coordinateurs/'+window.location.search.substring(1).split("?"), function (data){
-        $('#Nom').val(data.Nom)
-         $('#coordinateur-nom').append(data.Nom)
-        $('#telephone').val(data.Telephone)
-        $('#ville').val(data.Ville)
-        $('#email').val(data.Email)
-        $('#cin').val(data.Cin)
-        $('#dispo').val(data.Disponibilite)
+    $.ajax({
+        url: 'http://webapp.saweblia.ma/coordinateurs/' + window.location.search.substring(1).split("?"),
+        type: "GET",
+        headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+        success: function(data) {
+            $('#Nom').val(data.Nom)
+            $('#coordinateur-nom').append(data.Nom)
+            $('#telephone').val(data.Telephone)
+            $('#ville').val(data.Ville)
+            $('#email').val(data.Email)
+            $('#cin').val(data.Cin)
+            $('#dispo').val(data.Disponibilite)
 
+        }
     });
 </script>
 <div class="content">
 
-<div class="clearfix"></div>
+    <div class="clearfix"></div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -43,11 +50,11 @@ $.getJSON('http://webapp.saweblia.ma/coordinateurs/'+window.location.search.subs
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Ville</label>
-                                       <select id="ville" class="form-control">
-                                          <option>Casablanca</option>
-                                          <option>Rabat</option>
-                                          <option>Mohemmadia</option>
-                                          <option>Autre</option>
+                                        <select id="ville" class="form-control">
+                                            <option>Casablanca</option>
+                                            <option>Rabat</option>
+                                            <option>Mohemmadia</option>
+                                            <option>Autre</option>
                                         </select>
                                     </div>
                                 </div>
@@ -71,18 +78,18 @@ $.getJSON('http://webapp.saweblia.ma/coordinateurs/'+window.location.search.subs
                                             <input id="dispo" type="checkbox" checked><span class="slider round"></span>
                                         </label>
                                     </div>
-                                </div> 
-                               
+                                </div>
+
                             </div>
-                    
 
 
 
 
-  
+
+
                             <button id="btn-edit" type="submit" class="btn btn-success pull-right">Enregistrer</button>
                             <button onclick="window.location.href='./coordinateurs.php'" type="button" class="btn btn-danger pull-right">Annuler</button>
-                    
+
 
                         </form>
                     </div>

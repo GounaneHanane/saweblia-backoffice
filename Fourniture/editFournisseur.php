@@ -3,20 +3,26 @@ require("../Nav/header.php");
 require("../Nav/menu.php");
 ?>
 <script src="../js/fournisseur.js"></script>
- <script>
- 
-    $.getJSON('http://webapp.saweblia.ma/fournisseurs/'+window.location.search.substring(1).split("?"), function (data){
-        
-       $('#fournisseur').append(data.NomFournisseur)
-        $('#nomFournisseur').val(data.NomFournisseur)
-        $('#nomContact').val(data.NomContact)
-        $('#telephone').val(data.Telephone)
-        $('#adresse').val(data.Adresse)
-        $('#localisation').val(data.Localisation)
-        $('#email').val(data.Email)
-      
+<script>
+    $.ajax({
+        url: 'http://webapp.saweblia.ma/fournisseurs/' + window.location.search.substring(1).split("?"),
+        type: "GET",
+        headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+        success: function(data) {
+
+            $('#fournisseur').append(data.NomFournisseur)
+            $('#nomFournisseur').val(data.NomFournisseur)
+            $('#nomContact').val(data.NomContact)
+            $('#telephone').val(data.Telephone)
+            $('#adresse').val(data.Adresse)
+            $('#localisation').val(data.Localisation)
+            $('#email').val(data.Email)
+
+        }
     });;
-</script> 
+</script>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -40,7 +46,7 @@ require("../Nav/menu.php");
                                         <input id="nomContact" type="text" class="form-control" required>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Telephone</label>
@@ -66,7 +72,7 @@ require("../Nav/menu.php");
                                     </div>
                                 </div>
                             </div>
-                        
+
 
                             <button id="btn-edit" type="submit" class="btn btn-success pull-right">Enregistrer</button>
                             <button onclick="window.location.href='./fournisseurs.php'" type="button" class="btn btn-danger pull-right">Annuler</button>

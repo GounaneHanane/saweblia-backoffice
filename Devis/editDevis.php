@@ -4,12 +4,19 @@ require("../Nav/menu.php");
 ?>
 <script src="../js/devis.js"></script>
 <script>
-    $.getJSON('http://webapp.saweblia.ma/utilisateurs/' + window.location.search.substring(1).split("?"), function(data) {
-        $('#nom').val(data.Nom)
-        $('#user-name').append(data.Nom)
-        $('#interne').attr("checked", data.Interne)
-        $('#login').val(data.Login)
+    $.ajax({
+        url: 'http://webapp.saweblia.ma/utilisateurs/' + window.location.search.substring(1).split("?"),
+        type: "GET",
+        headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+        success: function(data) {
+            $('#nom').val(data.Nom)
+            $('#user-name').append(data.Nom)
+            $('#interne').attr("checked", data.Interne)
+            $('#login').val(data.Login)
 
+        }
     });
 </script>
 <div class="content">
@@ -34,90 +41,90 @@ require("../Nav/menu.php");
                                         </div>
                                     </div>
                                     <div id="info">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Date de commande</label>
-                                                <input id="nom" type="date" class="form-control">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Date de commande</label>
+                                                    <input id="nom" type="date" class="form-control">
+                                                </div>
                                             </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Date d'intervention</label>
+                                                    <input id="login" type="date" class="form-control">
+                                                </div>
+                                            </div>
+
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Date d'intervention</label>
-                                                <input id="login" type="date" class="form-control">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Date de debut d'intervention</label>
+                                                    <input id="nom" type="date" class="form-control">
+                                                </div>
                                             </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Date de fin d'itervention</label>
+                                                    <input id="login" type="date" class="form-control">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Mode de payement</label>
+                                                    <select id="typeCategorie" class="form-control">
+                                                        <option>mode 1</option>
+                                                        <option>mode 2</option>
+                                                        <option>mode 3</option>
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Date de payement</label>
+                                                    <input id="dateDePayement" type="date" class="form-control">
+                                                </div>
+                                            </div>
+
                                         </div>
 
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Statut</label>
+                                                    <select id="typeCategorie" class="form-control">
+                                                        <option>Status 1</option>
+                                                        <option>status 2</option>
+                                                        <option>statut 3</option>
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Client</label>
+                                                    <input id="client" type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Coordinateur</label>
+                                                    <input id="coordinateur" type="text" class="form-control">
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Date de debut d'intervention</label>
-                                                <input id="nom" type="date" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Date de fin d'itervention</label>
-                                                <input id="login" type="date" class="form-control">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Mode de payement</label>
-                                                <select id="typeCategorie" class="form-control">
-                                                    <option>mode 1</option>
-                                                    <option>mode 2</option>
-                                                    <option>mode 3</option>
-
-
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Date de payement</label>
-                                                <input id="dateDePayement" type="date" class="form-control">
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Statut</label>
-                                                <select id="typeCategorie" class="form-control">
-                                                    <option>Status 1</option>
-                                                    <option>status 2</option>
-                                                    <option>statut 3</option>
-
-
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Client</label>
-                                                <input id="client" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Coordinateur</label>
-                                                <input id="coordinateur" type="text" class="form-control">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
                                 </div>
                             </form>
                         </div>
@@ -372,7 +379,7 @@ require("../Nav/menu.php");
                                                     <div class="form-group"><input id="fquantité" type="text" class="form-control" placeholder="Quantité">
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <input id="ftotal" type="text" class="form-control" placeholder="Total">
@@ -407,7 +414,7 @@ require("../Nav/menu.php");
                                             </div>
 
 
-                                            
+
                                             <button id="btn-edit" type="button" class="btn btn-primary pull-right">valider</button>
 
                                         </div>
