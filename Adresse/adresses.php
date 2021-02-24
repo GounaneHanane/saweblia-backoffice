@@ -27,38 +27,43 @@ require("../Nav/menu.php");
   }
 </style>
 
-<div class="content">
 
 
 
-  <div class="container-fluid">
 
-    <div class="row">
+<div class="page-wrapper">
 
-      <div class="col-md-12">
+<div class="content container-fluid">
 
-        <div class="card">
+<div class="clearfix"></div>
+<div class="page-header">
+  <div class="row">
 
-          <div class="card-header card-header-primary">
+    <div class="col-md-10">
 
-            <h4>Client : <i id="nom-header"></i></h4>
+    
+          <h3 style="cursor:pointer" class="page-title">Client : <i id="nom-header"></i></h3>
+</div>
+                  <div class="col-md-2 text-right">
 
-          </div>
+                            <button  id="edit-client" class=" btn bttn btn-warning float-right">Modifier le client</div>
 
-          <div class="card-body">
 
-            <div class="row">
 
-              <h3 class="col-md-9">Détail client</h3>
+</div>
+</div>
 
-              <div class="col-md-3">
+<div class="row">
 
-                <button id="edit-client" class="btn bttn btn-warning float-right ">Modifier le client</button>
 
-              </div>
 
-            </div>
 
+
+
+<div class="col-md-12">
+<div class="card">
+<div class="card-body">
+<div class="table-responsive">
             <table class="table">
 
               <tr>
@@ -135,23 +140,43 @@ require("../Nav/menu.php");
               </tr>
 
             </table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="page-header">
+          <div class="row">
+
+            <div class="col-md-10">
+
+            
+                  <h3 style="cursor:pointer" class="page-title">Adresses</h3>
+</div>
+                  <div class="col-md-2 text-right">
+
+                            <button id="add-adresse" class="btn bttn btn-primary float-right">Ajouter une adresse</button>
+
+</div>
 
 
 
-            <div class="row">
+</div>
+</div>
 
-              <h3 class="col-md-9">Adresses</h3>
+<div class="row">
 
-              <div class="col-md-3">
 
-                <button id="add-adresse" class=" btn bttn btn-primary float-right">Ajouter une adresse</button>
 
-              </div>
 
-            </div>
 
-            <div class="table-responsive">
 
+<div class="col-md-12">
+<div class="card">
+<div class="card-body">
+<div class="table-responsive">
 
 
               <table class="table"  id="adresse-table" >
