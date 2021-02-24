@@ -62,7 +62,7 @@ $(document).ready(function () {
             previous: "Précédent",
             next: "Suivant",
           },
-          lengthMenu: "Afficher _MENU_ enregistrements par page",
+          lengthMenu: "",
           zeroRecords: "Rien n'a été trouvé",
           info: "Affichage de la page _PAGE_ de _PAGES_",
           infoEmpty: "Aucun enregistrement disponible",
@@ -119,7 +119,7 @@ $(document).ready(function () {
         error: function () {
           $(".clearfix").html("");
           $(".clearfix").append(
-            '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le client est ajouté avec succes</span></div>'
+            '<div class="alert alert-success"><button type="button" class="close " data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le client est ajouté avec succes</span></div>'
           );
           setTimeout(function () {
             window.location.href = "../Client/clients.php";

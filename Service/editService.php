@@ -39,15 +39,29 @@ require("../Nav/menu.php");
         }
     });;
 </script>
-<div class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
+<div class="page-wrapper">
+
+        <div class="content container-fluid">
+
+        <div class="clearfix"></div>
+
+          <div class="row">
+
+            <div class="col-xl-8 offset-xl-2">
+
+              <div class="page-header">
+
+                <div class="row">
+                  <div class="col">
+
+                  <h3 class="page-title">Service : <i id="service"></i></h3>
+                  </div>
+                </div>
+         
+              
+                </div>
                 <div class="card">
-                    <div class="card-header card-header-primary">
-                        <h4 class="card-title">Service : <i id="service"></i></h4>
-                    </div>
-                    <div class="card-body">
+                <div class="card-body">
                         <form id="add-client-form">
                             <div class="row">
                                 <div class="col-md-2">

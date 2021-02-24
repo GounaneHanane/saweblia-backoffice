@@ -2,7 +2,7 @@
 
 require("../Nav/header.php");
 
-require("../Nav/menu.php");
+require("../Nav/menu2.php");
 
 ?>
 
@@ -25,23 +25,23 @@ require("../Nav/menu.php");
 
                             <button id="add-client" class="btn btn-primary add-button">Ajouter</button>
 
+                       </div>
+
+                  
+
+                </div>
 </div>
 
+                <div class="row">
 
+             
 
-</div>
-</div>
+                      
+              
 
-<div class="row">
-
-
-
-
-
-
-<div class="col-md-12">
-<div class="card">
-<div class="card-body">
+                  <div class="col-md-12">
+                    <div class="card">
+                      <div class="card-body">
 <div class="table-responsive">
                     <table class="table" id="client-table">
 

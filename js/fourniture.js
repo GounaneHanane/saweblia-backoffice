@@ -73,7 +73,7 @@ $(document).ready(function () {
     if ($(this).is(":checked")) {
       $(".fournisseurArea").html("");
       $(".fournisseurArea").append(
-        '<div class="row"><input placeholder="Nom du fournisseur" id="nom_fournisseur" type="text" class="form-control col-md-6" required><input  placeholder="Téléphone du fournisseur" id="tel_fournisseur" type="tel" pattern="[0-9]{10}" class="form-control col-md-6" required></div>'
+        '<input placeholder="Nom du fournisseur" id="nom_fournisseur" type="text" class="form-control col-md-6" required><input  placeholder="Téléphone du fournisseur" id="tel_fournisseur" type="tel" pattern="[0-9]{10}" class="form-control col-md-6" required>'
       );
     } else {
       $(".fournisseurArea").html("");

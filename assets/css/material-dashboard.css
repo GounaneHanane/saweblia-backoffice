@@ -40,6 +40,19 @@
 .dataTables_wrapper .dataTables_length {
   float: right !important;
 }
+.sidebar-logo {
+  display: flex;
+  padding: 20px 20px 0;
+  justify-content: center;
+}
+
+.sidebar-inner {
+  height: 100%;
+  min-height: 100%;
+  transition: all 0.2s ease-in-out 0s;
+}.sidebar-menu {
+    padding: 15px;
+}
 .dataTables_wrapper .dataTables_filter {
   float: left !important;
   text-align: right;
@@ -1314,17 +1327,6 @@ sup {
 
 
 
-a {
-
-  color: #286eb9;
-
-  text-decoration: none;
-
-  background-color: transparent;
-
-  -webkit-text-decoration-skip: objects;
-
-}
 
 
 
@@ -2211,17 +2213,13 @@ pre code {
 
 
 .row {
-
+  display: -ms-flexbox;
   display: flex;
-
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-
   margin-right: -15px;
-
   margin-left: -15px;
-
 }
-
 
 
 .no-gutters {
@@ -27500,13 +27498,6 @@ select.form-control {
 
 /* Style the active link (or home/logo) */
 
-.active {
-
-  background-color: transparent;
-
-  color: white;
-
-}
 
 
 
@@ -28768,23 +28759,7 @@ fieldset[disabled] .form-group .form-control {
 
 
 
-.page-header {
 
-  min-height: 100vh;
-
-  max-height: 1000px;
-
-  display: flex !important;
-
-  height: 100%;
-
-  padding: 0;
-
-  color: #fff;
-
-  position: relative;
-
-}
 
 
 
@@ -28904,27 +28879,7 @@ fieldset[disabled] .form-group .form-control {
 
 
 
-.page-header:after,
 
-.page-header:before {
-
-  position: absolute;
-
-  z-index: 0;
-
-  width: 100%;
-
-  height: 100%;
-
-  display: block;
-
-  left: 0;
-
-  top: 0;
-
-  content: "";
-
-}
 
 
 
@@ -30576,25 +30531,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 
 
-.sidebar {
 
-  position: fixed;
-
-  top: 0;
-
-  bottom: 0;
-
-  left: 0;
-
-  z-index: 2;
-
-  width: 260px;
-
-  background: #fff;
-
-  box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-
-}
 
 
 

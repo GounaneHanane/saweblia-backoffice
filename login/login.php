@@ -7,24 +7,29 @@ require("../Nav/header.php");
 <script src="../js/authentification.js"></script>
 
 
-<div class="content" style="padding-top: 10%;margin-left:25%;margin-right:25%;">
+<div class="main-wrapper">
 
-    <div class="container-fluid">
+    <div class="login-page">
 
         <div class="clearfix"></div>
 
-        <div class="row">
+        <div class="login-body container">
 
-            <div class="col-md-12">
+            <div class="loginbox">
 
-                <div class="card">
+                <div class="login-right-wrap">
 
-                    <div class="card-header card-header-primary row">
-
-                        <h4 style="cursor:pointer" class="card-title col-md-9 justify-content-center">Formulaire d'authentification</h4>
-
+                    <div class="account-header">
+                    <div class="account-logo text-center mb-4">
+                    <a href="">
+			<img src="../assets/img/logo.png" class="img-fluid" alt="">
+		</a>
                     </div>
-
+                    </div>
+                    <div class="login-header">
+                    <h4>Se connecter à <span>Saweblia Back Office</span></h4>
+                    
+                    </div>
                     <div class="card-body">
                     <div id="notification"></div>
 
@@ -59,7 +64,7 @@ require("../Nav/header.php");
 
                                 </div>
                             </div>
-                            <button id="btn-log" type="button" class="btn btn-success pull-right">S'authentifier</button>
+                            <button id="btn-log" type="button" class="btn btn-success pull-right">Se connecter</button>
 
 
 

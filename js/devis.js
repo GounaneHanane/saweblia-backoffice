@@ -82,12 +82,75 @@ if (sessionStorage.getItem("token") === null)
     //// add client checkbox in add fourniture
     ////
     $('#add-client').change(function() {
-
+      var html=""
         if($(this).is(":checked")) {
              $(".clientArea").html("")
              $("#client-info-area").html("")
-             $("#client-info-area").append(' <h3 class="card-title" style="margin-bottom: 15px;">Nouveau Client</h3><div class="row"><div class="col-md-6"><div class="form-group"><label class="bmd-label-floating">Nom : </label><input class="form-control" id="client-nom-add" /> </div></div><div class="col-md-6"><div class="form-group"><label class="bmd-label-floating">Telephone : </label><input class="form-control" id="client-telephone-add" />       </div></div></div><div class="row"><div class="col-md-6"><div class="form-group"><label class="bmd-label-floating">Commentaire : </label><textarea class="form-control" id="client-commentaire-add" ></textarea></div> </div>  </div>')
-             $("#client-info-area").append(' <h3>Nouvelle Adresse</h3> <div class="row"><div class="col-md-2"> <div class="form-group"><label class="bmd-label-floating">Libelle : </label>  <input class="form-control" id="client-libelle-add" />      </div> </div><div class="col-md-2"><div class="form-group"><label class="bmd-label-floating">Quartier : </label><input class="form-control" id="client-quartier-add" /> </div> </div><div class="col-md-2"><div class="form-group"> <label class="bmd-label-floating">Rue : </label>  <input class="form-control" id="client-rue-add" /> </div> </div><div class="col-md-2"> <div class="form-group"><label class="bmd-label-floating">Ville : </label><select class="form-control" id="client-ville-add" ><option>Casablanca</option><option>Mohemmadia</option><option>Rabat</option><option>Autre</option></select> </div> </div><div class="col-md-4"><label class="bmd-label-floating">Localisation : </label>  <input class="form-control" id="client-localisation-add" /></div></div></div>')
+             
+            html+=' <h3 class="card-title" style="margin-bottom: 15px;">Nouveau Client</h3>'
+            html+='<div class="row">'
+            html+='<div class="col-md-6">'
+            html+='<div class="form-group">'
+            html+='<label class="bmd-label-floating">Nom : </label>'
+            html+='<input class="form-control" id="client-nom-add" /> '
+            html+='</div>'
+            html+='</div>'
+            html+='<div class="col-md-6">'
+            html+='<div class="form-group">'
+            html+='<label class="bmd-label-floating">Telephone : </label>'
+            html+='<input class="form-control" id="client-telephone-add" /> '
+            html+='</div>'
+            html+='</div>'
+            html+='</div>'
+            html+='<div class="row">'
+            html+='<div class="col-md-6">'
+            html+='<div class="form-group">'
+            html+='<label class="bmd-label-floating">Commentaire : </label>'
+            html+='<textarea class="form-control" id="client-commentaire-add" ></textarea>'
+            html+='</div>'
+            html+=' </div>'
+            html+='  </div>'
+            html+=' <h3>Nouvelle Adresse</h3>'
+            html+=' <div class="row">'
+            html+='<div class="col-md-2">'
+            html+=' <div class="form-group">'
+            html+='<label class="bmd-label-floating">Libelle : </label> '
+            html+=' <input class="form-control" id="client-libelle-add" />'
+            html+='      </div> '
+            html+='</div>'
+            html+='<div class="col-md-2">'
+            html+='<div class="form-group">'
+            html+='<label class="bmd-label-floating">Quartier : </label>'
+            html+='<input class="form-control" id="client-quartier-add" /> '
+            html+='</div>'
+            html+=' </div>'
+            html+='<div class="col-md-2">'
+            html+='<div class="form-group">'
+            html+=' <label class="bmd-label-floating">Rue : </label>'
+            html+='  <input class="form-control" id="client-rue-add" /> '
+            html+='</div> '
+            html+='</div>'
+            html+='<div class="col-md-2">'
+            html+=' <div class="form-group">'
+            html+='<label class="bmd-label-floating">Ville : </label>'
+            html+='<select class="form-control" id="client-ville-add" >'
+            html+='<option>Casablanca</option>'
+            html+='<option>Mohemmadia</option>'
+            html+='<option>Rabat</option>'
+            html+='<option>Autre</option>'
+            html+='</select>'
+            html+=' </div>'
+            html+=' </div>'
+            html+='<div class="col-md-4">'
+            html+='<label class="bmd-label-floating">Localisation : </label>  '
+            html+='<input class="form-control" id="client-localisation-add" />'
+            html+='</div>'
+            html+='</div>' 
+            html+=' <button id="add-devi" type="submit" class="btn btn-success pull-right">Enregistrer</button>'
+            html+='</div>'
+            html+='</form>'
+            html+='</div>'
+           
             } else {
             
              $(".clientArea").html("")
@@ -98,6 +161,7 @@ if (sessionStorage.getItem("token") === null)
        
        displayClients()
         }
+        $("#client-info-area").append(html)
            
 
 });
@@ -135,8 +199,8 @@ $('#listeAdresse').change(function(){
     url:'http://webapp.saweblia.ma/adresses/'+$(this).val(),headers: {
       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },success: function(data) {
-    $('#libelle-adresse').html(data.Libelle)
-    $('#localisation-adresse').html(data.Localisation)
+    $('#libelle-adresse').val(data.Libelle)
+    $('#localisation-adresse').val(data.Localisation)
 }})
 })
 ///
@@ -231,8 +295,8 @@ function displayClients() {
       selectedClient=data.Clients[i].ClientID
       /// first client information
       $('#nom-client').html(data.Clients[i].Nom)
-        $('#tel-client').html(data.Clients[i].Telephone)
-        $('#comment-client').html(data.Clients[i].Comment)
+        $('#tel-client').val(data.Clients[i].Telephone)
+        $('#comment-client').val(data.Clients[i].Comment)
             /// first client adresses 
         $.ajax({
           url:'http://webapp.saweblia.ma/adresse_client/'+selectedClient,
@@ -243,8 +307,8 @@ function displayClients() {
                   
                 for (i = 0; i < data.Adresses.length; i++) {
                   if (i==0) { $('#listeAdresse').append("<option value='"+data.Adresses[i].AdressID+"' selected='true'>" + data.Adresses[i].Rue+" "+data.Adresses[i].Quartier+","+data.Adresses[i].Ville+ "</option>")
-                  $('#libelle-adresse').html(data.Libelle)
-                  $('#localisation-adresse').html(data.Localisation)
+                  $('#libelle-adresse').val(data.Adresses[i].Libelle)
+                  $('#localisation-adresse').val(data.Adresses[i].Localisation)
                 
                 } else $('#listeAdresse').append("<option value='"+data.Adresses[i].AdressID+"'>" + data.Adresses[i].Rue+" "+data.Adresses[i].Quartier+","+data.Adresses[i].Ville+ "</option>")
                     

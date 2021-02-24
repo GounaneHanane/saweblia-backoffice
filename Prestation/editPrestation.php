@@ -40,15 +40,29 @@ require("../Nav/menu.php");
         });
     })
 </script>
-<div class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
+<div class="page-wrapper">
+
+        <div class="content container-fluid">
+
+        <div class="clearfix"></div>
+
+          <div class="row">
+
+            <div class="col-xl-8 offset-xl-2">
+
+              <div class="page-header">
+
+                <div class="row">
+                  <div class="col">
+
+                  <h3 class="page-title">Prestation : <i id="prestation"></i></h3>
+                  </div>
+                </div>
+         
+              
+                </div>
                 <div class="card">
-                    <div class="card-header card-header-primary">
-                        <h4 class="card-title"> Prestation : <i id="prestation"></i></h4>
-                    </div>
-                    <div class="card-body">
+                <div class="card-body">
                         <form id="editPrestation">
                             <div class="row">
                                 <div class="col-md-2">
@@ -58,7 +72,7 @@ require("../Nav/menu.php");
                                     </div>
                                 </div>
 
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Services</label>
                                         <select id="services" class="form-control js-example-basic-single">
@@ -79,18 +93,13 @@ require("../Nav/menu.php");
                                         <input id="prixVente" type="text" class="form-control" required>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Coefficient de remise </label>
                                         <input id="coefficientRemise" step="0.01" type="text" class="form-control" required>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">Media</label>
-                                        <input onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])" type="file" class="form-control" id="fournitureImage" name="filename">
-                                    </div>
-                                </div>
+                               
                             </div>
 
                             <div class="row">
@@ -102,9 +111,14 @@ require("../Nav/menu.php");
                                 </div>
 
 
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Media</label>
+                                        <input onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])" type="file" class="form-control" id="fournitureImage" name="filename">
+                                    </div>
+                                </div>
 
-
-                                <div class="col-md-8">
+                                <div class="col-md-4">
                                     <div class="form-group">
 
                                         <img class="float-right" id="image" src='' width='100' height='100' />

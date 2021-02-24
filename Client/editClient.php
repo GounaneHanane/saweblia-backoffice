@@ -47,24 +47,29 @@ require("../Nav/menu.php");
   });
 </script>
 
-<div class="content">
+<div class="page-wrapper">
 
-  <div class="container-fluid">
+        <div class="content container-fluid">
 
-    <div class="row">
+        <div class="clearfix"></div>
 
-      <div class="col-md-12">
+          <div class="row">
 
-        <div class="card">
+            <div class="col-xl-8 offset-xl-2">
 
-          <div class="card-header card-header-primary">
+              <div class="page-header">
 
-            <h4 class="card-title">Modifier client</h4>
+                <div class="row">
+                  <div class="col">
 
-          </div>
-
-          <div class="card-body">
-
+                  <h3 class="page-title">Modifier client</h3>
+                  </div>
+                </div>
+         
+              
+                </div>
+                <div class="card">
+                <div class="card-body">
             <form id="add-client-form">
 
               <div class="row">

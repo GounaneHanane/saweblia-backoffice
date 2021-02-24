@@ -49,15 +49,30 @@ require("../Nav/menu.php");
         })
     })
 </script>
-<div class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
+<div class="page-wrapper">
+
+        <div class="content container-fluid">
+
+        <div class="clearfix"></div>
+
+          <div class="row">
+
+            <div class="col-xl-8 offset-xl-2">
+
+              <div class="page-header">
+
+                <div class="row">
+                  <div class="col">
+
+                  <h3 class="page-title">Fourniture : <i id="nom-fourniture"></i></h3>
+                  </div>
+                </div>
+         
+              
+                </div>
                 <div class="card">
-                    <div class="card-header card-header-primary">
-                        <h4 class="card-title">Fourniture : <i id="nom-fourniture"></i></h4>
-                    </div>
-                    <div class="card-body">
+                <div class="card-body">
+
                         <form id="editFourniture">
                             <div class="row">
                                 <div class="col-md-2">
@@ -79,22 +94,17 @@ require("../Nav/menu.php");
                                         <input pattern="[0-9]+" id="prixVente" type="text" class="form-control" required>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-5">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Fournisseur</label>
                                         <div class="float-right"><input type="checkbox" id="add-fournisseur" style="margin-right:4px"><label> Nouveau fournisseur</label></div>
-                                        <div class="fournisseurArea">
+                                        <div class="fournisseurArea row">
                                             <select id="fournisseurs" class="form-control js-example-basic-single">
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">Media</label>
-                                        <input onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])" type="file" class="form-control" id="fournitureImage" name="filename">
-                                    </div>
-                                </div>
+                                
 
                             </div>
                             <div class="row">
@@ -104,7 +114,13 @@ require("../Nav/menu.php");
                                         <textarea id="description" type="text" class="form-control"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Media</label>
+                                        <input onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])" type="file" class="form-control" id="fournitureImage" name="filename">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
                                     <div class="form-group">
 
                                         <img class="float-right" src='' width='100' height='100' id="image" />

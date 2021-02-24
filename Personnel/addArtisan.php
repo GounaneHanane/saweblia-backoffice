@@ -4,17 +4,30 @@ require("../Nav/menu.php");
 ?>
 <script src="../js/artisan.js"></script>
 
-<div class="content">
+<div class="page-wrapper">
 
-<div class="clearfix"></div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
+        <div class="content container-fluid">
+
+        <div class="clearfix"></div>
+
+          <div class="row">
+
+            <div class="col-xl-8 offset-xl-2">
+
+              <div class="page-header">
+
+                <div class="row">
+                  <div class="col">
+
+                  <h3 class="page-title">Nouveau Artisan</h3>
+                  </div>
+                </div>
+         
+              
+                </div>
                 <div class="card">
-                    <div class="card-header card-header-primary">
-                        <h4 class="card-title">Nouveau Artisan</h4>
-                    </div>
-                    <div class="card-body">
+                <div class="card-body">
+
                         <form id="addArtisan">
                             <div class="row">
                                 <div class="col-md-2">

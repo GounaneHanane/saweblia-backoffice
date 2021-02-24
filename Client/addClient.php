@@ -8,24 +8,28 @@
 
 <script src="../js/client.js"></script>
 
-<div class="content">
+<div class="page-wrapper">
 
-        <div class="container-fluid">
+        <div class="content container-fluid">
 
         <div class="clearfix"></div>
 
           <div class="row">
 
-            <div class="col-md-12">
+            <div class="col-xl-8 offset-xl-2">
 
-              <div class="card">
+              <div class="page-header">
 
-                <div class="card-header card-header-primary">
+                <div class="row">
+                  <div class="col">
 
-                  <h4 class="card-title">Nouveau client</h4>
-
+                  <h3 class="page-title">Nouveau client</h3>
+                  </div>
                 </div>
-
+         
+              
+                </div>
+                <div class="card">
                 <div class="card-body">
 
                 <form id="add-client-form">
@@ -213,7 +217,7 @@
 
   
 
-  <div class="col-md-3">
+  <div class="col-md-4">
 
     <div class="form-group">
 
@@ -226,7 +230,7 @@
 
 
   </div>
-<div class="col-md-3">
+<div class="col-md-4">
 
      <div class="form-group">
 
@@ -239,13 +243,7 @@
   </div>
 </div>
 
-<div class="row">
 
-  
-
-  
-
-</div>
 
 
 
@@ -257,9 +255,6 @@
 
 
 
-
-
-</div>
 
 
 
@@ -281,6 +276,10 @@
 
               </div>
 
-            </div>
+    </div>
 
             
+    </div>
+    
+    </div>
+    </div>

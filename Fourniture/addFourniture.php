@@ -23,15 +23,30 @@ require("../Nav/menu.php");
         });
     })
 </script>
-<div class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
+<div class="page-wrapper">
+
+        <div class="content container-fluid">
+
+        <div class="clearfix"></div>
+
+          <div class="row">
+
+            <div class="col-xl-8 offset-xl-2">
+
+              <div class="page-header">
+
+                <div class="row">
+                  <div class="col">
+
+                  <h3 class="page-title">Nouvelle fourniture</h3>
+                  </div>
+                </div>
+         
+              
+                </div>
                 <div class="card">
-                    <div class="card-header card-header-primary">
-                        <h4 class="card-title">Nouvelle fourniture</h4>
-                    </div>
-                    <div class="card-body">
+                <div class="card-body">
+
                         <form id="addFourniture">
                             <div class="row">
                                 <div class="col-md-2">
@@ -52,7 +67,7 @@ require("../Nav/menu.php");
                                         <input pattern="[0-9]+" id="prixVente" type="text" class="form-control" required>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-5">
                                     <div class="form-group ">
                                         <div class="row">
                                             <label class="bmd-label-floating">Fournisseur</label>
@@ -64,12 +79,7 @@ require("../Nav/menu.php");
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">Media</label>
-                                        <input type="file" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" class="form-control" id="fournitureImage" name="filename">
-                                    </div>
-                                </div>
+                               
                             </div>
                             <div class="row">
 
@@ -81,7 +91,13 @@ require("../Nav/menu.php");
                                         <textarea id="description" type="text" class="form-control"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Media</label>
+                                        <input type="file" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" class="form-control" id="fournitureImage" name="filename">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
                                     <img class="float-right" id="output" src='' width='100' height='100' />
                                 </div>
                             </div>
