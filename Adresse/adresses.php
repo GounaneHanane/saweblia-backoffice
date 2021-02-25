@@ -42,7 +42,7 @@ require("../Nav/menu.php");
     <div class="col-md-10">
 
     
-          <h3 style="cursor:pointer" class="page-title">Client : <i id="nom-header"></i></h3>
+          <h3 style="cursor:pointer" class="page-title">Client : <b id="nom-header"></b></h3>
 </div>
                   <div class="col-md-2 text-right">
 

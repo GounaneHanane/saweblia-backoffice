@@ -1,6 +1,6 @@
-if (sessionStorage.getItem("token") === null)
-  window.location.href =
-    window.location.origin + "/saweblia-backoffice/login/login.php";
+if (sessionStorage.getItem("token") == "null")
+window.location.href =
+  window.location.origin + "/saweblia-backoffice/login/login.php";
     var fourniture=[]
     var prestation=[]
     $(document).ready(function () {

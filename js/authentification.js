@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
   $("#btn-log").click(function () {
     var arr = {
       login: $("#login").val(),

@@ -1,4 +1,4 @@
-if (sessionStorage.getItem("token") === null)
+if (sessionStorage.getItem("token") == "null")
   window.location.href =
     window.location.origin + "/saweblia-backoffice/login/login.php";
 $(document).ready(function () {

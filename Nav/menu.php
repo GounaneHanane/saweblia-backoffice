@@ -10,6 +10,17 @@ function myFunction() {
 }
 $(document).ready(function() {
 	$('.dropdown-toggle').dropdown()
+	$('.user-img').click(function(){
+	
+		sessionStorage.setItem("login",null);
+        sessionStorage.setItem("nom", null);
+        sessionStorage.setItem("token", "null");
+		window.location.href="../login/login.php"
+	})
+	$('li').click(function(){
+		
+		$(this).toggleClass("active")
+	})
 })
  
 </script>
@@ -17,10 +28,10 @@ $(document).ready(function() {
 <div class="header">
 	<div class="header-left">
 		<a href="https://truelysell.com/dashboard" class="logo">
-			<img src="https://truelysell.com/uploads/logo/1579702346_1561615644_download.png" width="140" height="46" alt="">
+			<img src="../assets/img/logo.png" width="140" height="46" alt="">
 		</a>
 		<a href="https://truelysell.com/dashboard" class="logo logo-small">
-			<img src="https://truelysell.com/uploads/logo/1579702346_1561615644_download.png" alt="Logo" width="30" height="30">
+			<img src="../assets/img/logo.png" alt="Logo" width="30" height="30">
 		</a>
 	</div>
 	<a href="javascript:void(0);" id="toggle_btn">
@@ -38,13 +49,10 @@ $(document).ready(function() {
 		<li class="nav-item dropdown">
 			<a href="javascript:void(0)" class="dropdown-toggle user-link  nav-link" data-toggle="dropdown">
 				<span class="user-img">
-				  					<img class="rounded-circle" src="https://truelysell.com/assets/img/user.jpg" width="40" alt="Admin">
+				  					<img class="rounded-circle" src="https://truelysell.com/assets/img/user.jpg" width="40" alt="Admin"> Se déconnecter
 				</span>
 			</a>
-			<div class="dropdown-menu dropdown-menu-right">
-				<a class="dropdown-item" href="https://truelysell.com/admin-profile">Profile</a>
-				<a class="dropdown-item" href="https://truelysell.com/admin/logout">Logout</a>
-			</div>
+		
 		</li>
 	</ul>
 </div>
@@ -63,46 +71,39 @@ $(document).ready(function() {
               <span>Devis</span>
             </a>
           </li>
-          <li >
+          <li>
             <a  href="../Client/clients.php">
              
               <span>Clients</span>
             </a>
           </li>
-          <a >
-			
-			</a>
-          <li class="dropdown">
-            <a  class="dropdown-toggle" id="dropPers" role="button" aria-expanded="true" data-toggle="dropdown" href="" >
-             
-              <span>Collaborateurs</span>
-            </a>
-            <ul class="dropdown-menu " aria-labelledby="dropPers" role="menu" style="">
-				<a class="dropdown-item" href="../Personnel/coordinateurs.php">Coordinateurs</a>
-				<a class="dropdown-item" href="../Personnel/personnels.php">Artisans</a>
-</ul>
+		  <li >
+            <a  href="../Service/prestation.php"><span>Prestations</span></a>
           </li>
-          
-          <li  class="dropdown">
-            <a class="dropdown-toggle" id="dropPers" role="button"  data-toggle="dropdown" href="">
-             
-              <span>Fournitures</span>
-            </a>
-			<ul class="dropdown-menu " aria-labelledby="dropPers" role="menu" style="">
-				<a class="dropdown-item" href="../Fourniture/fourniture.php">Fourniture</a>
-				<a class="dropdown-item" href="../Fourniture/fournisseurs.php">Fournisseur</a>
-</ul>
+		  <li >
+            <a  href="../Personnel/coordinateurs.php"><span>Coordinateurs</span></a>
           </li>
-          <li class="dropdown">
-            <a class="dropdown-toggle" id="dropPers" role="button"  data-toggle="dropdown" href="">
-             
-              <span>Services</span>
-            </a>
-			   <ul class="dropdown-menu " aria-labelledby="dropPers" role="menu" style="">
-				<a class="dropdown-item" href="../Service/categorie.php">Catégories</a>
-				<a class="dropdown-item" href="../Service/services.php">Services</a>
-				<a class="dropdown-item" href="../Service/prestation.php">Prestations</a>
-</ul>
+		  <li >
+            <a  href="../Personnel/personnels.php"><span>Artisans</span></a>
+          </li>
+		  <li >
+            <a  href="../Fourniture/fourniture.php"><span>Fourniture</span></a>
+          </li>
+		  <li >
+            <a  href="../Fourniture/fournisseurs.php"><span>Fournisseur</span></a>
+          </li>
+		  <li >
+            <a  href="../Service/categorie.php"><span>Catégories</span></a>
+          </li>
+		  <li >
+            <a  href="../Service/services.php"><span>Services</span></a>
+          </li>
+		
+		  <li >
+            <a  href="../Partenaire/jumia.php"><span>Prestation Jumia</span></a>
+          </li>
+		  <li >
+            <a  href="../Partenaire/commandeJumia.php"><span>Commande Jumia</span></a>
           </li>
           <li >
             <a  href="../Utilisateur/utilisateurs.php" >
@@ -110,16 +111,7 @@ $(document).ready(function() {
               <span>Paramètres</span>
             </a>
           </li>
-          <li  class="dropdown">
-            <a  class="dropdown-toggle" id="dropPers" role="button"  data-toggle="dropdown" href="">
-            
-              <span>Partenaire</span>
-            </a>
-			<ul class="dropdown-menu " aria-labelledby="dropPers" role="menu" style="">
-				<a class="dropdown-item" href="../Partenaire/jumia.php">Prestation Jumia</a>
-				<a class="dropdown-item" href="../Partenaire/commandeJumia.php">Commande Jumia</a>
-</ul>
-          </li>
+         
 
 			</ul>
 		</div>
