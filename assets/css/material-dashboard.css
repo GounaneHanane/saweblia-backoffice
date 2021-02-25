@@ -29125,7 +29125,7 @@ h2.title {
 
   position: relative;
 
-  color: #fff;
+ 
 
   border: 0;
 
@@ -29157,19 +29157,6 @@ h2.title {
 
 
 
-.nav-tabs .nav-item .nav-link,
-
-.nav-tabs .nav-item .nav-link:hover,
-
-.nav-tabs .nav-item .nav-link:focus {
-
-  border: 0 !important;
-
-  color: #fff !important;
-
-  font-weight: 500;
-
-}
 
 
 
