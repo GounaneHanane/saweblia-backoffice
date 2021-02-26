@@ -264,55 +264,112 @@ $(document).ready(function () {
       id +
       ')"><span class="material-icons">create</span></button></td>';
 
-    tableau += "</tr>";
-    $("#table-prestation").append(tableau);
-  });
-  ///
-  /// Calculer le total de prestation
-  ///
-  $(".totalPrestation").change(function () {
-    $("#total").val(
-      $("#PUVente").val() * $("#quantité").val() * $("#coifficient").val()
-    );
-  });
-  $(".totalFourniture").change(function () {
-    $("#ftotal").val($("#fPUVente").val() * $("#fquantité").val());
-  });
-  ///
-  /// Valider une fourniture
-  ///
-  $("#valider-fourniture").click(function () {
-    if (fourniture.length == 0) var id = 1;
-    else var id = parseInt(fourniture[fourniture.length - 1].id) + 1;
-    var data = {
-      id: id,
-      fourniture: $("#listeFourniture").find(":selected").val(),
-      fournisseur: $("#fFournisseur").html(),
-      description: $("#fdescription").val(),
-      PUVente: $("#fPUVente").val(),
-      Quantite: $("#fquantité").val(),
-      Total: $("#ftotal").val(),
-    };
-    fourniture.push(data);
-    var tableau = "";
-    tableau += "<tr id='fourniture" + id + "'>";
-    tableau +=
-      "<td id='" +
-      $("#listeFourniture").find(":selected").val() +
-      "'>" +
-      $("#listeFourniture").find(":selected").text() +
-      "</td>";
-    tableau += "<td> " + $("#fFournisseur").html() + "</td>";
-    tableau += "<td>" + $("#fdescription").val() + "</td>";
-    tableau += "<td> " + $("#fPUVente").val() + "</td>";
-    tableau += "<td> " + $("#fquantité").val() + "</td>";
-    tableau += "<td> " + $("#ftotal").val() + "</td>";
-    tableau +=
-      '<td><button onclick="removeFourniture(' +
-      id +
-      ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="editFourniture(' +
-      id +
-      ')"><span class="material-icons">create</span></button></td>';
+   $.ajax({
+    url:'http://webapp.saweblia.ma/clients/'+$(this).val(),
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },success: function(data) {
+    $('#nom-client').html(data.Nom)
+    $('#tel-client').val(data.Telephone)
+    $('#comment-client').val(data.Comment)
+}})
+ $.ajax({
+    url:'http://webapp.saweblia.ma/adresse_client/'+$(this).val(),headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },success: function(data) {
+  $('#listeAdresse').html('')
+    
+  for (i = 0; i < data.Adresses.length; i++) {
+    $('#listeAdresse').append("<option value='"+data.Adresses[i].AdressID+"'>" + data.Adresses[i].Rue+" "+data.Adresses[i].Quartier+","+data.Adresses[i].Ville+ "</option>")
+      
+  }
+}})
+})
+///
+/// select an adresse  
+///
+$('#listeAdresse').change(function(){
+   $.ajax({
+    url:'http://webapp.saweblia.ma/adresses/'+$(this).val(),headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },success: function(data) {
+    $('#libelle-adresse').val(data.Libelle)
+    $('#localisation-adresse').val(data.Localisation)
+}})
+})
+///
+/// Valider une prestation 
+///
+$("#valider-prestation").click(function(){
+  if(prestation.length==0)
+    var id=1
+  else var id=parseInt(prestation[prestation.length-1].id)+1
+  var data={"id":id,
+  "prestation":  $("#select-prestation").find(":selected").val(),
+   "coifficient":$("#coifficient").val(),
+ 
+"Artisan": $("#listeArtisans").find(":selected").val(),
+"Quantite":$("#quantité").val(),
+"Total":$("#total").val()
+}
+prestation.push(data)
+  var tableau=""
+  tableau+="<tr id='prestation"+id+"'>"
+ tableau+="<td id='"+
+      $("#select-prestation").find(":selected").val()+"'>"+
+      $("#select-prestation").find(":selected").text()+"</td>"
+ tableau+="<td> </td>"
+ tableau+="<td> "+$("#quantité").val()+"</td>"
+ tableau+="<td>"+$("#coifficient").val()+"</td>"
+ tableau+="<td> "+$("#total").val()+"</td>"
+ tableau+="<td id='"+$("#listeArtisans").find(":selected").val()+"'> "+ $("#listeArtisans").find(":selected").text()+"</td>"
+ tableau+='<td><button onclick="removePrestation('+id+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="editPrestation('+id+')"><span class="material-icons">create</span></button></td>'
+ 
+ tableau+="</tr>"
+ $('#table-prestation').append(tableau)
+})
+///
+/// Calculer le total de prestation
+///
+$('.totalPrestation').change(function(){
+  $('#total').val( $('#PUVente').val()*  $('#quantité').val()* $('#coifficient').val())
+    
+})
+$('.totalFourniture').change(function(){
+  $('#ftotal').val( $('#fPUVente').val()*  $('#fquantité').val())
+    
+})
+///
+/// Valider une fourniture 
+///
+$("#valider-fourniture").click(function(){
+  if(fourniture.length==0)
+    var id=1
+  else var id=parseInt(fourniture[fourniture.length-1].id)+1
+  var data={"id":id,
+  "fourniture": $("#listeFourniture").find(":selected").val(),
+   "fournisseur":$("#fFournisseur").html(),
+  "description":$("#fdescription").val(),
+"PUVente": $("#fPUVente").val(),
+"Quantite":$("#fquantité").val(),
+"Total":$("#ftotal").val()
+}
+fourniture.push(data)
+  var tableau=""
+  tableau+="<tr id='fourniture"+id+"'>"
+ tableau+="<td id='"+
+      $("#listeFourniture").find(":selected").val()+"'>"+
+      $("#listeFourniture").find(":selected").text()+"</td>"
+ tableau+="<td> "+$("#fFournisseur").html()+"</td>"
+ tableau+="<td>"+$("#fdescription").val()+"</td>"
+ tableau+="<td> "+$("#fPUVente").val()+"</td>"
+ tableau+="<td> "+$("#fquantité").val()+"</td>"
+ tableau+="<td> "+$("#ftotal").val()+"</td>"
+ tableau+='<td><button onclick="removeFourniture('+id+')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="editFourniture('+ id+')"><span class="material-icons">create</span></button></td>'
+ 
+ tableau+="</tr>"
+ $('#table-fourniture').append(tableau)
+})
 
     tableau += "</tr>";
     $("#table-fourniture").append(tableau);

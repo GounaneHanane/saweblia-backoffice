@@ -14,7 +14,10 @@ $(document).ready(function () {
       dataType: "json",
       async: false,
       success: function (msg) {
+        console.log(msg)
         if (msg.code === 0) {
+          
+          sessionStorage.setItem("utilisateurId", msg.info.utilisateurId);
           sessionStorage.setItem("login", msg.info.login);
           sessionStorage.setItem("nom", msg.info.nom);
           sessionStorage.setItem("token", msg.token);
