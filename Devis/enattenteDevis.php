@@ -4,6 +4,9 @@ require("../Nav/menu.php");
 ?>
 <script src="../js/devis.js"></script>
 <script>
+    if (sessionStorage.getItem("token") == "null" || sessionStorage.getItem("token") == null)
+        window.location.href =
+        window.location.origin + "/saweblia-backoffice/login/login.php";
     $(document).ready(function() {
         $.ajax({
             url: 'http://webapp.saweblia.ma/devienattente',
@@ -12,7 +15,7 @@ require("../Nav/menu.php");
                 Authorization: `Bearer ${sessionStorage.getItem("token")}`,
             },
             success: function(data) {
-                console.log(data)
+
                 var i;
                 var table = data.Devis;
                 $("#enattente-devis-table").DataTable({

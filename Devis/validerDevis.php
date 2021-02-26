@@ -2,10 +2,12 @@
 require("../Nav/header.php");
 require("../Nav/menu.php");
 ?>
-<script src="../js/devis.js"></script>
 
 
 <script>
+    if (sessionStorage.getItem("token") == "null" || sessionStorage.getItem("token") == null)
+        window.location.href =
+        window.location.origin + "/saweblia-backoffice/login/login.php";
     $(document).ready(function() {
         $.ajax({
             url: 'http://webapp.saweblia.ma/devivalide',
@@ -14,7 +16,7 @@ require("../Nav/menu.php");
                 Authorization: `Bearer ${sessionStorage.getItem("token")}`,
             },
             success: function(data) {
-                console.log(data)
+
                 var i;
                 var table = data.Devis;
                 $("#valider-devis-table").DataTable({
@@ -35,7 +37,7 @@ require("../Nav/menu.php");
                             data: null,
                             render: function(data) {
                                 return (
-                                    '<label class="badge badge-success">'+data.Statut+'</label>'
+                                    '<label class="badge badge-success">Validé</label>'
                                 );
                             },
                         },
@@ -114,7 +116,7 @@ require("../Nav/menu.php");
                                     Actions
                                 </th>
                             </thead>
-                            <tbody >
+                            <tbody>
 
                             </tbody>
                         </table>

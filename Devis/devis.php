@@ -2,7 +2,95 @@
 require("../Nav/header.php");
 require("../Nav/menu.php");
 ?>
-<script src="../js/devis.js"></script>
+<script>
+    if (sessionStorage.getItem("token") == "null" || sessionStorage.getItem("token") == null)
+        window.location.href =
+        window.location.origin + "/saweblia-backoffice/login/login.php";
+    $(document).ready(function() {
+        $.ajax({
+            url: 'http://webapp.saweblia.ma/devi',
+            type: "GET",
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+            success: function(data) {
+
+                var i;
+                var table = data.Devis;
+                $("#devis-table").DataTable({
+                    data: table,
+                    columns: [{
+                            data: "Client.Nom"
+                        },
+                        {
+                            data: "Coordinateur.Nom"
+                        },
+                        {
+                            data: "DateCommande",
+                        },
+                        {
+                            data: "DateDebutIntervention"
+                        },
+                        {
+                            data: null,
+                            render: function(data) {
+                                var swit
+                                switch (data.Statut) {
+                                    case 'EnAttente':
+                                        swit = '<label class="badge badge-danger">En attente </label>'
+                                        break;
+                                    case 'Valide':
+                                        swit = '<label class="badge badge-success">Valide</label>'
+                                        break;
+                                    case 'EnCours':
+                                        swit = '<label class="badge badge-warning">En cours </label>'
+                                        break;
+                                    case 'Terminer':
+                                        swit = '<label class="badge badge-success">Terminer</label>'
+                                        break;
+                                    case 'Paye':
+                                        swit = '<label class="badge badge-success">Paye</label>'
+                                        break;
+                                }
+                                return (
+                                    swit
+                                );
+                            },
+                        },
+                        {
+                            data: null,
+                            render: function(data) {
+                                return (
+                                    '<button onclick="deleteFourniture(' +
+                                    data.FournitureID +
+                                    ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferFournitureForm(' +
+                                    data.FournitureID +
+                                    ')"><span class="material-icons">create</span></button>'
+                                );
+                            },
+                        },
+
+                    ],
+                    order: [],
+                    language: {
+                        paginate: {
+                            previous: "Précédent",
+                            next: "Suivant",
+                        },
+                        lengthMenu: "Afficher _MENU_ ",
+                        zeroRecords: "Rien n'a été trouvé",
+                        info: "",
+                        infoEmpty: "Aucun enregistrement disponible",
+                        infoFiltered: "(filtré à partir de _MAX_ enregistrements au total)",
+                        search: "Recherche :",
+                    },
+                });
+
+            }
+        });
+    });
+</script>
+
 
 
 
@@ -25,7 +113,7 @@ require("../Nav/menu.php");
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table" id="devis-table">
                             <thead class=" text-primary">
                                 <th>
                                     Client
@@ -49,7 +137,7 @@ require("../Nav/menu.php");
                                     Actions
                                 </th>
                             </thead>
-                            <tbody id="devis-table">
+                            <tbody>
 
                             </tbody>
                         </table>

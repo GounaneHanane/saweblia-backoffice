@@ -24,13 +24,13 @@
             <a class="nav-link" href="../Devis/devis.php">Devis </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="../Devis/enattenteDevis.php">En attente </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="../Devis/validerDevis.php">Valide </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="../Devis/encoursDevis.php">En cours </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="../Devis/enattenteDevis.php">En attente </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="../Devis/terminerDevis.php">Terminés </a>

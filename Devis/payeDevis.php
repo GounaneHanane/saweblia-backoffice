@@ -2,10 +2,12 @@
 require("../Nav/header.php");
 require("../Nav/menu.php");
 ?>
-<script src="../js/devis.js"></script>
 
 <script>
-      $(document).ready(function() {
+    if (sessionStorage.getItem("token") == "null" || sessionStorage.getItem("token") == null)
+        window.location.href =
+        window.location.origin + "/saweblia-backoffice/login/login.php";
+    $(document).ready(function() {
         $.ajax({
             url: 'http://webapp.saweblia.ma/devipaye',
             type: "GET",
@@ -31,11 +33,11 @@ require("../Nav/menu.php");
                             data: "DateDebutIntervention"
                         },
                         {
-                            
+
                             data: null,
                             render: function(data) {
                                 return (
-                                    '<label class="badge badge-success">'+data.Statut+'</label>'
+                                    '<label class="badge badge-success">Payé</label>'
                                 );
                             },
                         },
@@ -115,7 +117,7 @@ require("../Nav/menu.php");
                                     Actions
                                 </th>
                             </thead>
-                            <tbody >
+                            <tbody>
 
                             </tbody>
                         </table>
