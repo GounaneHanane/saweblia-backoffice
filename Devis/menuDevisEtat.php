@@ -11,7 +11,7 @@
             </div>
             <div class="col-md-2 text-right">
 
-                <button id="add-devis" class="btn btn-primary add-button">Ajouter</button>
+                <button id="add-devis" class="btn btn-primary add-button" onclick="window.location.href='./addDevis.php'">Ajouter</button>
 
             </div>
 
