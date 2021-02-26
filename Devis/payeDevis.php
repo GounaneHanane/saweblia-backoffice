@@ -2,10 +2,37 @@
 require("../Nav/header.php");
 require("../Nav/menu.php");
 ?>
-<script src="../js/devis.js"></script>
 
 <script>
-      $(document).ready(function() {
+    if (sessionStorage.getItem("token") == "null" || sessionStorage.getItem("token") == null)
+        window.location.href =
+        window.location.origin + "/saweblia-backoffice/login/login.php";
+
+    function modiferClientForm(idmodif) {
+        window.location.href = "./editDevis.php?" + idmodif
+    }
+
+    function deleteDevi(idDevis) {
+        if (confirm("Voulez-vous vraiment supprimer ce Devi ?"))
+            $.ajax({
+                url: "http://webapp.saweblia.ma/devi/" + idDevis,
+                type: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+                },
+                success: function(msg) {
+                    $(".clearfix").append(
+                        '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button><span> Le Devi est supprimé avec succes</span></div>'
+                    );
+                    setTimeout(function() {
+                        window.location.href =
+                            "./devis.php"
+
+                    }, 1000);
+                },
+            });
+    }
+    $(document).ready(function() {
         $.ajax({
             url: 'http://webapp.saweblia.ma/devipaye',
             type: "GET",
@@ -31,11 +58,11 @@ require("../Nav/menu.php");
                             data: "DateDebutIntervention"
                         },
                         {
-                            
+
                             data: null,
                             render: function(data) {
                                 return (
-                                    '<label class="badge badge-success">'+data.Statut+'</label>'
+                                    '<label class="badge badge-success">Payé</label>'
                                 );
                             },
                         },
@@ -43,11 +70,8 @@ require("../Nav/menu.php");
                             data: null,
                             render: function(data) {
                                 return (
-                                    '<button onclick="deleteFourniture(' +
-                                    data.FournitureID +
-                                    ')" type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button type="button" class="btn btn-warning action" onclick="modiferFournitureForm(' +
-                                    data.FournitureID +
-                                    ')"><span class="material-icons">create</span></button>'
+                                    '<td><a href="./detailDevis.php?' + data.DeviID + '" class="btn btn-info action"><span class="material-icons">info</span></a><button onclick=deleteDevi(' + data.DeviID + ') type="button" class="btn btn-danger action"><span class="material-icons">delete_sweep</span></button><button onclick="deletedevis()" type="button" class="btn btn-primary action"><span class="material-icons">assignment_turned_in</span></button><button onclick="deletedevis(" type="button" class="btn btn-light action"><span class="material-icons">content_copy</span></button><button type="button" class="btn btn-warning action" onclick="modiferClientForm(' + data.DeviID + ')"><span class="material-icons">create</span></button></td></tr>'
+
                                 );
                             },
                         },
@@ -115,7 +139,7 @@ require("../Nav/menu.php");
                                     Actions
                                 </th>
                             </thead>
-                            <tbody >
+                            <tbody>
 
                             </tbody>
                         </table>

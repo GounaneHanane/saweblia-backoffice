@@ -11,7 +11,7 @@
             </div>
             <div class="col-md-2 text-right">
 
-                <button id="add-devis" class="btn btn-primary add-button">Ajouter</button>
+                <button id="add-devis" class="btn btn-primary add-button" onclick="window.location.href='./addDevis.php'">Ajouter</button>
 
             </div>
 
@@ -24,13 +24,13 @@
             <a class="nav-link" href="../Devis/devis.php">Devis </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="../Devis/enattenteDevis.php">En attente </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="../Devis/validerDevis.php">Valide </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="../Devis/encoursDevis.php">En cours </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="../Devis/enattenteDevis.php">En attente </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="../Devis/terminerDevis.php">Terminés </a>
