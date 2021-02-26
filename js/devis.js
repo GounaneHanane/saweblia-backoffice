@@ -176,8 +176,8 @@ $('#clients').change(function(){
       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },success: function(data) {
     $('#nom-client').html(data.Nom)
-    $('#tel-client').html(data.Telephone)
-    $('#comment-client').html(data.Comment)
+    $('#tel-client').val(data.Telephone)
+    $('#comment-client').val(data.Comment)
 }})
  $.ajax({
     url:'http://webapp.saweblia.ma/adresse_client/'+$(this).val(),headers: {

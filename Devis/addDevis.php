@@ -21,21 +21,35 @@ require("../Nav/menu.php");
         }
     });
 </script>
-<div class="content">
-    <div class="clearfix"></div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header card-header-primary">
-                        <h4 class="card-title">Nouveau devi</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="card border">
-                          
-                                <div class="card-body">
-                                    <h3 class="card-title" style="margin-bottom: 15px;">Information Devis</h3>
+<div class="page-wrapper">
 
+        <div class="content container-fluid">
+
+        <div class="clearfix"></div>
+
+          <div class="row">
+
+            <div class="col-xl-8 offset-xl-2">
+
+              <div class="page-header">
+
+                <div class="row">
+                  <div class="col">
+
+                  <h3 class="page-title">Nouveau devi </h3></div></div></div> <div class="page-header">
+
+<div class="row">
+  <div class="col">
+
+ 
+                  </div>
+                </div>
+         
+              
+                </div>
+                <div class="card">
+                <div class="card-body">
+                <h3 class="page-title">Information Devis</h3>
                                     <form id="addDeviForm">
 
                                     <div class="row">
@@ -64,7 +78,7 @@ require("../Nav/menu.php");
                                
                        <hr>
                                <div id="client-info-area">
-                                    <h3 class="card-title" style="margin-bottom: 15px;">Client :  <label id="nom-client" ></label> </h3>
+                                    <h3 class="card-title" style="margin-bottom: 15px;">Client :  <b id="nom-client" ></b> </h3>
 
                                     <div class="row">
                                        
@@ -123,8 +137,8 @@ require("../Nav/menu.php");
                             </form>
                         </div>
                         </div>
-                        <div class="card border">
-                            <form id="add-client-form">
+                        <div id="prestationArea" hidden class="card border" >
+                            <form id="prestationForm" hidden>
                                 <div class="card-body">
                                     <div class="row">
 
@@ -140,7 +154,7 @@ require("../Nav/menu.php");
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Prestation </label>
                                                         <select id="select-prestation" class="form-control js-example-basic-single">
@@ -176,20 +190,21 @@ require("../Nav/menu.php");
 
 
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Artisant </label>
                                                         <select id="listeArtisans" class="form-control js-example-basic-single">
 
 
-</select>
+                                                        </select>
                                                     </div>
                                                 </div>
                                               
                                                 <div class="col-md-2">
-                                                <label class="bmd-label-floating">P.U Achat </label>
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">P.U Achat </label>
                                                        
-                                                    <div class="form-group"><input id="PUAchat" type="text" class="form-control" placeholder="P.U.Achat">
+                                                    <input id="PUAchat" type="text" class="form-control" placeholder="P.U.Achat">
                                                     </div>
                                                 </div>
 
@@ -212,8 +227,9 @@ require("../Nav/menu.php");
                                         </div>
 
                                     </div>
+</form>
                                     
-                                    <div class="card-body">
+                                    <div class="card-body" >
                                         <div class="table-responsive">
                                             <table class="table">
                                                 <thead class=" text-primary">
@@ -249,8 +265,8 @@ require("../Nav/menu.php");
                                         </div>
                                     </div>
                                 </div>
-                        </div>
-                        <div class="card border">
+                       
+                        <div id="fourniture" class="card border" hidden>
                             <form id="add-client-form">
                                 <div class="card-body">
                                     <div class="row">
@@ -264,7 +280,7 @@ require("../Nav/menu.php");
                                         </div>
 
                                     </div>
-                                    <div class="card">
+                                    <div class="card" >
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-md-1">
@@ -370,7 +386,7 @@ require("../Nav/menu.php");
 
 
 
-                        <button id="btn-edit" type="button" class="btn btn-success pull-right">Enregistrer</button>
+                        <button id="btn-save" type="button" class="btn btn-success pull-right">Ajouter prestation</button>
                         <button onclick="window.location.href='./utilisateurs.php'" type="button" class="btn btn-danger pull-right">Annuler</button>
 
                         </form>

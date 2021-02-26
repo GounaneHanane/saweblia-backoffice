@@ -18,9 +18,11 @@ $(document).ready(function() {
 		window.location.href="../login/login.php"
 	})
 	$('li').click(function(){
+		$('li').removeClass("active")
+		$(this).addClass("active")
 		
-		$(this).toggleClass("active")
 	})
+	console.log(window.location.pathname)
 })
  
 </script>
@@ -65,41 +67,41 @@ $(document).ready(function() {
 	<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: 100%; height: 909px;"><div class="sidebar-inner slimscroll" style="overflow: hidden; width: 100%; height: 909px;">
 		<div id="sidebar-menu" class="sidebar-menu">
 			<ul>
-            <li hidden>
+            <li id="devi">
             <a href="../Devis/devis.php">
              
               <span>Devis</span>
             </a>
           </li>
-          <li>
+          <li id="client">
             <a  href="../Client/clients.php">
              
               <span>Clients</span>
             </a>
           </li>
-		  <li >
+		  <li id=prestation>
             <a  href="../Service/prestation.php"><span>Prestations</span></a>
           </li>
-		  <li >
+		  <li id="coordinateur">
             <a  href="../Personnel/coordinateurs.php"><span>Coordinateurs</span></a>
           </li>
-		  <li >
+		  <li id="artisan">
             <a  href="../Personnel/personnels.php"><span>Artisans</span></a>
           </li>
-		  <li >
+		  <li id="fourniture">
             <a  href="../Fourniture/fourniture.php"><span>Fourniture</span></a>
           </li>
-		  <li >
+		  <li id="fournisseur">
             <a  href="../Fourniture/fournisseurs.php"><span>Fournisseur</span></a>
           </li>
-		  <li >
+		  <li id="categorie">
             <a  href="../Service/categorie.php"><span>Catégories</span></a>
           </li>
-		  <li >
+		  <li id="service">
             <a  href="../Service/services.php"><span>Services</span></a>
           </li>
 		
-		  <li >
+		  <li id="jumiapre">
             <a  href="../Partenaire/jumia.php"><span>Prestation Jumia</span></a>
           </li>
 		  <li >
