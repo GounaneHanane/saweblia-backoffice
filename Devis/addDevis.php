@@ -135,260 +135,274 @@ require("../Nav/menu.php");
                     </div>
                 </div>
                 <div id="prestationArea" class="card border">
-                    <form id="prestationForm">
-                        <div class="card-body">
-                            <div class="row">
-
-                                <div class="col-md-8">
-                                    <h3 class="card-title" style="margin-bottom: 15px;">Prestation / Artisant </h3>
-                                </div>
-
-
-
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Prestation </label><br>
-                                                <select id="select-prestation" class="form-control js-example-basic-single">
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-2">
-                                            <label class="bmd-label-floating">P.U Vente </label>
-                                            <div class="form-group"><input id="PUVente" type="text" class="totalPrestation form-control" placeholder="P.U.Vente">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label class="bmd-label-floating">Quantité </label>
-                                            <div class="form-group"><input id="quantité" type="text" class=" totalPrestation form-control" placeholder="Quantité">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label class="bmd-label-floating">Coeifficient </label>
-                                            <div class="form-group"><input id="coifficient" type="text" class="totalPrestation form-control" placeholder="Coeifficient">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Montant total </label>
-                                                <input id="total" type="text" class="form-control" placeholder="Total">
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-
-
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Artisant </label><br>
-                                                <select id="listeArtisans" class="form-control js-example-basic-single">
-
-
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">P.U Achat </label>
-
-                                                <input id="PUAchat" type="text" class="form-control" placeholder="P.U.Achat">
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-
-                                                <label class="bmd-label-floating">Description</label>
-                                                <textarea id="descirption" class="form-control"></textarea>
-
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                    <button id="valider-prestation" type="button" class="btn btn-primary pull-right">valider</button>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </form>
 
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead class=" text-primary">
-                                    <th>
-                                        Prestation
-                                    </th>
+                        <div class="row">
 
-
-                                    <th>
-                                        Prix Unitaire
-                                    </th>
-
-                                    <th>
-                                        Quantité
-                                    </th>
-                                    <th>
-                                        Coefficient
-                                    </th>
-                                    <th>
-                                        Total
-                                    </th>
-                                    <th>
-                                        Artisan
-                                    </th>
-                                    <th>
-                                        Actions
-                                    </th>
-                                </thead>
-                                <tbody id="table-prestation">
-
-                                </tbody>
-                            </table>
-                            <div class="col-md-12">
-                                <button id="btn-edit" type="button" class="btn btn-success pull-right">Enregistrer</button>
+                            <div class="col-md-8">
+                                <h3 class="card-title" style="margin-bottom: 15px;">Prestation / Artisant </h3>
                             </div>
+
+
+
                         </div>
+                        <div id="prestationArea2">
+                            <form id="prestationForm">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Prestation </label><br>
+                                                    <select id="select-prestation" class="form-control js-example-basic-single">
+                                                    </select>
+                                                </div>
+                                            </div>
 
-                    </div>
-                </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">P.U Vente </label>
+                                                    <input id="PUVente" type="text" class="totalPrestation form-control" placeholder="P.U.Vente">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Quantité </label>
+                                                    <input id="quantité" type="text" class=" totalPrestation form-control" placeholder="Quantité">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Coeifficient </label>
+                                                    <input id="coifficient" type="text" class="totalPrestation form-control" placeholder="Coeifficient">
+                                                </div>
 
-                <div id="fournitureArea" class="card border">
-                    <form id="add-client-form">
-                        <div class="card-body">
-                            <div class="row">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Montant total </label>
+                                                    <input id="total" type="text" class="form-control" placeholder="Total">
+                                                </div>
 
-                                <div class="col-md-8">
-                                    <h3 class="card-title" style="margin-bottom: 15px;">Fourniture </h3>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Artisant </label><br>
+                                                    <select id="listeArtisans" class="form-control js-example-basic-single">
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">P.U Achat </label>
+
+                                                    <input id="PUAchat" type="text" class="form-control" placeholder="P.U.Achat">
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+
+                                                    <label class="bmd-label-floating">Description</label>
+                                                    <textarea id="descirption" class="form-control"></textarea>
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <button id="valider-prestation" type="button" class="btn btn-primary pull-right">valider</button>
+
+                                    </div>
                                 </div>
 
 
 
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Fourniture </label><br>
+                            </form>
+
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class=" text-primary">
+                                            <th>
+                                                Prestation
+                                            </th>
 
 
-                                                <select id="listeFourniture" class="form-control  js-example-basic-single">
+                                            <th>
+                                                Prix d'achat
+                                            </th>
+                                            <th>
+                                                Prix de vente
+                                            </th>
+                                            <th>
+                                                Quantité
+                                            </th>
+                                            <th>
+                                                Coefficient
+                                            </th>
+                                            <th>
+                                                Total
+                                            </th>
+                                            <th>
+                                                Artisan
+                                            </th>
+                                            <th>
+                                                Actions
+                                            </th>
+                                        </thead>
+                                        <tbody id="table-prestation">
 
-
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label class="bmd-label-floating">Prix de vente </label>
-
-                                            <div class="form-group"><input id="fPUVente" type="text" class=" totalFourniture form-control" placeholder="P.U.Vente">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Quantité </label>
-
-                                                <input id="fquantité" type="text" class=" totalFourniture form-control" placeholder="Quantité">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Total </label>
-
-                                                <input id="ftotal" type="text" class="form-control" placeholder="Total">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-
-                                                <label class="bmd-label-floating">Fournisseur : </label>
-                                                <input type="text" class="form-control" id="fFournisseur" disabled></input>
-
-                                            </div>
-                                        </div>
-
+                                        </tbody>
+                                    </table>
+                                    <div class="col-md-12">
+                                        <button id="save-prestation" type="button" class="btn btn-success pull-right">Enregistrer</button>
                                     </div>
-
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-
-                                                <label class="bmd-label-floating">Description</label>
-                                                <textarea id="fdescription" class="form-control"></textarea>
-
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
-
-
-                                    <button id="valider-fourniture" type="button" class="btn btn-primary pull-right">valider</button>
-
                                 </div>
 
-                            </div>
-                        </div>
-                    </form>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table" id="table-fourniture">
-                                <thead class=" text-primary">
-                                    <th>
-                                        Fourniture
-                                    </th>
-
-
-                                    <th>
-                                        Fournisseur
-                                    </th>
-
-                                    <th>
-                                        Description
-                                    </th>
-                                    <th>
-                                        Prix Unitaire
-                                    </th>
-                                    <th>
-                                        Quantité
-                                    </th>
-                                    <th>
-                                        Total
-                                    </th>
-                                    <th>
-                                        Actions
-                                    </th>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                            </table>
-                            <div class="col-md-12">
-                                <button id="btn-edit" type="button" class="btn btn-success pull-right">Enregistrer</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <div id="fournitureArea" class="card border">
+
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="col-md-8">
+                                <h3 class="card-title" style="margin-bottom: 15px;">Fourniture </h3>
+                            </div>
+
+
+
+                        </div>
+                        <div id="fournitureArea2">
+                            <form id="add-client-form">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Fourniture </label><br>
+
+
+                                                    <select id="listeFourniture" class="form-control  js-example-basic-single">
+
+
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="bmd-label-floating">Prix de vente </label>
+
+                                                <div class="form-group"><input id="fPUVente" type="text" class=" totalFourniture form-control" placeholder="P.U.Vente">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Quantité </label>
+
+                                                    <input id="fquantité" type="text" class=" totalFourniture form-control" placeholder="Quantité">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Total </label>
+
+                                                    <input id="ftotal" type="text" class="form-control" placeholder="Total">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+
+                                                    <label class="bmd-label-floating">Fournisseur : </label>
+                                                    <input type="text" class="form-control" id="fFournisseur" disabled></input>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+
+                                                    <label class="bmd-label-floating">Description</label>
+                                                    <textarea id="fdescription" class="form-control"></textarea>
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+
+                                        <button id="valider-fourniture" type="button" class="btn btn-primary pull-right">valider</button>
+
+                                    </div>
+
+                                </div>
+
+                            </form>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class=" text-primary">
+                                            <th>
+                                                Fourniture
+                                            </th>
+
+
+                                            <th>
+                                                Fournisseur
+                                            </th>
+
+                                            <th>
+                                                Description
+                                            </th>
+                                            <th>
+                                                Prix Unitaire
+                                            </th>
+                                            <th>
+                                                Quantité
+                                            </th>
+                                            <th>
+                                                Total
+                                            </th>
+                                            <th>
+                                                Actions
+                                            </th>
+                                        </thead>
+                                        <tbody id="table-fourniture">
+
+                                        </tbody>
+                                    </table>
+                                    <div class="col-md-12">
+                                        <button id="save-fourniture" type="button" class="btn btn-success pull-right">Enregistrer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
 
@@ -397,9 +411,12 @@ require("../Nav/menu.php");
 
 
 
-                <button id="btn-save" type="button" class="btn btn-success pull-right">Ajouter prestation</button>
+                <button id="btn-save" name="prestation" type="button" class="btn btn-success pull-right">Enregistrer</button>
                 <button onclick="window.location.href='./utilisateurs.php'" type="button" class="btn btn-danger pull-right">Annuler</button>
+
+
             </div>
         </div>
 
     </div>
+</div>
