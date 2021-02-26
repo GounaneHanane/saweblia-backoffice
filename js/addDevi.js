@@ -52,7 +52,10 @@ $(document).ready(function(){
    
       if($(this).html()=="Ajouter prestation") {
          $(this).html("Ajouter fourniture")
-         $("#prestationArea").attr("hidden",false)
+         $("#prestationArea").slideDown();
+      }
+      else if($(this).html()=="Ajouter fourniture") {
+         $("#fournitureArea").slideDown();
       }
    })
 })

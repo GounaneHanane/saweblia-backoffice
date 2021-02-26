@@ -75,7 +75,7 @@ window.location.href =
       $('#fPUVente').val(data.PrixVente)
       $('#fquantité').val(0)
       $('#fdescirption').val(data.Description)
-     // $('#fFournisseur').val(data.Fournisseur.NomFournisseur)
+      $('#fFournisseur').val(data.Fournisseur.NomFournisseur)
    }})
   });
       ////
@@ -254,7 +254,7 @@ $("#valider-fourniture").click(function(){
   else var id=parseInt(fourniture[fourniture.length-1].id)+1
   var data={"id":id,
   "fourniture": $("#listeFourniture").find(":selected").val(),
-   "fournisseur":$("#fFournisseur").html(),
+   "fournisseur":$("#fFournisseur").val(),
   "description":$("#fdescription").val(),
 "PUVente": $("#fPUVente").val(),
 "Quantite":$("#fquantité").val(),
@@ -266,7 +266,7 @@ fourniture.push(data)
  tableau+="<td id='"+
       $("#listeFourniture").find(":selected").val()+"'>"+
       $("#listeFourniture").find(":selected").text()+"</td>"
- tableau+="<td> "+$("#fFournisseur").html()+"</td>"
+ tableau+="<td> "+$("#fFournisseur").val()+"</td>"
  tableau+="<td>"+$("#fdescription").val()+"</td>"
  tableau+="<td> "+$("#fPUVente").val()+"</td>"
  tableau+="<td> "+$("#fquantité").val()+"</td>"
@@ -332,7 +332,7 @@ function displayClients() {
        if(fourniture[i].id==line) {
        $('#listeFourniture').val(fourniture[i].FournitureID).trigger('change')
       //  $('#listeFourniture').empty().trigger('change');
-        $("#fFournisseur").html(fourniture[i].fournisseur)
+        $("#fFournisseur").val(fourniture[i].fournisseur)
         $("#fdescription").val(fourniture[i].description)
         $("#fPUVente").val(fourniture[i].PUVente)
         $("#fquantité").val(fourniture[i].Quantite)
@@ -437,7 +437,7 @@ function displayFourniture(){
     $('#listeFourniture').append("<option value='"+data.Fournitures[i].FournitureID+"' >" + data.Fournitures[i].Libelle+ "</option>")
     $('#fPUVente').val(data.Fournitures[i].PrixVente)
     $('#fquantité').val(0)
-    $('#fFournisseur').html(data.Fournitures[i].Fournisseur.NomFournisseur)
+    $('#fFournisseur').val(data.Fournitures[i].Fournisseur.NomFournisseur)
     $('#fdescription').val(data.Fournitures[i].Description)
     $('#ftotal').val(0)
     
