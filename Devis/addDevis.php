@@ -32,11 +32,11 @@ require("../Nav/menu.php");
                     </div>
                     <div class="card-body">
                         <div class="card border">
-                          
-                                <div class="card-body">
-                                    <h3 class="card-title" style="margin-bottom: 15px;">Information Devis</h3>
 
-                                    <form id="addDeviForm">
+                            <div class="card-body">
+                                <h3 class="card-title" style="margin-bottom: 15px;">Information Devis</h3>
+
+                                <form id="addDeviForm">
 
                                     <div class="row">
                                         <div class="col-md-4">
@@ -61,67 +61,67 @@ require("../Nav/menu.php");
                                         </div>
 
                                     </div>
-                               
-                       <hr>
-                               <div id="client-info-area">
-                                    <h3 class="card-title" style="margin-bottom: 15px;">Client :  <label id="nom-client" ></label> </h3>
 
-                                    <div class="row">
-                                       
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Telephone : </label>
-                                                <input type="text" id="tel-client" class="form-control" disabled>
-                                            </div>
-                                        </div>
-                                      
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                            <label class="bmd-label-floating ">Adresse</label>
+                                    <hr>
+                                    <div id="client-info-area">
+                                        <h3 class="card-title" style="margin-bottom: 15px;">Client : <label id="nom-client"></label> </h3>
 
-                                                <select id="listeAdresse" class="form-control js-example-basic-single">
-                                                    <option disabled value="">--- Adresses ---</option>
+                                        <div class="row">
 
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Libelle : </label>
-                                                <input type="text" class="form-control" id="libelle-adresse" disabled></input>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Localisation : </label>
-                                                <div class="row">
-                                                <input type="text" class="form-control col-md-10" id="localisation-adresse" disabled></input>
-                                              
-                                                    <button type="button" class="col-md-1 btn btn-light action" style="margin-left:5px"><span class="material-icons">content_copy</span></button>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Telephone : </label>
+                                                    <input type="text" id="tel-client" class="form-control" disabled>
                                                 </div>
-                     
-
                                             </div>
-                                        </div>
-                                                                     
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Commentaire : </label>
-                                                <textarea id="comment-client" class="form-control"></textarea>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating ">Adresse</label>
+
+                                                    <select id="listeAdresse" class="form-control js-example-basic-single">
+                                                        <option disabled value="">--- Adresses ---</option>
+
+                                                    </select>
+                                                </div>
                                             </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Libelle : </label>
+                                                    <input type="text" class="form-control" id="libelle-adresse" disabled></input>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Localisation : </label>
+                                                    <div class="row">
+                                                        <input type="text" class="form-control col-md-10" id="localisation-adresse" disabled></input>
+
+                                                        <button type="button" class="col-md-1 btn btn-light action" style="margin-left:5px"><span class="material-icons">content_copy</span></button>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
                                         </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Commentaire : </label>
+                                                    <textarea id="comment-client" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <button id="add-devi" type="submit" class="btn btn-success pull-right">Enregistrer</button>
+
 
 
                                     </div>
-                                    <button id="add-devi" type="submit" class="btn btn-success pull-right">Enregistrer</button>
-
-
-
-                                </div>
-                            </form>
-                        </div>
+                                </form>
+                            </div>
                         </div>
                         <div class="card border">
                             <form id="add-client-form">
@@ -147,32 +147,32 @@ require("../Nav/menu.php");
                                                         </select>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="col-md-2">
-                                                <label class="bmd-label-floating">P.U Vente </label>
-                                                    <div class="form-group"><input  id="PUVente" type="text" class="totalPrestation form-control" placeholder="P.U.Vente">
+                                                    <label class="bmd-label-floating">P.U Vente </label>
+                                                    <div class="form-group"><input id="PUVente" type="text" class="totalPrestation form-control" placeholder="P.U.Vente">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
-                                                <label class="bmd-label-floating">Quantité </label>
+                                                    <label class="bmd-label-floating">Quantité </label>
                                                     <div class="form-group"><input id="quantité" type="text" class=" totalPrestation form-control" placeholder="Quantité">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
-                                                <label class="bmd-label-floating">Coeifficient </label>
+                                                    <label class="bmd-label-floating">Coeifficient </label>
                                                     <div class="form-group"><input id="coifficient" type="text" class="totalPrestation form-control" placeholder="Coeifficient">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
-                                                    <label class="bmd-label-floating">Montant total </label>
+                                                        <label class="bmd-label-floating">Montant total </label>
                                                         <input id="total" type="text" class="form-control" placeholder="Total">
                                                     </div>
                                                 </div>
 
                                             </div>
 
-                                          
+
 
 
                                             <div class="row">
@@ -182,13 +182,13 @@ require("../Nav/menu.php");
                                                         <select id="listeArtisans" class="form-control js-example-basic-single">
 
 
-</select>
+                                                        </select>
                                                     </div>
                                                 </div>
-                                              
+
                                                 <div class="col-md-2">
-                                                <label class="bmd-label-floating">P.U Achat </label>
-                                                       
+                                                    <label class="bmd-label-floating">P.U Achat </label>
+
                                                     <div class="form-group"><input id="PUAchat" type="text" class="form-control" placeholder="P.U.Achat">
                                                     </div>
                                                 </div>
@@ -212,7 +212,7 @@ require("../Nav/menu.php");
                                         </div>
 
                                     </div>
-                                    
+
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <table class="table">
@@ -276,7 +276,7 @@ require("../Nav/menu.php");
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <select id="listeFourniture" class="form-control  js-example-basic-single">
-                                                            
+
 
                                                         </select>
                                                     </div>

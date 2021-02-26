@@ -313,9 +313,15 @@ table.table td h2 span {
 .btn.btn-rounded {
 	border-radius: 50px;
 }
+.bg-secondary,
+.badge-secondary {
+	background-color: gray !important;
+	color: white;
+}
 .bg-primary,
 .badge-primary {
 	background-color: #286eb9 !important;
+	color: white;
 }
 a.bg-primary:focus, 
 a.bg-primary:hover, 
@@ -326,6 +332,7 @@ button.bg-primary:hover {
 .bg-success,
 .badge-success {
 	background-color: #27c24c !important;
+	color: white !important;
 }
 a.bg-success:focus, 
 a.bg-success:hover, 
@@ -346,6 +353,7 @@ button.bg-info:hover {
 .bg-warning,
 .badge-warning {
 	background-color: #ffbc34 !important;
+	color: white im !important;
 }
 a.bg-warning:focus, 
 a.bg-warning:hover, 
@@ -356,6 +364,7 @@ button.bg-warning:hover {
 .bg-danger,
 .badge-danger {
 	background-color: #f05050 !important;
+	color: white !important;
 }
 a.bg-danger:focus, 
 a.bg-danger:hover, 

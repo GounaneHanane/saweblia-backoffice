@@ -1,17 +1,17 @@
 if (sessionStorage.getItem("token") == "null")
-window.location.href =
-  window.location.origin + "/saweblia-backoffice/login/login.php";
+  window.location.href =
+    window.location.origin + "/saweblia-backoffice/login/login.php";
 $(document).ready(function () {
   ////
   //// Display Data
   ////
   $.ajax({
-    url:"http://webapp.saweblia.ma/fournitures" ,
-     type:"GET",
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-      },
-   success: function (data) {
+    url: "http://webapp.saweblia.ma/fournitures",
+    type: "GET",
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+    success: function (data) {
       var i;
       var table = data.Fournitures;
       $("#fourniture-table").DataTable({
@@ -64,8 +64,8 @@ $(document).ready(function () {
           search: "Recherche :",
         },
       });
-    }}
-  );
+    },
+  });
   ////
   //// add fournisseur checkbox in add fourniture
   ////
@@ -79,20 +79,24 @@ $(document).ready(function () {
       $(".fournisseurArea").html("");
 
       $.ajax({
-        url:"http://webapp.saweblia.ma/fournisseurs", type:"GET",headers: {
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-      },success: function (data) {
-        console.log(data);
-        var i;
-        for (i = 0; i < data.Fournisseurs.length; i++) {
-          $("#fournisseurs").append(
-            "<option value='" +
-              data.Fournisseurs[i].Fournisseur +
-              "'>" +
-              data.Fournisseurs[i].NomFournisseur +
-              "</option>"
-          );
-      }}
+        url: "http://webapp.saweblia.ma/fournisseurs",
+        type: "GET",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+        success: function (data) {
+          console.log(data);
+          var i;
+          for (i = 0; i < data.Fournisseurs.length; i++) {
+            $("#fournisseurs").append(
+              "<option value='" +
+                data.Fournisseurs[i].Fournisseur +
+                "'>" +
+                data.Fournisseurs[i].NomFournisseur +
+                "</option>"
+            );
+          }
+        },
       });
       $(".fournisseurArea").append(
         ' <select id="fournisseurs"  class="form-control js-example-basic-single" ></select>'
